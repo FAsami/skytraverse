@@ -1,0 +1,43 @@
+table:
+  name: otp_transaction
+  schema: public
+computed_fields:
+  - name: isOtpResendAllowed
+    definition:
+      function:
+        name: isOtpResendAllowed
+        schema: public
+  - name: isValid
+    definition:
+      function:
+        name: isOtpValid
+        schema: public
+event_triggers:
+  - name: sendOTP
+    definition:
+      enable_manual: true
+      insert:
+        columns: '*'
+      update:
+        columns:
+          - resendAttempts
+    retry_conf:
+      interval_sec: 10
+      num_retries: 0
+      timeout_sec: 60
+    webhook: '{{SERVER_URL}}/event/send-otp'
+    headers:
+      - name: no_reply_email
+        value: no-reply@foysal.dev
+    request_transform:
+      body:
+        action: transform
+        template: |-
+          {
+            "table": {
+              "name": {{$body.table.name}},
+              "schema": {{$body.table.schema}}
+            }
+          }
+      template_engine: Kriti
+      version: 2

@@ -1,7 +1,0 @@
-version: 3
-endpoint: https://example.hasura.app
-admin_secret: <admin_secret>
-metadata_directory: metadata
-actions:
-  kind: synchronous
-  handler_webhook_baseurl: http://localhost:3000
