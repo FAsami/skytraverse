@@ -1,0 +1,10 @@
+{
+    "cSpell.words": [
+        "tailwindcss"
+    ],
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "window.zoomLevel": 1,
+    "docwriter.style": "Auto-detect"
+}

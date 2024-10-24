@@ -7,20 +7,20 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "5580:5432"
+      - '5580:5432'
     volumes:
       - postgres:/var/lib/postgresql/data
 
   hasura:
     image: hasura/graphql-engine:latest
     ports:
-      - "5581:8080"
+      - '5581:8080'
     restart: always
     depends_on:
       - postgres
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
-      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
 
 volumes:
