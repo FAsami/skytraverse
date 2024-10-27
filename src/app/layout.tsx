@@ -5,6 +5,7 @@ import { apolloClient } from './lib'
 import { GetBrandQuery } from '@/types/gql/graphql'
 import { GET_BRAND_INFO } from './graphql/query'
 import { notFound } from 'next/navigation'
+import { cache } from 'react'
 
 const RootLayout = ({
   children
@@ -21,14 +22,7 @@ const RootLayout = ({
 export default RootLayout
 
 const generateMetadata = async (): Promise<Metadata> => {
-  const { brand } = await apolloClient.request<GetBrandQuery>(GET_BRAND_INFO, {
-    title: process.env.BRAND_TITLE
-  })
-  if (!brand?.[0]) {
-    notFound()
-  }
-  const metaData = brand[0]?.metaData as Metadata
-
+  const metaData = await getBrandMetaData()
   return {
     title: metaData.title || process.env.BRAND_TITLE || '',
     ...(metaData && {
@@ -37,3 +31,14 @@ const generateMetadata = async (): Promise<Metadata> => {
   }
 }
 export { generateMetadata }
+
+const getBrandMetaData = cache(async () => {
+  const { brand } = await apolloClient.request<GetBrandQuery>(GET_BRAND_INFO, {
+    title: process.env.BRAND_TITLE
+  })
+  if (!brand?.[0]) {
+    notFound()
+  }
+  const metaData = brand[0]?.metaData as Metadata
+  return metaData
+})
