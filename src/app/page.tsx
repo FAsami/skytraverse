@@ -1,9 +1,10 @@
 import { gql } from 'graphql-request'
 import { apolloClient } from './lib/apolloClient'
+import { GetBrandQuery } from '@/types/gql/graphql'
 
 const HomePage = async () => {
   try {
-    const client = await apolloClient.request(gql`
+    const client = await apolloClient.request<GetBrandQuery>(gql`
       query GetBrand {
         brand {
           id
@@ -18,7 +19,7 @@ const HomePage = async () => {
         }
       }
     `)
-    console.log(client)
+    console.log(client.brand)
     return <div>Hello</div>
   } catch (error) {
     console.log(error)

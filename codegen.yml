@@ -1,0 +1,10 @@
+schema:
+  - 'http://localhost:5581/v1/graphql':
+      headers:
+        'x-hasura-admin-secret': '1234'
+documents:
+  - './src/app/**/*.{js,ts,jsx,tsx,mdx}'
+  - '!./src/types/gql/**/*'
+generates:
+  ./src/types/gql/:
+    preset: gql-tag-operations-preset
