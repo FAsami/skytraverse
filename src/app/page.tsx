@@ -4,11 +4,17 @@ import { apolloClient } from './lib/apolloClient'
 const HomePage = async () => {
   try {
     const client = await apolloClient.request(gql`
-      query GetProducts {
-        products {
+      query GetBrand {
+        brand {
           id
-          name
-          price
+          title
+          logo
+          metaData
+          phone
+          email
+          location
+          updated_at
+          created_at
         }
       }
     `)
