@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n      query GetBrand {\n        brand {\n          id\n          title\n          logo\n          metaData\n          phone\n          email\n          location\n          updated_at\n          created_at\n        }\n      }\n    ": types.GetBrandDocument,
+    "\n  query GetBrand($title: String!) {\n    brand(where: { title: { _eq: $title } }) {\n      id\n      title\n      logo\n      metaData\n      phone\n      email\n      location\n    }\n  }\n": types.GetBrandDocument,
 };
 
 /**
@@ -33,7 +33,7 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n      query GetBrand {\n        brand {\n          id\n          title\n          logo\n          metaData\n          phone\n          email\n          location\n          updated_at\n          created_at\n        }\n      }\n    "): (typeof documents)["\n      query GetBrand {\n        brand {\n          id\n          title\n          logo\n          metaData\n          phone\n          email\n          location\n          updated_at\n          created_at\n        }\n      }\n    "];
+export function gql(source: "\n  query GetBrand($title: String!) {\n    brand(where: { title: { _eq: $title } }) {\n      id\n      title\n      logo\n      metaData\n      phone\n      email\n      location\n    }\n  }\n"): (typeof documents)["\n  query GetBrand($title: String!) {\n    brand(where: { title: { _eq: $title } }) {\n      id\n      title\n      logo\n      metaData\n      phone\n      email\n      location\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

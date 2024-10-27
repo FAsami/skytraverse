@@ -1,25 +1,5 @@
-import { gql } from 'graphql-request'
-import { apolloClient } from './lib/apolloClient'
-import { GetBrandQuery } from '@/types/gql/graphql'
-
 const HomePage = async () => {
   try {
-    const client = await apolloClient.request<GetBrandQuery>(gql`
-      query GetBrand {
-        brand {
-          id
-          title
-          logo
-          metaData
-          phone
-          email
-          location
-          updated_at
-          created_at
-        }
-      }
-    `)
-    console.log(client.brand)
     return <div>Hello</div>
   } catch (error) {
     console.log(error)
