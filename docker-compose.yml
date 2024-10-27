@@ -9,7 +9,7 @@ services:
     ports:
       - '5580:5432'
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql/data
 
   hasura:
     image: hasura/graphql-engine:latest
