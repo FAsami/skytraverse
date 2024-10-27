@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { apolloClient } from './lib'
 import { GetBrandQuery } from '@/types/gql/graphql'
 import { GET_BRAND_INFO } from './graphql/query'
+import { notFound } from 'next/navigation'
 
 const RootLayout = ({
   children
@@ -23,7 +24,9 @@ const generateMetadata = async (): Promise<Metadata> => {
   const { brand } = await apolloClient.request<GetBrandQuery>(GET_BRAND_INFO, {
     title: process.env.BRAND_TITLE
   })
-
+  if (!brand?.[0]) {
+    notFound()
+  }
   const metaData = brand[0]?.metaData as Metadata
 
   return {
