@@ -7,18 +7,29 @@ import { GET_BRAND_INFO } from './graphql/query'
 import { notFound } from 'next/navigation'
 import { cache } from 'react'
 import { AntdRegistry } from '@ant-design/nextjs-registry'
+import { Header } from './components'
+import { ConfigProvider } from 'antd'
+import { theme } from '@/theme/antd'
 
-const RootLayout = ({
+const RootLayout = async ({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) => {
+  const { brand } = await apolloClient.request<GetBrandQuery>(GET_BRAND_INFO, {
+    title: process.env.BRAND_TITLE
+  })
   return (
-    <html lang="en">
-      <body className={`${font} antialiased`}>
-        <AntdRegistry>{children}</AntdRegistry>
-      </body>
-    </html>
+    <ConfigProvider theme={theme}>
+      <html lang="en">
+        <body className={`${font} antialiased bg-blue-50`}>
+          <AntdRegistry>
+            <Header brand={brand?.[0]} />
+            {children}
+          </AntdRegistry>
+        </body>
+      </html>
+    </ConfigProvider>
   )
 }
 
