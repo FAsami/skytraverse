@@ -1,4 +1,5 @@
 import { signIn } from '@/auth'
+import { Button } from 'antd'
 
 const LoginPage = () => {
   return (
@@ -22,7 +23,7 @@ function SignIn() {
         })
       }}
     >
-      <button type="submit">Signin with Google</button>
+      <Button>Signin with Google</Button>
     </form>
   )
 }

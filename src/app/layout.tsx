@@ -6,6 +6,7 @@ import { GetBrandQuery } from '@/types/gql/graphql'
 import { GET_BRAND_INFO } from './graphql/query'
 import { notFound } from 'next/navigation'
 import { cache } from 'react'
+import { AntdRegistry } from '@ant-design/nextjs-registry'
 
 const RootLayout = ({
   children
@@ -14,7 +15,9 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <body className={`${font} antialiased`}>{children}</body>
+      <body className={`${font} antialiased`}>
+        <AntdRegistry>{children}</AntdRegistry>
+      </body>
     </html>
   )
 }
