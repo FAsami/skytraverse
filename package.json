@@ -10,18 +10,22 @@
     "codegen": "graphql-codegen"
   },
   "dependencies": {
+    "@auth/hasura-adapter": "^1.7.2",
     "axios": "^1.7.7",
     "graphql": "^16.9.0",
     "graphql-request": "^7.1.0",
+    "lodash": "^4.17.21",
     "next": "15.0.1",
     "next-auth": "^5.0.0-beta.25",
     "react": "19.0.0-rc-69d4b800-20241021",
-    "react-dom": "19.0.0-rc-69d4b800-20241021"
+    "react-dom": "19.0.0-rc-69d4b800-20241021",
+    "uuid": "^11.0.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.3",
     "@graphql-codegen/gql-tag-operations-preset": "^2.1.0",
     "@graphql-typed-document-node/core": "^3.2.0",
+    "@types/lodash": "^4.17.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

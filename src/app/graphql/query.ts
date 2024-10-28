@@ -13,3 +13,28 @@ export const GET_BRAND_INFO = gql`
     }
   }
 `
+
+export const GET_USER = gql`
+  query GetUser($where: users_bool_exp!) {
+    users(where: $where, limit: 1) {
+      id
+      email
+      image
+      name
+      password
+      phone
+      emailVerified
+      phoneVerified
+    }
+  }
+`
+
+export const SESSION_TOKEN_BY_PK = gql`
+  query SessionTokenByPk($sessionToken: String!) {
+    sessions_by_pk(sessionToken: $sessionToken) {
+      sessionToken
+      userId
+      expires
+    }
+  }
+`

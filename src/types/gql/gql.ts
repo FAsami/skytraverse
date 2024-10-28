@@ -14,6 +14,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  query GetBrand($title: String!) {\n    brand(where: { title: { _eq: $title } }) {\n      id\n      title\n      logo\n      metaData\n      phone\n      email\n      location\n    }\n  }\n": types.GetBrandDocument,
+    "\n  query GetUser($where: users_bool_exp!) {\n    users(where: $where, limit: 1) {\n      id\n      email\n      image\n      name\n      password\n      phone\n      emailVerified\n      phoneVerified\n    }\n  }\n": types.GetUserDocument,
+    "\n  query SessionTokenByPk($sessionToken: String!) {\n    sessions_by_pk(sessionToken: $sessionToken) {\n      sessionToken\n      userId\n      expires\n    }\n  }\n": types.SessionTokenByPkDocument,
 };
 
 /**
@@ -34,6 +36,14 @@ export function gql(source: string): unknown;
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query GetBrand($title: String!) {\n    brand(where: { title: { _eq: $title } }) {\n      id\n      title\n      logo\n      metaData\n      phone\n      email\n      location\n    }\n  }\n"): (typeof documents)["\n  query GetBrand($title: String!) {\n    brand(where: { title: { _eq: $title } }) {\n      id\n      title\n      logo\n      metaData\n      phone\n      email\n      location\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GetUser($where: users_bool_exp!) {\n    users(where: $where, limit: 1) {\n      id\n      email\n      image\n      name\n      password\n      phone\n      emailVerified\n      phoneVerified\n    }\n  }\n"): (typeof documents)["\n  query GetUser($where: users_bool_exp!) {\n    users(where: $where, limit: 1) {\n      id\n      email\n      image\n      name\n      password\n      phone\n      emailVerified\n      phoneVerified\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query SessionTokenByPk($sessionToken: String!) {\n    sessions_by_pk(sessionToken: $sessionToken) {\n      sessionToken\n      userId\n      expires\n    }\n  }\n"): (typeof documents)["\n  query SessionTokenByPk($sessionToken: String!) {\n    sessions_by_pk(sessionToken: $sessionToken) {\n      sessionToken\n      userId\n      expires\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};
