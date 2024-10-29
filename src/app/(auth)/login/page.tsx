@@ -1,29 +1,46 @@
-import { signIn } from '@/auth'
-import { Button } from 'antd'
+'use client'
+import { LockOutlined, MailOutlined } from '@ant-design/icons'
+import { AuthForm } from '../components'
+import { LoginSchema } from '../authSchema'
+import { AuthPageTitle } from '../components'
+import { loginUser } from './loginUser'
 
 const LoginPage = () => {
   return (
     <div>
-      <SignIn />
+      <AuthPageTitle identifier="login" />
+      <AuthForm
+        onFormSubmit={loginUser}
+        fields={[
+          {
+            type: 'phone',
+            name: 'phone',
+            label: 'Phone',
+            placeholder: 'Enter your phone',
+            initialValue: ''
+          },
+          {
+            type: 'email',
+            name: 'email',
+            label: 'Email',
+            placeholder: 'Enter your email',
+            icon: <MailOutlined />,
+            initialValue: ''
+          },
+          {
+            type: 'password',
+            name: 'password',
+            label: 'Password',
+            placeholder: 'Enter your password',
+            icon: <LockOutlined />,
+            initialValue: ''
+          }
+        ]}
+        schema={LoginSchema}
+        identifier="login"
+      />
     </div>
   )
 }
 
 export default LoginPage
-
-function SignIn() {
-  return (
-    <form
-      action={async () => {
-        'use server'
-        await signIn('email_password', {
-          email: 'foysal.developer@gmail.com',
-          password: '12345678',
-          redirect: false
-        })
-      }}
-    >
-      <Button>Signin with Google</Button>
-    </form>
-  )
-}

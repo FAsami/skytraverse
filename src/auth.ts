@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs'
 import type { NextAuthConfig } from 'next-auth'
 import NextAuth from 'next-auth'
 import { encode as jwtEncode } from 'next-auth/jwt'
@@ -6,6 +7,7 @@ import { v4 as uuid } from 'uuid'
 import { HasuraAdapter } from '@auth/hasura-adapter'
 import Google from 'next-auth/providers/google'
 import { getUser } from './app/query'
+import { LoginSchema } from './app/(auth)/authSchema'
 
 if (
   !process.env.HASURA_GRAPHQL_URL ||
@@ -35,19 +37,39 @@ const authConfig: NextAuthConfig = {
     Credentials({
       id: 'phone_password',
       async authorize(credential) {
-        const user = await getUser({
-          phone: credential.phone as string
-        })
-        return user
+        const { data, success } = LoginSchema.safeParse(credential)
+        if (success) {
+          const user = await getUser({
+            phone: credential.phone as string
+          })
+          if (!user || !user.password) return null
+          if (user?.id) {
+            const isMatched = await bcrypt.compare(data.password, user.password)
+            if (isMatched) {
+              return user
+            }
+          }
+        }
+        return null
       }
     }),
     Credentials({
       id: 'email_password',
       async authorize(credential) {
-        const user = await getUser({
-          email: credential.email as string
-        })
-        return user
+        const { data, success } = LoginSchema.safeParse(credential)
+        if (success) {
+          const user = await getUser({
+            email: data.email
+          })
+          if (!user || !user.password) return null
+          if (user?.id) {
+            const isMatched = await bcrypt.compare(data.password, user.password)
+            if (isMatched) {
+              return user
+            }
+          }
+        }
+        return null
       }
     }),
     Credentials({
