@@ -13,15 +13,16 @@ const getUser = async ({
   email?: string
 }) => {
   try {
-    const where = id
-      ? { id: { _eq: id } }
-      : phone
-      ? { phone: { _eq: phone } }
-      : email
-      ? { email: { _eq: email } }
-      : null
+    const where: any = {
+      _or: [
+        id ? { id: { _eq: id } } : null,
+        email ? { email: { _eq: email } } : null,
+        phone ? { phone: { _eq: phone } } : null
+      ].filter(Boolean)
+    }
 
-    if (!where) return null
+    if (!where._or.length) return null
+
     const {
       users: [user]
     } = await apolloClient.request<GetUserQuery>(GET_USER, { where })
