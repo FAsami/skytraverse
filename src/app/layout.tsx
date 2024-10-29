@@ -7,9 +7,10 @@ import { GET_BRAND_INFO } from './graphql/query'
 import { notFound } from 'next/navigation'
 import { cache } from 'react'
 import { AntdRegistry } from '@ant-design/nextjs-registry'
-import { Header } from './components'
+import { Footer, Header } from './components'
 import { ConfigProvider } from 'antd'
 import { theme } from '@/theme/antd'
+import { ReCaptchaProvider } from './providers'
 
 const RootLayout = async ({
   children
@@ -21,14 +22,19 @@ const RootLayout = async ({
   })
   return (
     <ConfigProvider theme={theme}>
-      <html lang="en">
-        <body className={`${font} antialiased bg-blue-50`}>
-          <AntdRegistry>
-            <Header brand={brand?.[0]} />
-            {children}
-          </AntdRegistry>
-        </body>
-      </html>
+      <ReCaptchaProvider>
+        <html lang="en">
+          <body className={`${font} antialiased bg-blue-50 overflow-hidden`}>
+            <AntdRegistry>
+              <Header brand={brand?.[0]} />
+              <main className="h-[calc(100vh-88px)] min-h-[calc(100vh-88px)] overflow-y-auto space-y-4">
+                <div className="min-h-svh">{children}</div>
+                <Footer brand={brand?.[0]} />
+              </main>
+            </AntdRegistry>
+          </body>
+        </html>
+      </ReCaptchaProvider>
     </ConfigProvider>
   )
 }
