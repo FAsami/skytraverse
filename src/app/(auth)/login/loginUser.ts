@@ -22,6 +22,12 @@ const loginUser: AuthAction<typeof LoginSchema> = async (
     const method = phone ? 'phone_password' : 'email_password'
 
     const user = await getUser({ email, phone })
+    if (user?.accounts.some((node) => node.provider)) {
+      return {
+        success: false,
+        error: 'This user is using another provider. '
+      }
+    }
     if (!user || !user.password) {
       return {
         success: false,

@@ -25,6 +25,9 @@ export const GET_USER = gql`
       phone
       emailVerified
       phoneVerified
+      accounts {
+        provider
+      }
     }
   }
 `
