@@ -61,15 +61,19 @@ const PhoneInput = ({ value, onChange }: PhoneInputProps) => {
   const handleCountryChange = (value: CountryCode) => {
     setSelectedCountry(value)
     setPhoneNumber('')
-    onChange && onChange(`+${getCountryCallingCode(value)}`)
+    if (onChange) {
+      onChange(`+${getCountryCallingCode(value)}`)
+    }
   }
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatter = new AsYouType(selectedCountry)
     const formattedPhone = formatter.input(e.target.value)
     setPhoneNumber(formattedPhone)
-    onChange &&
+
+    if (onChange) {
       onChange(`+${getCountryCallingCode(selectedCountry)} ${formattedPhone}`)
+    }
   }
 
   return (

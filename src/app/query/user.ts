@@ -1,7 +1,14 @@
 import { GET_USER } from './../graphql/query'
 import { apolloClient } from '../lib'
 import { GetUserQuery } from '@/types/gql/graphql'
-import { omit } from 'lodash'
+
+type WhereFilter = {
+  _or: Array<
+    | { id?: { _eq: string } }
+    | { email?: { _eq: string } }
+    | { phone?: { _eq: string } }
+  >
+}
 
 const getUser = async ({
   id,
@@ -13,12 +20,12 @@ const getUser = async ({
   email?: string
 }) => {
   try {
-    const where: any = {
+    const where: WhereFilter = {
       _or: [
         id ? { id: { _eq: id } } : null,
         email ? { email: { _eq: email } } : null,
         phone ? { phone: { _eq: phone } } : null
-      ].filter(Boolean)
+      ].filter(Boolean) as WhereFilter['_or']
     }
 
     if (!where._or.length) return null
@@ -27,7 +34,7 @@ const getUser = async ({
       users: [user]
     } = await apolloClient.request<GetUserQuery>(GET_USER, { where })
 
-    return user ? omit(user, '__typename') : null
+    return user ? user : null
   } catch (error) {
     console.log('[GET USER ERROR]', error)
     return null

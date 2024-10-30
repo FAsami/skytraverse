@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
   )
 }
 
-export const validateSession = async (
+const validateSession = async (
   sessionToken: string
 ): Promise<SessionTokenByPkQuery['sessions_by_pk'] | null> => {
   try {

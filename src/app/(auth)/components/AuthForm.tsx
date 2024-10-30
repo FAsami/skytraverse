@@ -70,7 +70,7 @@ const AuthForm = <TSchema extends z.ZodType<unknown>>({
 
   useEffect(() => {
     form.resetFields()
-  }, [isPhoneVisible])
+  }, [isPhoneVisible, form])
 
   return (
     <div>
@@ -169,7 +169,7 @@ const FormItem = ({
     }
 
     return false
-  }, [isPhoneVisible, node.type])
+  }, [isPhoneVisible, node.type, identifier])
 
   return (
     <Form.Item

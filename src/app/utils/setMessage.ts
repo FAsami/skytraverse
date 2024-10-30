@@ -16,6 +16,7 @@ const sendMessage = async ({
       console.log('Send message')
     }
   } catch (error) {
+    console.log(error)
     throw new Error('Failed to send sms')
   }
 }

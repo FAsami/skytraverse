@@ -6,6 +6,7 @@ const isValidUrl = (str: unknown) => {
     }
     return false
   } catch (error) {
+    console.log(error)
     return false
   }
 }

@@ -25,6 +25,7 @@ const VerifyPage = async ({
       scope: 'FORGOT_PASSWORD' | 'REGISTER'
     }
   } catch (error) {
+    console.log(error)
     return (
       <div className="flex items-center flex-col gap-8 justify-center h-full px-14">
         <BiSolidInfoCircle className="text-red-500 text-5xl" />
