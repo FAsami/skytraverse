@@ -41,3 +41,23 @@ export const SESSION_TOKEN_BY_PK = gql`
     }
   }
 `
+
+export const GET_OTP_BY_USER_ID = gql`
+  query GetOtpByUserId($userId: uuid!, $tokenType: String = "OTP") {
+    otp(
+      where: {
+        userId: { _eq: $userId }
+        isValid: { _eq: true }
+        tokenType: { _eq: $tokenType }
+      }
+      order_by: { created_at: desc }
+    ) {
+      id
+      token
+      created_at
+      updated_at
+      userId
+      isValid
+    }
+  }
+`

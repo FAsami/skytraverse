@@ -17,6 +17,19 @@ export type Scalars = {
   uuid: any;
 };
 
+/** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
+export type Boolean_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['Boolean']>;
+  _gt?: InputMaybe<Scalars['Boolean']>;
+  _gte?: InputMaybe<Scalars['Boolean']>;
+  _in?: InputMaybe<Array<Scalars['Boolean']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['Boolean']>;
+  _lte?: InputMaybe<Scalars['Boolean']>;
+  _neq?: InputMaybe<Scalars['Boolean']>;
+  _nin?: InputMaybe<Array<Scalars['Boolean']>>;
+};
+
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type Int_Comparison_Exp = {
   _eq?: InputMaybe<Scalars['Int']>;
@@ -891,6 +904,10 @@ export type Mutation_Root = {
   delete_brand?: Maybe<Brand_Mutation_Response>;
   /** delete single row from the table: "brand" */
   delete_brand_by_pk?: Maybe<Brand>;
+  /** delete data from the table: "otp" */
+  delete_otp?: Maybe<Otp_Mutation_Response>;
+  /** delete single row from the table: "otp" */
+  delete_otp_by_pk?: Maybe<Otp>;
   /** delete data from the table: "provider_type" */
   delete_provider_type?: Maybe<Provider_Type_Mutation_Response>;
   /** delete single row from the table: "provider_type" */
@@ -915,6 +932,10 @@ export type Mutation_Root = {
   insert_brand?: Maybe<Brand_Mutation_Response>;
   /** insert a single row into the table: "brand" */
   insert_brand_one?: Maybe<Brand>;
+  /** insert data into the table: "otp" */
+  insert_otp?: Maybe<Otp_Mutation_Response>;
+  /** insert a single row into the table: "otp" */
+  insert_otp_one?: Maybe<Otp>;
   /** insert data into the table: "provider_type" */
   insert_provider_type?: Maybe<Provider_Type_Mutation_Response>;
   /** insert a single row into the table: "provider_type" */
@@ -943,6 +964,12 @@ export type Mutation_Root = {
   update_brand_by_pk?: Maybe<Brand>;
   /** update multiples rows of table: "brand" */
   update_brand_many?: Maybe<Array<Maybe<Brand_Mutation_Response>>>;
+  /** update data of the table: "otp" */
+  update_otp?: Maybe<Otp_Mutation_Response>;
+  /** update single row of the table: "otp" */
+  update_otp_by_pk?: Maybe<Otp>;
+  /** update multiples rows of table: "otp" */
+  update_otp_many?: Maybe<Array<Maybe<Otp_Mutation_Response>>>;
   /** update data of the table: "provider_type" */
   update_provider_type?: Maybe<Provider_Type_Mutation_Response>;
   /** update single row of the table: "provider_type" */
@@ -990,6 +1017,18 @@ export type Mutation_RootDelete_BrandArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Brand_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_OtpArgs = {
+  where: Otp_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Otp_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -1067,6 +1106,20 @@ export type Mutation_RootInsert_BrandArgs = {
 export type Mutation_RootInsert_Brand_OneArgs = {
   object: Brand_Insert_Input;
   on_conflict?: InputMaybe<Brand_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_OtpArgs = {
+  objects: Array<Otp_Insert_Input>;
+  on_conflict?: InputMaybe<Otp_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Otp_OneArgs = {
+  object: Otp_Insert_Input;
+  on_conflict?: InputMaybe<Otp_On_Conflict>;
 };
 
 
@@ -1181,6 +1234,28 @@ export type Mutation_RootUpdate_Brand_ManyArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_OtpArgs = {
+  _inc?: InputMaybe<Otp_Inc_Input>;
+  _set?: InputMaybe<Otp_Set_Input>;
+  where: Otp_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Otp_By_PkArgs = {
+  _inc?: InputMaybe<Otp_Inc_Input>;
+  _set?: InputMaybe<Otp_Set_Input>;
+  pk_columns: Otp_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Otp_ManyArgs = {
+  updates: Array<Otp_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Provider_TypeArgs = {
   _set?: InputMaybe<Provider_Type_Set_Input>;
   where: Provider_Type_Bool_Exp;
@@ -1274,6 +1349,276 @@ export enum Order_By {
   /** in descending order, nulls last */
   DescNullsLast = 'desc_nulls_last'
 }
+
+/** columns and relationships of "otp" */
+export type Otp = {
+  __typename?: 'otp';
+  created_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
+  /** A computed field, executes function "isOtpValid" */
+  isValid?: Maybe<Scalars['Boolean']>;
+  token: Scalars['String'];
+  tokenType: Scalars['String'];
+  updated_at: Scalars['timestamptz'];
+  userId: Scalars['uuid'];
+  validTill: Scalars['Int'];
+};
+
+/** aggregated selection of "otp" */
+export type Otp_Aggregate = {
+  __typename?: 'otp_aggregate';
+  aggregate?: Maybe<Otp_Aggregate_Fields>;
+  nodes: Array<Otp>;
+};
+
+/** aggregate fields of "otp" */
+export type Otp_Aggregate_Fields = {
+  __typename?: 'otp_aggregate_fields';
+  avg?: Maybe<Otp_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Otp_Max_Fields>;
+  min?: Maybe<Otp_Min_Fields>;
+  stddev?: Maybe<Otp_Stddev_Fields>;
+  stddev_pop?: Maybe<Otp_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Otp_Stddev_Samp_Fields>;
+  sum?: Maybe<Otp_Sum_Fields>;
+  var_pop?: Maybe<Otp_Var_Pop_Fields>;
+  var_samp?: Maybe<Otp_Var_Samp_Fields>;
+  variance?: Maybe<Otp_Variance_Fields>;
+};
+
+
+/** aggregate fields of "otp" */
+export type Otp_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Otp_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Otp_Avg_Fields = {
+  __typename?: 'otp_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  validTill?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "otp". All fields are combined with a logical 'AND'. */
+export type Otp_Bool_Exp = {
+  _and?: InputMaybe<Array<Otp_Bool_Exp>>;
+  _not?: InputMaybe<Otp_Bool_Exp>;
+  _or?: InputMaybe<Array<Otp_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  id?: InputMaybe<Int_Comparison_Exp>;
+  isValid?: InputMaybe<Boolean_Comparison_Exp>;
+  token?: InputMaybe<String_Comparison_Exp>;
+  tokenType?: InputMaybe<String_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  userId?: InputMaybe<Uuid_Comparison_Exp>;
+  validTill?: InputMaybe<Int_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "otp" */
+export enum Otp_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  OtpPkey = 'otp_pkey'
+}
+
+/** input type for incrementing numeric columns in table "otp" */
+export type Otp_Inc_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+  validTill?: InputMaybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "otp" */
+export type Otp_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['Int']>;
+  token?: InputMaybe<Scalars['String']>;
+  tokenType?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+  validTill?: InputMaybe<Scalars['Int']>;
+};
+
+/** aggregate max on columns */
+export type Otp_Max_Fields = {
+  __typename?: 'otp_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  token?: Maybe<Scalars['String']>;
+  tokenType?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  userId?: Maybe<Scalars['uuid']>;
+  validTill?: Maybe<Scalars['Int']>;
+};
+
+/** aggregate min on columns */
+export type Otp_Min_Fields = {
+  __typename?: 'otp_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  token?: Maybe<Scalars['String']>;
+  tokenType?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  userId?: Maybe<Scalars['uuid']>;
+  validTill?: Maybe<Scalars['Int']>;
+};
+
+/** response of any mutation on the table "otp" */
+export type Otp_Mutation_Response = {
+  __typename?: 'otp_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Otp>;
+};
+
+/** on_conflict condition type for table "otp" */
+export type Otp_On_Conflict = {
+  constraint: Otp_Constraint;
+  update_columns?: Array<Otp_Update_Column>;
+  where?: InputMaybe<Otp_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "otp". */
+export type Otp_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  isValid?: InputMaybe<Order_By>;
+  token?: InputMaybe<Order_By>;
+  tokenType?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+  userId?: InputMaybe<Order_By>;
+  validTill?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: otp */
+export type Otp_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "otp" */
+export enum Otp_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Token = 'token',
+  /** column name */
+  TokenType = 'tokenType',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  UserId = 'userId',
+  /** column name */
+  ValidTill = 'validTill'
+}
+
+/** input type for updating data in table "otp" */
+export type Otp_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['Int']>;
+  token?: InputMaybe<Scalars['String']>;
+  tokenType?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+  validTill?: InputMaybe<Scalars['Int']>;
+};
+
+/** aggregate stddev on columns */
+export type Otp_Stddev_Fields = {
+  __typename?: 'otp_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  validTill?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Otp_Stddev_Pop_Fields = {
+  __typename?: 'otp_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  validTill?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Otp_Stddev_Samp_Fields = {
+  __typename?: 'otp_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  validTill?: Maybe<Scalars['Float']>;
+};
+
+/** Streaming cursor of the table "otp" */
+export type Otp_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Otp_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Otp_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['Int']>;
+  token?: InputMaybe<Scalars['String']>;
+  tokenType?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+  validTill?: InputMaybe<Scalars['Int']>;
+};
+
+/** aggregate sum on columns */
+export type Otp_Sum_Fields = {
+  __typename?: 'otp_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  validTill?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "otp" */
+export enum Otp_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Token = 'token',
+  /** column name */
+  TokenType = 'tokenType',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  UserId = 'userId',
+  /** column name */
+  ValidTill = 'validTill'
+}
+
+export type Otp_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Otp_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Otp_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Otp_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Otp_Var_Pop_Fields = {
+  __typename?: 'otp_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  validTill?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Otp_Var_Samp_Fields = {
+  __typename?: 'otp_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  validTill?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Otp_Variance_Fields = {
+  __typename?: 'otp_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  validTill?: Maybe<Scalars['Float']>;
+};
 
 /** columns and relationships of "provider_type" */
 export type Provider_Type = {
@@ -1435,6 +1780,12 @@ export type Query_Root = {
   brand_aggregate: Brand_Aggregate;
   /** fetch data from the table: "brand" using primary key columns */
   brand_by_pk?: Maybe<Brand>;
+  /** fetch data from the table: "otp" */
+  otp: Array<Otp>;
+  /** fetch aggregated fields from the table: "otp" */
+  otp_aggregate: Otp_Aggregate;
+  /** fetch data from the table: "otp" using primary key columns */
+  otp_by_pk?: Maybe<Otp>;
   /** fetch data from the table: "provider_type" */
   provider_type: Array<Provider_Type>;
   /** fetch aggregated fields from the table: "provider_type" */
@@ -1504,6 +1855,29 @@ export type Query_RootBrand_AggregateArgs = {
 
 
 export type Query_RootBrand_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootOtpArgs = {
+  distinct_on?: InputMaybe<Array<Otp_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Otp_Order_By>>;
+  where?: InputMaybe<Otp_Bool_Exp>;
+};
+
+
+export type Query_RootOtp_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Otp_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Otp_Order_By>>;
+  where?: InputMaybe<Otp_Bool_Exp>;
+};
+
+
+export type Query_RootOtp_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -1849,6 +2223,14 @@ export type Subscription_Root = {
   brand_by_pk?: Maybe<Brand>;
   /** fetch data from the table in a streaming manner: "brand" */
   brand_stream: Array<Brand>;
+  /** fetch data from the table: "otp" */
+  otp: Array<Otp>;
+  /** fetch aggregated fields from the table: "otp" */
+  otp_aggregate: Otp_Aggregate;
+  /** fetch data from the table: "otp" using primary key columns */
+  otp_by_pk?: Maybe<Otp>;
+  /** fetch data from the table in a streaming manner: "otp" */
+  otp_stream: Array<Otp>;
   /** fetch data from the table: "provider_type" */
   provider_type: Array<Provider_Type>;
   /** fetch aggregated fields from the table: "provider_type" */
@@ -1941,6 +2323,36 @@ export type Subscription_RootBrand_StreamArgs = {
   batch_size: Scalars['Int'];
   cursor: Array<InputMaybe<Brand_Stream_Cursor_Input>>;
   where?: InputMaybe<Brand_Bool_Exp>;
+};
+
+
+export type Subscription_RootOtpArgs = {
+  distinct_on?: InputMaybe<Array<Otp_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Otp_Order_By>>;
+  where?: InputMaybe<Otp_Bool_Exp>;
+};
+
+
+export type Subscription_RootOtp_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Otp_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Otp_Order_By>>;
+  where?: InputMaybe<Otp_Bool_Exp>;
+};
+
+
+export type Subscription_RootOtp_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootOtp_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Otp_Stream_Cursor_Input>>;
+  where?: InputMaybe<Otp_Bool_Exp>;
 };
 
 
@@ -2084,7 +2496,7 @@ export type Users = {
   /** An aggregate relationship */
   accounts_aggregate: Accounts_Aggregate;
   created_at?: Maybe<Scalars['timestamptz']>;
-  email: Scalars['String'];
+  email?: Maybe<Scalars['String']>;
   emailVerified?: Maybe<Scalars['timestamptz']>;
   id: Scalars['uuid'];
   image?: Maybe<Scalars['String']>;
@@ -2554,6 +2966,36 @@ export type Verification_Tokens_Updates = {
   where: Verification_Tokens_Bool_Exp;
 };
 
+export type InsertUsersMutationVariables = Exact<{
+  object: Users_Insert_Input;
+}>;
+
+
+export type InsertUsersMutation = { __typename?: 'mutation_root', insert_users_one?: { __typename?: 'users', id: any, emailVerified?: any | null, email?: string | null, created_at?: any | null, image?: string | null, name?: string | null, password?: string | null, phone?: string | null, phoneVerified?: any | null, updated_at?: any | null } | null };
+
+export type Insert_OtpMutationVariables = Exact<{
+  object: Otp_Insert_Input;
+}>;
+
+
+export type Insert_OtpMutation = { __typename?: 'mutation_root', insert_otp_one?: { __typename?: 'otp', created_at: any } | null };
+
+export type DeleteOtpMutationVariables = Exact<{
+  userId: Scalars['uuid'];
+  tokenType?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type DeleteOtpMutation = { __typename?: 'mutation_root', delete_otp?: { __typename?: 'otp_mutation_response', affected_rows: number } | null };
+
+export type UpdateUserMutationVariables = Exact<{
+  _set: Users_Set_Input;
+  userId: Scalars['uuid'];
+}>;
+
+
+export type UpdateUserMutation = { __typename?: 'mutation_root', update_users_by_pk?: { __typename?: 'users', updated_at?: any | null } | null };
+
 export type GetBrandQueryVariables = Exact<{
   title: Scalars['String'];
 }>;
@@ -2566,7 +3008,7 @@ export type GetUserQueryVariables = Exact<{
 }>;
 
 
-export type GetUserQuery = { __typename?: 'query_root', users: Array<{ __typename?: 'users', id: any, email: string, image?: string | null, name?: string | null, password?: string | null, phone?: string | null, emailVerified?: any | null, phoneVerified?: any | null }> };
+export type GetUserQuery = { __typename?: 'query_root', users: Array<{ __typename?: 'users', id: any, email?: string | null, image?: string | null, name?: string | null, password?: string | null, phone?: string | null, emailVerified?: any | null, phoneVerified?: any | null, accounts: Array<{ __typename?: 'accounts', provider: string }> }> };
 
 export type SessionTokenByPkQueryVariables = Exact<{
   sessionToken: Scalars['String'];
@@ -2575,7 +3017,20 @@ export type SessionTokenByPkQueryVariables = Exact<{
 
 export type SessionTokenByPkQuery = { __typename?: 'query_root', sessions_by_pk?: { __typename?: 'sessions', sessionToken: string, userId: any, expires: any } | null };
 
+export type GetOtpByUserIdQueryVariables = Exact<{
+  userId: Scalars['uuid'];
+  tokenType?: InputMaybe<Scalars['String']>;
+}>;
 
+
+export type GetOtpByUserIdQuery = { __typename?: 'query_root', otp: Array<{ __typename?: 'otp', id: number, token: string, created_at: any, updated_at: any, userId: any, isValid?: boolean | null }> };
+
+
+export const InsertUsersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"InsertUsers"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"users_insert_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_users_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"emailVerified"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"created_at"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"password"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"phoneVerified"}},{"kind":"Field","name":{"kind":"Name","value":"updated_at"}}]}}]}}]} as unknown as DocumentNode<InsertUsersMutation, InsertUsersMutationVariables>;
+export const Insert_OtpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"INSERT_OTP"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"otp_insert_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_otp_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"created_at"}}]}}]}}]} as unknown as DocumentNode<Insert_OtpMutation, Insert_OtpMutationVariables>;
+export const DeleteOtpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteOTP"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"tokenType"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}},"defaultValue":{"kind":"StringValue","value":"OTP","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"delete_otp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"userId"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"tokenType"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"tokenType"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"affected_rows"}}]}}]}}]} as unknown as DocumentNode<DeleteOtpMutation, DeleteOtpMutationVariables>;
+export const UpdateUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"_set"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"users_set_input"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_users_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"Variable","name":{"kind":"Name","value":"_set"}}},{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updated_at"}}]}}]}}]} as unknown as DocumentNode<UpdateUserMutation, UpdateUserMutationVariables>;
 export const GetBrandDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetBrand"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brand"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"metaData"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"location"}}]}}]}}]} as unknown as DocumentNode<GetBrandQuery, GetBrandQueryVariables>;
-export const GetUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"users_bool_exp"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"password"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"emailVerified"}},{"kind":"Field","name":{"kind":"Name","value":"phoneVerified"}}]}}]}}]} as unknown as DocumentNode<GetUserQuery, GetUserQueryVariables>;
+export const GetUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"users_bool_exp"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"password"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"emailVerified"}},{"kind":"Field","name":{"kind":"Name","value":"phoneVerified"}},{"kind":"Field","name":{"kind":"Name","value":"accounts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"provider"}}]}}]}}]}}]} as unknown as DocumentNode<GetUserQuery, GetUserQueryVariables>;
 export const SessionTokenByPkDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SessionTokenByPk"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"sessionToken"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sessions_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sessionToken"},"value":{"kind":"Variable","name":{"kind":"Name","value":"sessionToken"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sessionToken"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"expires"}}]}}]}}]} as unknown as DocumentNode<SessionTokenByPkQuery, SessionTokenByPkQueryVariables>;
+export const GetOtpByUserIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetOtpByUserId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"tokenType"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}},"defaultValue":{"kind":"StringValue","value":"OTP","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"otp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"userId"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"isValid"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"BooleanValue","value":true}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"tokenType"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"tokenType"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"order_by"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"created_at"},"value":{"kind":"EnumValue","value":"desc"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"token"}},{"kind":"Field","name":{"kind":"Name","value":"created_at"}},{"kind":"Field","name":{"kind":"Name","value":"updated_at"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"isValid"}}]}}]}}]} as unknown as DocumentNode<GetOtpByUserIdQuery, GetOtpByUserIdQueryVariables>;
