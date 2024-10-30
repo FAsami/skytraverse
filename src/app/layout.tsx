@@ -1,4 +1,5 @@
 import './globals.css'
+import 'animate.css'
 import { font } from './fonts'
 import type { Metadata } from 'next'
 import { apolloClient } from './lib'
@@ -10,7 +11,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry'
 import { Footer, Header } from './components'
 import { ConfigProvider } from 'antd'
 import { theme } from '@/theme/antd'
-import { ReCaptchaProvider } from './providers'
+import { ReCaptchaProvider } from './providers/recaptcha'
 
 const RootLayout = async ({
   children
