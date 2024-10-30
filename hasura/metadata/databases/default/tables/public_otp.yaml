@@ -1,0 +1,9 @@
+table:
+  name: otp
+  schema: public
+computed_fields:
+  - name: isValid
+    definition:
+      function:
+        name: isOtpValid
+        schema: public
