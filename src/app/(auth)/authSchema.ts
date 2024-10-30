@@ -1,4 +1,3 @@
-import { AuthPageIdentifier } from '@/types/authForm'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import * as z from 'zod'
 
@@ -133,7 +132,7 @@ export const VerifyOTPSchema = z
     }
   })
 
-export const ForgotPasswordSchema = z
+export const SendOTPSchema = z
   .object({
     phone: z
       .string()
@@ -183,14 +182,3 @@ export const ResetPasswordSchema = z
     message: 'Passwords do not match',
     path: ['confirmPassword']
   })
-
-export const schemas: Record<
-  AuthPageIdentifier,
-  { schema: z.ZodType<unknown> }
-> = {
-  login: { schema: LoginSchema },
-  register: { schema: RegisterSchema },
-  forgotPassword: { schema: ForgotPasswordSchema },
-  setPassword: { schema: ResetPasswordSchema },
-  verify: { schema: VerifyOTPSchema }
-}

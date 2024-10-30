@@ -1,9 +1,9 @@
 'use client'
 import { LockOutlined, MailOutlined } from '@ant-design/icons'
-import { AuthForm } from '../components'
 import { LoginSchema } from '../authSchema'
-import { AuthPageTitle } from '../components'
-import { loginUser } from './loginUser'
+import { AuthForm } from '../components/AuthForm'
+import { AuthPageTitle } from '../components/AuthPageTitle'
+import { loginUser } from '../actions/loginUser'
 
 const LoginPage = () => {
   return (

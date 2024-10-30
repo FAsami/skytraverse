@@ -1,8 +1,9 @@
 'use client'
 import { LockOutlined } from '@ant-design/icons'
-import { AuthForm, AuthPageTitle } from '../components'
+import { AuthForm } from '../components/AuthForm'
+import { AuthPageTitle } from '../components/AuthPageTitle'
 import { ResetPasswordSchema } from '../authSchema'
-import { resetPassword } from './resetPassword'
+import { resetPassword } from '../actions/resetPassword'
 import { useSearchParams } from 'next/navigation'
 
 const SetPasswordPage = () => {

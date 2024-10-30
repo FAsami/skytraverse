@@ -8,10 +8,11 @@ import { GET_BRAND_INFO } from './graphql/query'
 import { notFound } from 'next/navigation'
 import { cache } from 'react'
 import { AntdRegistry } from '@ant-design/nextjs-registry'
-import { Footer, Header } from './components'
 import { ConfigProvider } from 'antd'
 import { theme } from '@/theme/antd'
 import { ReCaptchaProvider } from './providers/recaptcha'
+import { Header } from './components/Header/Header'
+import { Footer } from './components/Footer'
 
 const RootLayout = async ({
   children

@@ -1,7 +1,7 @@
 'use server'
 import { getUser } from '@/app/query'
 import crypto from 'crypto'
-import { ForgotPasswordSchema } from '../authSchema'
+import { SendOTPSchema } from '../authSchema'
 import { AuthAction } from '@/types/authForm'
 import { sendMessage } from '@/app/utils/setMessage'
 import { phoneOTP } from '@/template/phoneOTP'
@@ -20,14 +20,14 @@ import { redirect as redirectRouter } from 'next/navigation'
 
 const OTP_RESEND_INTERVAL = 2 * 60 * 1000
 
-const forgotPassword: AuthAction<typeof ForgotPasswordSchema> = async (
+const sendOTP: AuthAction<typeof SendOTPSchema> = async (
   values,
   { callbackUrl, redirect }
 ) => {
   let hasOTPSent = false
   try {
     console.log('values', values)
-    const validatedFields = ForgotPasswordSchema.safeParse(values)
+    const validatedFields = SendOTPSchema.safeParse(values)
     console.log(JSON.stringify(validatedFields.error, null, 2))
     if (!validatedFields.success) {
       return { success: false, error: 'Invalid fields!' }
@@ -124,4 +124,4 @@ const forgotPassword: AuthAction<typeof ForgotPasswordSchema> = async (
     }
   }
 }
-export { forgotPassword }
+export { sendOTP }

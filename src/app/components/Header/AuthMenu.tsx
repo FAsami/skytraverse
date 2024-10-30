@@ -3,7 +3,7 @@ import { Session } from 'next-auth'
 import { BookOutlined, UserOutlined } from '@ant-design/icons'
 import Link from 'next/link'
 import { IoMdLogOut } from 'react-icons/io'
-import { logout } from '../(auth)/logout'
+import { logout } from '@/app/(auth)/actions/logout'
 
 const AuthMenu = ({ session }: { session: Session | null }) => {
   return (

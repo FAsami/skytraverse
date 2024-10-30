@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { BiSolidHome, BiSolidInfoCircle } from 'react-icons/bi'
 import { CiMail } from 'react-icons/ci'
-import VerifyOTPForm from './VerifyOTPForm'
+import VerifyOTPForm from '../components/VerifyOTPForm'
 
 const VerifyPage = async ({
   searchParams

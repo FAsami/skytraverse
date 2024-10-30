@@ -1,9 +1,8 @@
 'use client'
 import { LockOutlined, MailOutlined } from '@ant-design/icons'
-import { AuthForm } from '../components'
+import { AuthForm } from './AuthForm'
 import { VerifyOTPSchema } from '../authSchema'
-import { verifyOTP } from './verifyOTP'
-import { forgotPassword } from '../forgot-password/forgotPassword'
+import { verifyOTP } from '../actions/verifyOTP'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState, useTransition } from 'react'
 import { AuthResponse } from '@/types/authForm'
@@ -16,6 +15,7 @@ const initial = {
   success: false
 }
 import { CSSTransition } from 'react-transition-group'
+import { sendOTP } from '../actions/sendOTP'
 
 const VerifyOTPForm = ({
   phone,
@@ -41,7 +41,7 @@ const VerifyOTPForm = ({
         const isVerified = await verifyReCaptcha('resendOtp')
 
         if (isVerified) {
-          const resendResult = await forgotPassword(
+          const resendResult = await sendOTP(
             { email, phone },
             {
               callbackUrl,
