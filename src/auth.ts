@@ -76,9 +76,14 @@ const authConfig: NextAuthConfig = {
       id: 'verify_otp',
       async authorize(credential) {
         const user = await getUser({
-          email: credential.email as string
+          email: credential.email as string | undefined,
+          phone: credential.phone as string | undefined
         })
-        return user
+
+        if (user?.id) {
+          return user
+        }
+        return null
       }
     })
   ],

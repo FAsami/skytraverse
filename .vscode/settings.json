@@ -4,8 +4,10 @@
         "authjs",
         "cloudinary",
         "codegen",
+        "flagcdn",
         "graphq",
         "HASURA",
+        "htmlbody",
         "nextjs",
         "tailwindcss",
         "turbopack"
