@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ant-form-item-label {
+  padding-bottom: 0.25rem !important;
+}
+.ant-form-item-label label {
+  font-size: 12px !important;
+  color: #414141 !important;
+}
+.ant-form-item-explain-error {
+  font-size: 12px !important;
+}
+
+.PhoneInputInput {
+  border: 1px solid #f4f4f4;
+}
+
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
+.spinner {
+  box-sizing: border-box;
+  display: block;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
