@@ -2,8 +2,7 @@ import { decodeId } from '@/app/utils/IdUtils'
 import { notFound } from 'next/navigation'
 import { getOfferList } from '../../actions/getOfferList'
 import { Offer } from '@duffel/api/types'
-import { FlightOffers } from './components/FlightOffers'
-import { FlightOfferFilter } from './components/FlightOfferFilter'
+import { FlightOffersLayout } from './components/FlightOfferLayout'
 
 const FlightOffersPage = async ({
   searchParams
@@ -25,12 +24,7 @@ const FlightOffersPage = async ({
 
     return (
       <div className="max-w-screen-xl px-3 mx-auto py-3 flex gap-4">
-        <div className="w-1/3 bg-white h-full min-h-[75vh] shadow p-4 transition-shadow rounded-sm sticky top-4">
-          <FlightOfferFilter />
-        </div>
-        <div className="w-2/3 h-full">
-          <FlightOffers offers={offers} />
-        </div>
+        <FlightOffersLayout initialOffers={offers} />
       </div>
     )
   } catch (error) {

@@ -12,7 +12,6 @@ import {
 } from 'react-icons/md'
 
 const FlightOfferCard = ({ offer }: { offer: Offer }) => {
-  console.log(JSON.stringify(offer, null, 2))
   return (
     <div className="min-w-2xl w-full mx-auto rounded-md shadow p-4 transition-shadow bg-white">
       <div className="flex justify-between items-center mb-4">
