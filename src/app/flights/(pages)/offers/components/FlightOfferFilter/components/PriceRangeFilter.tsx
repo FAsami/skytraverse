@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Slider } from 'antd'
 
 interface PriceRangeFilterProps {
@@ -12,6 +12,10 @@ export const PriceRangeFilter: React.FC<PriceRangeFilterProps> = ({
   value,
   onChange
 }) => {
+  useEffect(() => {
+    onChange({ min: priceRange.min, max: priceRange.max })
+  }, [])
+
   return (
     <div className="border border-neutral-100 p-2 rounded-md">
       <div className="flex items-center justify-between border-b border-b-neutral-100 mb-2">
@@ -27,6 +31,7 @@ export const PriceRangeFilter: React.FC<PriceRangeFilterProps> = ({
           min={priceRange.min}
           max={priceRange.max}
           value={[value.min, value.max]}
+          defaultValue={[value.min, value.max]}
           onChange={(newValue: number[]) => {
             onChange({
               min: newValue[0],
@@ -34,9 +39,13 @@ export const PriceRangeFilter: React.FC<PriceRangeFilterProps> = ({
             })
           }}
         />
-        <div className="flex justify-between text-sm text-gray-600 mt-1">
-          <span className="text-xs">From {value.min}</span>
-          <span className="text-xs">To {value.max}</span>
+        <div className="flex justify-between text-sm text-gray-700 mt-1">
+          <span className="text-xs font-medium">
+            From <strong>{value.min}</strong>
+          </span>
+          <span className="text-xs font-medium">
+            To <strong>{value.max}</strong>
+          </span>
         </div>
       </div>
     </div>

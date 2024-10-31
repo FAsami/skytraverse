@@ -48,13 +48,18 @@ export const FlightOfferFilter: React.FC<FlightOfferFilterProps> = ({
   onFilterChange,
   setFilters
 }) => {
-  const priceRange = offers.reduce(
-    (acc, offer) => ({
-      min: Math.min(acc.min, Number(offer.total_amount)),
-      max: Math.max(acc.max, Number(offer.total_amount))
-    }),
-    { min: Infinity, max: -Infinity }
+  const priceRange = React.useMemo(
+    () =>
+      offers.reduce(
+        (acc, offer) => ({
+          min: Math.min(acc.min, Number(offer.total_amount)),
+          max: Math.max(acc.max, Number(offer.total_amount))
+        }),
+        { min: Infinity, max: -Infinity }
+      ),
+    [offers, filters]
   )
+  console.log('price Range', priceRange)
 
   useEffect(() => {
     const filteredOffers = filterOffers(offers, filters)
