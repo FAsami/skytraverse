@@ -1,13 +1,12 @@
 import React, { useEffect, Dispatch, SetStateAction } from 'react'
-import { Button } from 'antd'
 import { Offer } from '@duffel/api/types'
 import { AirlineFilter } from './components/AirlinesFilter'
 import { FlightTimeFilter } from './components/TimeFilter'
-import { ActiveFilters } from './components/ActiveFilters'
 import { PriceRangeFilter } from './components/PriceRangeFilter'
 import { RefundFilter } from './components/RefundFilter'
-import { StopsFilter } from './components/StopsFilter'
 import { FiltersState, filterOffers } from './filters'
+import { BsFilter } from 'react-icons/bs'
+import { TbReload } from 'react-icons/tb'
 
 interface FlightOfferFilterProps {
   offers: Offer[]
@@ -20,12 +19,27 @@ export const INITIAL_FILTERS: FiltersState = {
   refundTypes: [],
   airlines: [],
   price: { min: 0, max: 10000 },
-  stops: [],
   baggageTypes: [],
   times: {
     departure: [],
     arrival: []
   }
+}
+
+const getActiveFilterCount = (filters: FiltersState): number => {
+  let count = 0
+
+  if (filters.refundTypes.length) count++
+  if (filters.airlines.length) count++
+  if (filters.baggageTypes.length) count++
+  if (filters.times.departure.length || filters.times.arrival.length) count++
+  if (
+    filters.price.min !== INITIAL_FILTERS.price.min ||
+    filters.price.max !== INITIAL_FILTERS.price.max
+  )
+    count++
+
+  return count
 }
 
 export const FlightOfferFilter: React.FC<FlightOfferFilterProps> = ({
@@ -62,42 +76,47 @@ export const FlightOfferFilter: React.FC<FlightOfferFilterProps> = ({
   }
 
   return (
-    <div className="p-4 border rounded-lg">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Filters</h2>
-        <Button onClick={clearAllFilters}>Clear All</Button>
+    <div>
+      <div className="sticky top-0 p-4 shadow-sm bg-white z-10">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <BsFilter className="text-lg" />
+            <h2 className="text font-bold">Filters</h2>
+          </div>
+          <button
+            className="text-sm font-bold text-blue-500 flex items-center gap-1"
+            onClick={clearAllFilters}
+          >
+            <TbReload className="text-sm" />
+            Reset filters
+            {getActiveFilterCount(filters) > 0
+              ? ` (${getActiveFilterCount(filters)})`
+              : null}
+          </button>
+        </div>
       </div>
-
-      <ActiveFilters filters={filters} onRemoveFilter={handleFilterChange} />
-
-      <FlightTimeFilter
-        value={filters.times}
-        onChange={(times) => handleFilterChange('times', times)}
-      />
-
-      <AirlineFilter
-        offers={offers}
-        selectedAirlines={filters.airlines}
-        onChange={(airlines) => handleFilterChange('airlines', airlines)}
-      />
-
-      <RefundFilter
-        selectedRefundTypes={filters.refundTypes}
-        onChange={(refundTypes) =>
-          handleFilterChange('refundTypes', refundTypes)
-        }
-      />
-
-      <PriceRangeFilter
-        priceRange={priceRange}
-        value={filters.price}
-        onChange={(price) => handleFilterChange('price', price)}
-      />
-
-      <StopsFilter
-        selectedStops={filters.stops}
-        onChange={(stops) => handleFilterChange('stops', stops)}
-      />
+      <div className="px-2 space-y-3 mt-3">
+        <PriceRangeFilter
+          priceRange={priceRange}
+          value={filters.price}
+          onChange={(price) => handleFilterChange('price', price)}
+        />
+        <AirlineFilter
+          offers={offers}
+          selectedAirlines={filters.airlines}
+          onChange={(airlines) => handleFilterChange('airlines', airlines)}
+        />
+        <FlightTimeFilter
+          value={filters.times}
+          onChange={(times) => handleFilterChange('times', times)}
+        />
+        <RefundFilter
+          selectedRefundTypes={filters.refundTypes}
+          onChange={(refundTypes) =>
+            handleFilterChange('refundTypes', refundTypes)
+          }
+        />
+      </div>
     </div>
   )
 }

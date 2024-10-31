@@ -1,12 +1,13 @@
 import React from 'react'
-import { Checkbox, Tabs } from 'antd'
+import { Tabs } from 'antd'
 import {
   ClockCircleOutlined,
   RiseOutlined,
   SunOutlined,
   MoonOutlined
 } from '@ant-design/icons'
-import { TimeFilter, TimePeriod } from '../filterUtils'
+import { TimeFilter, TimePeriod } from '../filters'
+import { MdFlightTakeoff, MdOutlineFlightLand } from 'react-icons/md'
 
 const TIME_PERIODS: Array<{
   value: TimePeriod
@@ -18,25 +19,25 @@ const TIME_PERIODS: Array<{
     value: 'morning',
     label: 'Morning',
     icon: <RiseOutlined />,
-    timeRange: '5:00 AM - 11:59 AM'
+    timeRange: '05:00 - 11:59'
   },
   {
     value: 'afternoon',
     label: 'Afternoon',
     icon: <SunOutlined />,
-    timeRange: '12:00 PM - 4:59 PM'
+    timeRange: '12:00 - 16:59'
   },
   {
     value: 'evening',
     label: 'Evening',
     icon: <ClockCircleOutlined />,
-    timeRange: '5:00 PM - 8:59 PM'
+    timeRange: '17:00 - 20:59'
   },
   {
     value: 'night',
     label: 'Night',
     icon: <MoonOutlined />,
-    timeRange: '9:00 PM - 4:59 AM'
+    timeRange: '21:00 - 04:59'
   }
 ]
 
@@ -62,39 +63,54 @@ const FlightTimeFilter: React.FC<TimeFilterProps> = ({ value, onChange }) => {
   }
 
   const TimeSelector = ({ type }: { type: 'departure' | 'arrival' }) => (
-    <div className="space-y-2">
+    <div className="grid grid-cols-4 gap-1">
       {TIME_PERIODS.map((period) => (
-        <div key={period.value} className="flex items-center">
-          <Checkbox
-            checked={value[type].includes(period.value)}
-            onChange={() => handleTimeChange(type, period.value)}
-          >
-            <div className="flex items-center">
-              <span className="mr-2">{period.icon}</span>
-              <span>{period.label}</span>
-              <span className="text-xs text-gray-500 ml-2">
-                ({period.timeRange})
-              </span>
+        <div
+          key={period.value}
+          onClick={() => handleTimeChange(type, period.value)}
+          className={`
+            cursor-pointer p-1.5 rounded border transition-all
+            ${
+              value[type].includes(period.value)
+                ? 'border-blue-500 bg-blue-50'
+                : 'border-gray-200 hover:border-blue-200 bg-neutral-50'
+            }
+          `}
+        >
+          <div className="flex flex-col items-center justify-between">
+            <div className="flex flex-col items-center">
+              <span className="text-xl">{period.icon}</span>
+              <span className="text-xs font-semibold">{period.label}</span>
             </div>
-          </Checkbox>
+            <span className="text-[10px] text-gray-500">
+              {period.timeRange}
+            </span>
+          </div>
         </div>
       ))}
     </div>
   )
 
   return (
-    <div className="mb-6">
-      <h3 className="font-medium mb-2">Flight Times</h3>
+    <div className="border-neutral-100 pb-4 px-2 rounded-md border">
       <Tabs
         items={[
           {
             key: 'departure',
-            label: 'Departure Time',
+            label: (
+              <span className="flex items-center gap-2 text-sm font-medium">
+                <MdFlightTakeoff /> Departure Time
+              </span>
+            ),
             children: <TimeSelector type="departure" />
           },
           {
             key: 'arrival',
-            label: 'Arrival Time',
+            label: (
+              <span className="flex items-center gap-1 text-sm font-medium">
+                <MdOutlineFlightLand /> Arrival Time
+              </span>
+            ),
             children: <TimeSelector type="arrival" />
           }
         ]}

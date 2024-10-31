@@ -26,7 +26,6 @@ export interface FiltersState {
   refundTypes: RefundFilter[]
   airlines: string[]
   price: PriceFilter
-  stops: number[]
   baggageTypes: BaggageType[]
   times: TimeFilter
 }

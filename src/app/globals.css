@@ -36,20 +36,20 @@
 }
 
 /* Custom scrollbar for the airlines list */
-.max-h-60::-webkit-scrollbar {
+.scrollbar-light::-webkit-scrollbar {
   width: 6px;
 }
 
-.max-h-60::-webkit-scrollbar-track {
+.scrollbar-light::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 3px;
 }
 
-.max-h-60::-webkit-scrollbar-thumb {
-  background: #888;
+.scrollbar-light::-webkit-scrollbar-thumb {
+  background: #d1d1d1a3;
   border-radius: 3px;
 }
 
-.max-h-60::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.scrollbar-light::-webkit-scrollbar-thumb:hover {
+  background: #b1b1b1;
 }

@@ -23,7 +23,7 @@ const FlightOffersLayout = ({ initialOffers }: { initialOffers: Offer[] }) => {
 
   return (
     <>
-      <div className="w-1/3 bg-white h-[calc(100vh-116px)] overflow-y-auto shadow-sm p-4 transition-shadow rounded sticky top-4">
+      <div className="w-1/3 h-[calc(100vh-116px)] overflow-y-auto scrollbar-light bg-white shadow-sm transition-shadow rounded sticky top-4">
         <FlightOfferFilter
           offers={initialOffers}
           onFilterChange={setOffers}

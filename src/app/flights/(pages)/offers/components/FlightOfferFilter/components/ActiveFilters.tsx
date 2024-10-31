@@ -1,5 +1,6 @@
 import React from 'react'
 import { Tag } from 'antd'
+import { ClockCircleOutlined, DollarOutlined } from '@ant-design/icons'
 import { FiltersState } from '../filters'
 
 interface ActiveFiltersProps {
@@ -7,89 +8,86 @@ interface ActiveFiltersProps {
   onRemoveFilter: (filterKey: keyof FiltersState, value: any) => void
 }
 
+const filterColors = {
+  price: '#1677ff', // Blue
+  airline: '#52c41a', // Green
+  refund: '#722ed1', // Purple
+  stops: '#fa8c16', // Orange
+  departure: '#eb2f96', // Pink
+  arrival: '#13c2c2' // Cyan
+}
+
+// Add these new constants
+const airlineIcons: Record<string, string> = {
+  'American Airlines': '/icons/airlines/aa.svg',
+  Delta: '/icons/airlines/delta.svg',
+  United: '/icons/airlines/united.svg'
+  // Add more airlines as needed
+}
+
+const timeLabels: Record<string, string> = {
+  'early-morning': 'Early Morning (12am - 6am)',
+  morning: 'Morning (6am - 12pm)',
+  afternoon: 'Afternoon (12pm - 6pm)',
+  evening: 'Evening (6pm - 12am)'
+}
+
 export const ActiveFilters: React.FC<ActiveFiltersProps> = ({
   filters,
   onRemoveFilter
 }) => {
   const renderTags = () => {
-    const tags = []
+    const tags: { [key: string]: JSX.Element[] } = {
+      price: [],
+      airlines: [],
+      refund: [],
+      stops: [],
+      departure: [],
+      arrival: []
+    }
 
-    // Price Range
+    // Price filter
     if (filters.price.min !== 0 || filters.price.max !== 10000) {
-      tags.push(
+      tags.price.push(
         <Tag
           key="price"
           closable
+          color={filterColors.price}
+          className="rounded-full flex items-center gap-1"
           onClose={() => onRemoveFilter('price', { min: 0, max: 10000 })}
         >
-          Price: ${filters.price.min} - ${filters.price.max}
+          <DollarOutlined /> ${filters.price.min} - ${filters.price.max}
         </Tag>
       )
     }
 
-    // Airlines
+    // Airline filters
     filters.airlines.forEach((airline) => {
-      tags.push(
+      tags.airlines.push(
         <Tag
           key={`airline-${airline}`}
           closable
+          color={filterColors.airline}
+          className="rounded-full flex items-center gap-1"
           onClose={() => {
             const newAirlines = filters.airlines.filter((a) => a !== airline)
             onRemoveFilter('airlines', newAirlines)
           }}
         >
-          Airline: {airline}
+          <img src={airlineIcons[airline]} alt={airline} className="w-4 h-4" />
+          {airline}
         </Tag>
       )
     })
 
-    // Refund Types
-    filters.refundTypes.forEach((refund) => {
-      tags.push(
-        <Tag
-          key={`refund-${refund.type}`}
-          closable
-          onClose={() => {
-            const newRefundTypes = filters.refundTypes.filter(
-              (rt) => rt.type !== refund.type
-            )
-            onRemoveFilter('refundTypes', newRefundTypes)
-          }}
-        >
-          {refund.type}
-        </Tag>
-      )
-    })
-
-    // Stops
-    filters.stops.forEach((stop) => {
-      tags.push(
-        <Tag
-          key={`stop-${stop}`}
-          closable
-          onClose={() => {
-            const newStops = filters.stops.filter((s) => s !== stop)
-            onRemoveFilter('stops', newStops)
-          }}
-        >
-          {stop === 0 ? 'Non-stop' : `${stop} stop${stop > 1 ? 's' : ''}`}
-        </Tag>
-      )
-    })
-
-    // Times
-    const timeLabels = {
-      morning: 'Morning',
-      afternoon: 'Afternoon',
-      evening: 'Evening',
-      night: 'Night'
-    }
-
+    // Time filters
     filters.times.departure.forEach((time) => {
-      tags.push(
+      tags.departure.push(
         <Tag
           key={`departure-${time}`}
           closable
+          color={filterColors.departure}
+          className="rounded-full flex items-center gap-1"
           onClose={() => {
             const newTimes = {
               ...filters.times,
@@ -98,38 +96,20 @@ export const ActiveFilters: React.FC<ActiveFiltersProps> = ({
             onRemoveFilter('times', newTimes)
           }}
         >
-          Departure: {timeLabels[time]}
+          <ClockCircleOutlined /> Departure: {timeLabels[time]}
         </Tag>
       )
     })
 
-    filters.times.arrival.forEach((time) => {
-      tags.push(
-        <Tag
-          key={`arrival-${time}`}
-          closable
-          onClose={() => {
-            const newTimes = {
-              ...filters.times,
-              arrival: filters.times.arrival.filter((t) => t !== time)
-            }
-            onRemoveFilter('times', newTimes)
-          }}
-        >
-          Arrival: {timeLabels[time]}
-        </Tag>
-      )
-    })
-
-    return tags
+    return Object.values(tags).flat()
   }
 
   return (
-    <div className="flex flex-wrap gap-2 mb-4">
+    <div className="flex flex-wrap gap-2">
       {renderTags().length > 0 ? (
-        renderTags()
+        <div className="flex flex-wrap gap-2">{renderTags()}</div>
       ) : (
-        <span className="text-gray-500">No active filters</span>
+        <span className="text-gray-500 text-sm">No active filters</span>
       )}
     </div>
   )

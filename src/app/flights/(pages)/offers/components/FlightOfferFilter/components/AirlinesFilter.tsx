@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from 'react'
-import { Checkbox, Input } from 'antd'
-import { SearchOutlined } from '@ant-design/icons'
+import React, { useMemo } from 'react'
 import { Offer } from '@duffel/api/types'
+import { BsAirplane, BsCircle, BsFillCheckCircleFill } from 'react-icons/bs'
+import clsx from 'clsx'
 
 interface Airline {
   id: string
@@ -21,9 +21,6 @@ export const AirlineFilter: React.FC<AirlineFilterProps> = ({
   selectedAirlines,
   onChange
 }) => {
-  const [searchTerm, setSearchTerm] = useState('')
-
-  // Extract unique airlines with counts from offers
   const airlines = useMemo(() => {
     const airlinesMap = offers.reduce(
       (acc: { [key: string]: Airline }, offer) => {
@@ -46,15 +43,6 @@ export const AirlineFilter: React.FC<AirlineFilterProps> = ({
     return Object.values(airlinesMap).sort((a, b) => b.count - a.count)
   }, [offers])
 
-  // Filter airlines based on search term
-  const filteredAirlines = useMemo(() => {
-    if (!searchTerm) return airlines
-    const term = searchTerm.toLowerCase()
-    return airlines.filter((airline) =>
-      airline.name.toLowerCase().includes(term)
-    )
-  }, [airlines, searchTerm])
-
   const handleAirlineToggle = (airlineId: string) => {
     const newSelection = selectedAirlines.includes(airlineId)
       ? selectedAirlines.filter((id) => id !== airlineId)
@@ -71,62 +59,64 @@ export const AirlineFilter: React.FC<AirlineFilterProps> = ({
   }
 
   return (
-    <div className="mb-6">
-      <h3 className="font-medium mb-2">Airlines</h3>
-
-      {/* Search Input */}
-      <div className="mb-2">
-        <Input
-          placeholder="Search airlines"
-          prefix={<SearchOutlined />}
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="mb-2"
-        />
-      </div>
-
-      {/* Select All Option */}
-      <div className="mb-2 border-b pb-2">
-        <Checkbox
-          checked={selectedAirlines.length === airlines.length}
-          indeterminate={
-            selectedAirlines.length > 0 &&
-            selectedAirlines.length < airlines.length
-          }
-          onChange={handleSelectAll}
+    <div className="border border-neutral-100 p-2 rounded-md">
+      <div className="flex items-center justify-between border-b border-b-neutral-100 mb-2">
+        <div className="flex items-center">
+          <BsAirplane className="text-neutral-700 text-sm font-semibold mb-2 mr-2" />
+          <h3 className="text-neutral-600 text-sm font-semibold mb-2">
+            Airlines ({airlines.length})
+          </h3>
+        </div>
+        <div
+          onClick={handleSelectAll}
+          className="flex cursor-pointer text-xs font-semibold text-blue-500 items-center gap-1"
         >
+          {selectedAirlines.length === airlines.length ? (
+            <BsFillCheckCircleFill className="text-blue-500" />
+          ) : (
+            <BsCircle className="text-blue-500" />
+          )}
           Select All
-        </Checkbox>
+        </div>
       </div>
 
-      {/* Airlines List */}
-      <div className="max-h-60 overflow-y-auto">
-        {filteredAirlines.map((airline) => (
-          <div key={airline.id} className="flex items-center py-1">
-            <Checkbox
-              checked={selectedAirlines.includes(airline.id)}
-              onChange={() => handleAirlineToggle(airline.id)}
-              className="flex-1"
-            >
-              <div className="flex items-center">
+      <div className="max-h-60 overflow-y-auto scrollbar-light space-y-2 px-2">
+        {airlines.map((airline, index) => (
+          <div
+            className={clsx('cursor-pointer', {
+              'border-b border-b-neutral-100': index < airlines.length - 1
+            })}
+            key={airline.id}
+            onClick={() => handleAirlineToggle(airline.id)}
+          >
+            <div className="flex items-center gap-3 py-2">
+              {selectedAirlines.includes(airline.id) ? (
+                <BsFillCheckCircleFill className="text-blue-400" />
+              ) : (
+                <BsCircle className="text-blue-400" />
+              )}
+              <div className="flex gap-1 items-center">
                 {airline.logoUrl && (
                   <img
                     src={airline.logoUrl}
                     alt={`${airline.name} logo`}
-                    className="w-6 h-6 mr-2 object-contain"
+                    className="w-6 h-6 object-contain"
                   />
                 )}
-                <span>{airline.name}</span>
-                <span className="text-gray-400 text-sm ml-2">
-                  ({airline.count})
-                </span>
+                <div className="flex flex-col">
+                  <span className="text-xs font-medium">{airline.name}</span>
+                  <span className="text-gray-400 text-xs">
+                    {airline.count} {airline.count === 1 ? 'flight' : 'flights'}
+                  </span>
+                </div>
               </div>
-            </Checkbox>
+            </div>
           </div>
         ))}
 
-        {filteredAirlines.length === 0 && (
-          <div className="text-gray-500 text-center py-2">
+        {airlines.length === 0 && (
+          <div className="text-gray-500 text-center py-2 col-span-2 text-xs flex items-center justify-center">
+            <BsAirplane className="text-gray-500 text-sm mr-2" />
             No airlines found
           </div>
         )}
