@@ -59,8 +59,6 @@ export const FlightOfferFilter: React.FC<FlightOfferFilterProps> = ({
       ),
     [offers, filters]
   )
-  console.log('price Range', priceRange)
-
   useEffect(() => {
     const filteredOffers = filterOffers(offers, filters)
     onFilterChange(filteredOffers)
@@ -100,7 +98,7 @@ export const FlightOfferFilter: React.FC<FlightOfferFilterProps> = ({
           </button>
         </div>
       </div>
-      <div className="px-2 space-y-3 mt-3">
+      <div className="px-2 space-y-3 mt-3 h-[calc(100vh-var(--header-height)-var(--top-filter-height)-6rem)] overflow-y-auto scrollbar-light">
         <PriceRangeFilter
           priceRange={priceRange}
           value={filters.price}

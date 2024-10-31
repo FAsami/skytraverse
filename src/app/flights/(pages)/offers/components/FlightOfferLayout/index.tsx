@@ -3,27 +3,27 @@
 import { Offer } from '@duffel/api/types'
 import { FlightOfferFilter, INITIAL_FILTERS } from '../FlightOfferFilter'
 import { FlightOffers } from '../FlightOffers'
-import { useState } from 'react'
-import { ActiveFilters } from '../FlightOfferFilter/components/ActiveFilters'
+import { useEffect, useState } from 'react'
 import { FiltersState } from '../FlightOfferFilter/filters/types'
 
-const FlightOffersLayout = ({ initialOffers }: { initialOffers: Offer[] }) => {
+const FlightOffersLayout = ({
+  initialOffers,
+  sort
+}: {
+  initialOffers: Offer[]
+  sort: string
+}) => {
   const [offers, setOffers] = useState(initialOffers)
   const [filters, setFilters] = useState<FiltersState>(INITIAL_FILTERS)
-
-  const handleRemoveFilter = <K extends keyof FiltersState>(
-    filterKey: K,
-    value: FiltersState[K]
-  ) => {
-    setFilters((prev) => ({
-      ...prev,
-      [filterKey]: value
-    }))
-  }
+  useEffect(() => {
+    if (sort) {
+      setOffers(initialOffers)
+    }
+  }, [sort])
 
   return (
-    <>
-      <div className="w-1/3 h-[calc(100vh-116px)] overflow-y-auto scrollbar-light bg-white shadow-sm transition-shadow rounded sticky top-4">
+    <div className="w-full flex gap-4 mb-6">
+      <div className="w-1/3  bg-white shadow-sm transition-shadow rounded">
         <FlightOfferFilter
           offers={initialOffers}
           onFilterChange={setOffers}
@@ -31,16 +31,10 @@ const FlightOffersLayout = ({ initialOffers }: { initialOffers: Offer[] }) => {
           filters={filters}
         />
       </div>
-      <div className="w-2/3 h-full">
-        <div className="mb-4">
-          <ActiveFilters
-            filters={filters}
-            onRemoveFilter={handleRemoveFilter}
-          />
-        </div>
+      <div className="w-2/3 h-[calc(100vh-var(--header-height)-var(--top-filter-height)-1rem)] overflow-y-auto scrollbar-light">
         <FlightOffers offers={offers} />
       </div>
-    </>
+    </div>
   )
 }
 

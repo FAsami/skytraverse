@@ -53,3 +53,10 @@
 .scrollbar-light::-webkit-scrollbar-thumb:hover {
   background: #b1b1b1;
 }
+:root {
+  --header-height: 88px;
+  --top-filter-height: 48px;
+  /* --search-result-height: var(
+    calc(var(--header-height)+var(--top-filter-height))
+  ); */
+}

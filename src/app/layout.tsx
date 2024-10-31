@@ -29,8 +29,8 @@ const RootLayout = async ({
           <body className={`${font} antialiased bg-blue-50 overflow-hidden`}>
             <AntdRegistry>
               <Header brand={brand?.[0]} />
-              <main className="h-[calc(100vh-88px)] min-h-[calc(100vh-88px)] overflow-y-auto space-y-4">
-                <div className="min-h-svh">{children}</div>
+              <main className="h-[calc(100vh-var(--header-height))] overflow-y-auto space-y-4">
+                <div>{children}</div>
                 <Footer brand={brand?.[0]} />
               </main>
             </AntdRegistry>
