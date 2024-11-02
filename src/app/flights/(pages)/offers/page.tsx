@@ -50,25 +50,7 @@ const FlightOffersPage = async ({
     return (
       <div className="max-w-screen-xl px-3 mx-auto">
         <div className="shadow-sm rounded-b-md h-[var(--top-filter-height)] flex sticky top-0 py-4 px-4 flex-wrap w-full bg-white mb-2 border-t z-50 items-center gap-6">
-          {/* <Link
-            href={{
-              pathname: '/flights/offers',
-              query: {
-                id: id,
-                ...(result.data.meta.before && {
-                  prev: result.data.meta.before
-                })
-              }
-            }}
-            className={clsx(
-              'flex text-neutral-500 gap-1 items-center text-xs font-semibold cursor-not-allowed',
-              { '!text-blue-500 !cursor-pointer': result.data.meta.before }
-            )}
-          >
-            <BsChevronDoubleLeft />
-            Prev
-          </Link> */}
-          <div className="flex flex-1 items-center justify-between">
+          <div className="flex gap-2 flex-col md:flex-row  flex-1 items-center justify-between">
             {offerInfo && (
               <div className="flex justify-center flex-col gap-1">
                 <div className="flex items-center  gap-6">
@@ -93,64 +75,50 @@ const FlightOffersPage = async ({
                 </div>
               </div>
             )}
-            <span className="text-neutral-700 font-semibold text-lg flex items-center gap-1">
-              Listing {offers.length} flights
-            </span>
-            <div className="flex items-center gap-2">
-              <Link
-                href={{
-                  pathname: '/flights/offers',
-                  query: {
-                    id: id,
-                    sortBy: 'price',
-                    query,
-                    order: sortOrder === 'desc' ? 'asc' : 'desc'
-                  }
-                }}
-                className={clsx(
-                  'flex text-neutral-500 gap-1 items-center text-sm font-semibold',
-                  { '!text-blue-500': sort?.includes('amount') }
-                )}
-              >
-                {sort?.includes('-') ? <BsArrowUp /> : <BsArrowDown />}
-                Price
-              </Link>
-              <Link
-                href={{
-                  pathname: '/flights/offers',
-                  query: {
-                    id: id,
-                    sortBy: 'duration',
-                    query,
-                    order: sortOrder === 'desc' ? 'asc' : 'desc'
-                  }
-                }}
-                className={clsx(
-                  'flex text-neutral-700 gap-1 items-center text-sm font-semibold',
-                  { '!text-blue-500': sort?.includes('duration') }
-                )}
-              >
-                {sort?.includes('-') ? <BsArrowUp /> : <BsArrowDown />}
-                Duration
-              </Link>
+            <div className="flex w-full justify-between items-center">
+              <div className="text-neutral-700 font-semibold text-base md:text-lg flex items-center gap-1">
+                Listing {offers.length} flights
+              </div>
+              <div className="flex items-center gap-2">
+                <Link
+                  href={{
+                    pathname: '/flights/offers',
+                    query: {
+                      id: id,
+                      sortBy: 'price',
+                      query,
+                      order: sortOrder === 'desc' ? 'asc' : 'desc'
+                    }
+                  }}
+                  className={clsx(
+                    'flex text-neutral-500 gap-1 items-center text-xs md:text-sm font-semibold',
+                    { '!text-blue-500': sort?.includes('amount') }
+                  )}
+                >
+                  {sort?.includes('-') ? <BsArrowUp /> : <BsArrowDown />}
+                  Price
+                </Link>
+                <Link
+                  href={{
+                    pathname: '/flights/offers',
+                    query: {
+                      id: id,
+                      sortBy: 'duration',
+                      query,
+                      order: sortOrder === 'desc' ? 'asc' : 'desc'
+                    }
+                  }}
+                  className={clsx(
+                    'flex text-neutral-700 gap-1 items-center text-xs md:text-sm font-semibold',
+                    { '!text-blue-500': sort?.includes('duration') }
+                  )}
+                >
+                  {sort?.includes('-') ? <BsArrowUp /> : <BsArrowDown />}
+                  Duration
+                </Link>
+              </div>
             </div>
           </div>
-          {/* <Link
-            href={{
-              pathname: '/flights/offers',
-              query: {
-                id: id,
-                ...(result.data.meta.after && { next: result.data.meta.after })
-              }
-            }}
-            className={clsx(
-              'flex text-neutral-700 gap-1 items-center text-xs font-semibold cursor-not-allowed',
-              { '!text-blue-500 !cursor-pointer': result.data.meta.after }
-            )}
-          >
-            Next
-            <BsChevronDoubleRight />
-          </Link> */}
         </div>
         <FlightOffersLayout initialOffers={offers} sort={sort as string} />
       </div>

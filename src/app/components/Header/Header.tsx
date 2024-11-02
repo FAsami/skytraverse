@@ -23,7 +23,7 @@ const Header = async ({
             src={brand?.logo.default}
           />
         </Link>
-        <div className="flex gap-6 text-base items-center">
+        <div className="flex gap-2 md:gap-6 text-base items-center">
           <Link
             href="/support"
             className="text-neutral-700 text-sm flex items-center font-semibold"

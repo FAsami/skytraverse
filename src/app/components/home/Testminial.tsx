@@ -143,10 +143,12 @@ const Testimonials = () => {
                 <p className="text-sm opacity-80">{testimonial.description}</p>
               </div>
               {testimonial.quoteIcon && (
-                <img
+                <Image
                   src={testimonial.quoteIcon}
                   alt="Quote icon"
                   className="absolute w-16 h-16 top-0 right-4 opacity-20"
+                  height={64}
+                  width={64}
                 />
               )}
             </div>
