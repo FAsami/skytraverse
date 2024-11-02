@@ -6,8 +6,6 @@ import { useState } from 'react'
 import { BsFillCheckCircleFill } from 'react-icons/bs'
 import { Offer } from '@duffel/api/types'
 import { formatCurrency } from '@/app/utils/formatCurrency'
-import { FaCheck } from 'react-icons/fa'
-import { FaCircleCheck } from 'react-icons/fa6'
 import moment from 'moment'
 
 const DetailsModal = ({ offer }: { offer: Offer }) => {
@@ -24,8 +22,6 @@ const DetailsModal = ({ offer }: { offer: Offer }) => {
   const handleCancel = () => {
     setIsVisible(false)
   }
-  console.log(offer)
-
   return (
     <>
       <Button

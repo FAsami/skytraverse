@@ -22,14 +22,12 @@ const resetPassword: AuthAction<typeof ResetPasswordSchema> = async (
 ) => {
   let isPasswordChanged = false
   try {
-    console.log('=====>', values)
     const validatedFields = ResetPasswordSchema.safeParse(values)
 
     if (!validatedFields.success) {
       return { success: false, error: 'Invalid fields!' }
     }
     const { password, token } = validatedFields.data
-    console.log('====>', password, token)
     const session = await auth()
     if (!session?.user?.id) {
       return {

@@ -1,4 +1,3 @@
-export const dynamic = 'force-dynamic'
 import { decodeId } from '@/app/utils/IdUtils'
 import { notFound } from 'next/navigation'
 import { getOfferList } from '../../actions/getOfferList'
@@ -9,8 +8,7 @@ import Link from 'next/link'
 import { BsArrowDown, BsArrowRight, BsArrowUp } from 'react-icons/bs'
 import clsx from 'clsx'
 import { decrypt } from '@/app/utils/cryptography'
-import { FaCircle } from 'react-icons/fa'
-import { FiEdit } from 'react-icons/fi'
+import { FaArrowLeft, FaCircle } from 'react-icons/fa'
 import moment from 'moment'
 import { Place } from '@duffel/api/types/shared'
 
@@ -52,9 +50,9 @@ const FlightOffersPage = async ({
         <div className="shadow-sm rounded-b-md h-[var(--top-filter-height)] flex sticky top-0 py-4 px-4 flex-wrap w-full bg-white mb-2 border-t z-50 items-center gap-6">
           <div className="flex gap-2 flex-col md:flex-row  flex-1 items-center justify-between">
             {offerInfo && (
-              <div className="flex justify-center flex-col gap-1">
+              <div className="flex  md:w-full justify-center flex-col gap-1">
                 <div className="flex items-center  gap-6">
-                  <FiEdit className="text-blue-500 tex-xs cursor-pointer" />
+                  <FaArrowLeft className="text-blue-500 tex-xs cursor-pointer" />
                   <div className="font-semibold">{offerReq.origin}</div>
                   <BsArrowRight />
                   <div className="font-semibold">{offerReq.destination}</div>
