@@ -55,8 +55,33 @@
 }
 :root {
   --header-height: 88px;
-  --top-filter-height: 48px;
-  /* --search-result-height: var(
-    calc(var(--header-height)+var(--top-filter-height))
-  ); */
+  --top-filter-height: 72px;
+}
+
+.ant-picker {
+  background-color: transparent !important;
+}
+@media (max-width: 768px) {
+  .antd-cabin-select-override .ant-select-item {
+    min-height: auto !important;
+    padding: 8px !important;
+  }
+}
+.slick-dots {
+  bottom: -1.5rem !important;
+}
+.slick-dots li {
+  border-radius: 99999px !important;
+  height: 10px !important;
+  width: 10px !important;
+  background-color: #e5e5e5 !important;
+}
+.slick-dots button {
+  height: auto !important;
+}
+.slick-dots .slick-active {
+  background-color: #1770f2 !important;
+  height: 12px !important;
+  width: 12px !important;
+  transform: translateY(-1px);
 }

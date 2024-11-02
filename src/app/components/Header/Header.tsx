@@ -26,10 +26,22 @@ const Header = async ({
         <div className="flex gap-6 text-base items-center">
           <Link
             href="/support"
-            className="text-neutral-700 text-sm flex items-center"
+            className="text-neutral-700 text-sm flex items-center font-semibold"
           >
             <BiSupport /> &nbsp;
             <span>Support</span>
+          </Link>
+          <Link
+            href="/support"
+            className="text-neutral-700 text-sm flex items-center font-semibold"
+          >
+            <span>Contact</span>
+          </Link>
+          <Link
+            href="/support"
+            className="text-neutral-700 text-sm flex items-center font-semibold"
+          >
+            <span>FAQ</span>
           </Link>
           <AuthMenu session={session} />
         </div>

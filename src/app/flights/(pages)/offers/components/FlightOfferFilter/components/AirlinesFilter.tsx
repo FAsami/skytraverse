@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import { Offer } from '@duffel/api/types'
 import { BsAirplane, BsCircle, BsFillCheckCircleFill } from 'react-icons/bs'
 import clsx from 'clsx'
+import Image from 'next/image'
 
 interface Airline {
   id: string
@@ -97,10 +98,12 @@ export const AirlineFilter: React.FC<AirlineFilterProps> = ({
               )}
               <div className="flex gap-1 items-center">
                 {airline.logoUrl && (
-                  <img
+                  <Image
                     src={airline.logoUrl}
                     alt={`${airline.name} logo`}
                     className="w-6 h-6 object-contain"
+                    height={24}
+                    width={24}
                   />
                 )}
                 <div className="flex flex-col">

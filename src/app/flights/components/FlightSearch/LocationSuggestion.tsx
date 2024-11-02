@@ -9,7 +9,6 @@ import axios from 'axios'
 
 const initial: Place[] = [
   {
-    airports: null,
     icao_code: 'VGHS',
     iata_country_code: 'BD',
     iata_code: 'DAC',
@@ -26,7 +25,6 @@ const initial: Place[] = [
 ]
 
 const LocationSuggestion = ({
-  title,
   selected,
   onSelect
 }: {
@@ -37,7 +35,7 @@ const LocationSuggestion = ({
   const [showSearch, setShowSearch] = useState(false)
   const [open, setOpen] = useState(false)
   const [places, setPlaces] = useState<{
-    error: any
+    error: unknown
     loading: boolean
     data: Place[] | null
   }>({
@@ -238,7 +236,7 @@ const SelectedPlace = ({
   onClick: () => void
 }) => {
   const [place, setPlace] = useState<{
-    error: any
+    error: unknown
     loading: boolean
     data: Place | null
   }>({
@@ -278,10 +276,10 @@ const SelectedPlace = ({
         })
       }
     })()
-  }, [])
+  }, [iataCode])
   if (place.loading) {
     return (
-      <div className="w-full h-14 rounded-md border border-neutral-200 px-3 py-2">
+      <div className="w-full h-14 rounded-md border border-neutral-300 px-3 py-2">
         <div className="flex items-center gap-2 cursor-pointer">
           <div className="h-10 w-8 bg-neutral-300 rounded-sm animate-pulse">
             <div className="font-semibold text-neutral-800"></div>
@@ -299,7 +297,7 @@ const SelectedPlace = ({
   }
   if (place.data) {
     return (
-      <div className="w-full h-14 rounded-md border border-neutral-200 px-3 py-2 overflow-hidden">
+      <div className="w-full h-14 rounded-md border border-neutral-300 px-3 py-2 overflow-hidden">
         <div
           onClick={onClick}
           className="flex items-center gap-2 cursor-pointer animate__animated animate__fadeInDown"

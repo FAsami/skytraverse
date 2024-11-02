@@ -14,7 +14,7 @@ export const PriceRangeFilter: React.FC<PriceRangeFilterProps> = ({
 }) => {
   useEffect(() => {
     onChange({ min: priceRange.min, max: priceRange.max })
-  }, [])
+  }, [onChange,priceRange])
 
   return (
     <div className="border border-neutral-100 p-2 rounded-md">

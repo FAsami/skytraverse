@@ -57,7 +57,7 @@ export const FlightOfferFilter: React.FC<FlightOfferFilterProps> = ({
         }),
         { min: Infinity, max: -Infinity }
       ),
-    [offers, filters]
+    [offers]
   )
   useEffect(() => {
     const filteredOffers = filterOffers(offers, filters)
@@ -80,7 +80,7 @@ export const FlightOfferFilter: React.FC<FlightOfferFilterProps> = ({
 
   return (
     <div>
-      <div className="sticky top-0 p-4 shadow-sm bg-white z-10">
+      <div className="sticky top-0 p-4 shadow-sm bg-white z-10 rounded-t-md">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
             <BsFilter className="text-lg" />

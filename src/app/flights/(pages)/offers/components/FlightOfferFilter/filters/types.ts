@@ -1,4 +1,4 @@
-import { BaggageType, FlightsConditions } from '@duffel/api/types'
+import { BaggageType } from '@duffel/api/types'
 
 export type RefundFilterType =
   | 'Fully Refundable'

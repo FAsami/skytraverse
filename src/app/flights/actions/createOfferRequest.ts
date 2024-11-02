@@ -5,6 +5,7 @@ import { ActionResponse } from '@/types/actions'
 import { redirect } from 'next/navigation'
 import { DuffelError } from '@duffel/api'
 import { encodeId } from '@/app/utils/IdUtils'
+import { encrypt } from '@/app/utils/cryptography'
 
 const createOfferRequest = async (
   offerRequest: DuffelCreateOfferRequest
@@ -35,7 +36,11 @@ const createOfferRequest = async (
     }
   }
   if (offerRequestId) {
-    redirect(`/flights/offers?id=${encodeId(offerRequestId)}`)
+    redirect(
+      `/flights/offers?id=${encodeId(
+        offerRequestId
+      )}&query=${encodeURIComponent(await encrypt(offerRequest))}`
+    )
   }
 }
 

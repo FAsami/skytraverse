@@ -116,13 +116,16 @@ const Passengers: React.FC<PassengersProps> = ({ onPassengerChange }) => {
         onOpenChange={setVisible}
         className="border-none"
       >
-        <button className="flex items-center font-semibold text-sm gap-2">
+        <button className="flex items-center text-neutral-700 font-semibold text-xs gap-1 md:text-sm md:gap-2">
           <BsPeopleFill />
           <span>
-            {totalPassengers} Passenger
-            {totalPassengers !== 1 ? 's' : ''}
+            {totalPassengers}&nbsp;
+            <span className="hidden md:inline">Traveller</span>
+            <span className="hidden md:inlint">
+              {totalPassengers !== 1 ? 's' : ''}
+            </span>
           </span>
-          <BiChevronDown className="ml-2 text-neutral-400 text-2xl" />
+          <BiChevronDown className="ml-2 text-neutral-400 text-lg md:text-2xl" />
         </button>
       </Dropdown>
     </div>

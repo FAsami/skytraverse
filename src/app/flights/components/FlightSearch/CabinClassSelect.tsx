@@ -20,40 +20,56 @@ const CabinClassSelect: React.FC<CabinClassSelectProps> = ({
   onCabinClassChange
 }) => {
   const cabinClassOptions = [
-    { value: 'first' as CabinClass, label: 'First Class', icon: <FaPlane /> },
+    {
+      value: 'first' as CabinClass,
+      label: 'First class',
+      icon: <FaPlane className="text-neutral-700" />
+    },
     {
       value: 'business' as CabinClass,
       label: 'Business',
-      icon: <FaBusinessTime />
+      icon: <FaBusinessTime className="text-neutral-700" />
     },
     {
       value: 'premium_economy' as CabinClass,
-      label: 'Premium Economy',
-      icon: <FaFlagCheckered />
+      label: 'Premium economy',
+      icon: <FaFlagCheckered className="text-neutral-700" />
     },
-    { value: 'economy' as CabinClass, label: 'Economy', icon: <FaSuitcase /> }
+    {
+      value: 'economy' as CabinClass,
+      label: 'Economy',
+      icon: <FaSuitcase className="text-neutral-700" />
+    }
   ]
 
   return (
     <Select
       value={cabinClass}
       onChange={onCabinClassChange}
-      style={{ width: 190 }}
-      dropdownStyle={{ minWidth: 190 }}
-      suffixIcon={<FaChevronDown />}
-      className="!pr-0 bg-primary-50"
-      variant="filled"
+      dropdownStyle={{ minWidth: 180 }}
+      suffixIcon={
+        <FaChevronDown className="text-neutral-400 translate-y-[1px]" />
+      }
+      className="!pr-0 !bg-transparent"
+      variant="borderless"
+      size="small"
     >
       {cabinClassOptions.map((option) => (
-        <Select.Option key={option.value} value={option.value}>
+        <Select.Option
+          className="!p-2 md:p-3 !min-h-0"
+          key={option.value}
+          value={option.value}
+        >
           <div
             className={clsx('flex items-center', {
-              'font-bold': cabinClass === option.value,
+              'font-semibold': cabinClass === option.value,
               'text-gray-500': cabinClass !== option.value
             })}
           >
             {option.icon}
-            <span className="text-sm ml-2">{option.label}</span>
+            <span className="text-xs text-neutral-700 font-semibold md:text-sm ml-2">
+              {option.label}
+            </span>
           </div>
         </Select.Option>
       ))}

@@ -23,13 +23,17 @@ const FlightTypeSelect: React.FC<FlightTypeSelectProps> = ({
     {
       value: 'return',
       label: 'Return',
-      icon: <FaSyncAlt />
+      icon: <FaSyncAlt className="text-neutral-700" />
     },
-    { value: 'one_way', label: 'One-Way', icon: <FaPlaneDeparture /> },
+    {
+      value: 'one_way',
+      label: 'One-Way',
+      icon: <FaPlaneDeparture className="text-neutral-700" />
+    },
     {
       value: 'multi_city',
       label: 'Multi-City',
-      icon: <FaMapMarkedAlt />
+      icon: <FaMapMarkedAlt className="text-neutral-700" />
     }
   ]
 
@@ -37,14 +41,20 @@ const FlightTypeSelect: React.FC<FlightTypeSelectProps> = ({
     <Select
       value={flightType}
       onChange={onFlightTypeChange}
-      style={{ width: 190 }}
-      dropdownStyle={{ minWidth: 190 }}
-      suffixIcon={<FaChevronDown />}
-      className="!pr-0 bg-primary-50"
-      variant="filled"
+      dropdownStyle={{ minWidth: 180 }}
+      suffixIcon={
+        <FaChevronDown className="text-neutral-400 translate-y-[1px]" />
+      }
+      className="!pr-0 !bg-transparent"
+      variant="borderless"
+      size="small"
     >
       {flightTypeOptions.map((option) => (
-        <Select.Option key={option.value} value={option.value}>
+        <Select.Option
+          className="!p-2 md:p-3 !min-h-0"
+          key={option.value}
+          value={option.value}
+        >
           <div
             className={clsx('flex items-center', {
               'font-semibold': flightType === option.value,
@@ -52,7 +62,9 @@ const FlightTypeSelect: React.FC<FlightTypeSelectProps> = ({
             })}
           >
             {option.icon}
-            <span className="text-sm ml-2">{option.label}</span>
+            <span className="text-xs text-neutral-700 font-semibold md:text-sm ml-2">
+              {option.label}
+            </span>
           </div>
         </Select.Option>
       ))}
