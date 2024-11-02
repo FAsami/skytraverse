@@ -12,9 +12,9 @@ const NotFoundPage = () => {
           alt="Not found"
           height={300}
           width={300}
-          src="https://res.cloudinary.com/dffqrc36j/image/upload/v1730302837/search-result_jdujlr.png"
+          src="https://res.cloudinary.com/dffqrc36j/image/upload/v1730562244/page_not_found.svg"
         />
-        <div className="text-2xl text-neutral-600 font-semibold flex items-center gap-2">
+        <div className="text-2xl text-neutral-600 font-semibold flex items-center gap-2 mt-6">
           Sorry <MdSentimentDissatisfied className="text-amber-700" />
         </div>
         <p className="text-sm text-gray-500 mb-2 md:mb-8 px-3 md:px-32 text-center">
