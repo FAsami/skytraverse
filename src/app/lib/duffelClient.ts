@@ -1,7 +1,6 @@
 import { Duffel } from '@duffel/api'
 
 const token = process.env.DUFFEL_API_TOKEN
-console.log(token)
 
 if (!token) {
   throw new Error(

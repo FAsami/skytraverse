@@ -61,3 +61,17 @@ export const GET_OTP_BY_USER_ID = gql`
     }
   }
 `
+
+export const GET_FLIGHT_BOOKINGS = gql`
+  query GetFlightBookings($where: booking_flights_bool_exp = {}) {
+    booking_flights(where: $where) {
+      id
+      provider
+      providerOfferId
+      providerOfferDetails
+      status
+      meta
+      userId
+    }
+  }
+`

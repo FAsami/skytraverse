@@ -1,18 +1,23 @@
 'use client'
-import {
-  CreateOrder,
-  PassengerType,
-  Offer,
-  CreateOrderPassenger
-} from '@duffel/api/types'
+import { PassengerType, Offer, CreateOrderPassenger } from '@duffel/api/types'
 import { TravelerDetailsForm, FormField } from './TravelerDetailsForm'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
-import axios from 'axios'
-import { useRouter } from 'next/navigation'
 import dayjs, { Dayjs } from 'dayjs'
+import { ActionResponse } from '@/types/actions'
+import { useState, useTransition } from 'react'
+import { useReCaptcha } from '@/app/hooks'
+import { createOrder } from '@/app/flights/actions/createOrder'
 
 const TravelerDetails = ({ offer }: { offer: Offer }) => {
-  const router = useRouter()
+  const initialState = {
+    error: null,
+    message: '',
+    success: false
+  }
+  const [result, setResult] = useState<ActionResponse>(initialState)
+  const [isPending, startTransition] = useTransition()
+  const { verifyReCaptcha } = useReCaptcha()
+  // const router = useRouter()
   const getFormData = (): FormField[] => {
     const passportRequired = offer.passenger_identity_documents_required
 
@@ -111,22 +116,48 @@ const TravelerDetails = ({ offer }: { offer: Offer }) => {
 
     return fields
   }
+  console.log(isPending)
+  console.log(result)
 
   const handleFinish = async (values: unknown) => {
     try {
-      const createOfferParams = getCreateOfferParams(
-        offer,
-        values as CreateOrderPassenger[]
-      )
-      const params = {
-        offer,
-        params: createOfferParams
-      }
-      const res = await axios.post('/api/flight/order/create', params)
-
-      if (res.status === 201) {
-        router.replace(`/flights/checkout/${res.data.data.bookingId}`)
-      }
+      startTransition(async () => {
+        setResult(initialState)
+        const isValid = await verifyReCaptcha('createOrder')
+        console.log(isValid)
+        console.log(offer, values as CreateOrderPassenger[])
+        if (isValid) {
+          const offerParams = {
+            offer: offer as Offer,
+            values: values as CreateOrderPassenger[]
+          }
+          console.log(offerParams)
+          const result = await createOrder(
+            offer as Offer,
+            values as CreateOrderPassenger[]
+          )
+          if (result) {
+            setResult(result)
+          }
+        } else {
+          setResult({
+            success: false,
+            message: 'Captcha failed ! Please try to refresh the page '
+          })
+        }
+      })
+      // const createOfferParams = getCreateOfferParams(
+      //   offer,
+      //   values as CreateOrderPassenger[]
+      // )
+      // const params = {
+      //   offer,
+      //   params: createOfferParams
+      // }
+      // const res = await axios.post('/api/flight/order/create', params)
+      // if (res.status === 201) {
+      //   router.replace(`/flights/checkout/${res.data.data.bookingId}`)
+      // }
     } catch (error) {
       console.log(error)
     }
@@ -215,22 +246,4 @@ const passengersOrderMap: { [key in PassengerType]: number } = {
   adult: 1,
   child: 2,
   infant_without_seat: 3
-}
-
-const getCreateOfferParams = (
-  offer: Offer,
-  passengers: CreateOrderPassenger[]
-): CreateOrder => {
-  return {
-    type: 'instant',
-    passengers,
-    selected_offers: [offer.id],
-    payments: [
-      {
-        type: 'balance',
-        amount: offer.total_amount,
-        currency: offer.total_currency
-      }
-    ]
-  }
 }

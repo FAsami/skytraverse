@@ -526,6 +526,248 @@ export type Accounts_Variance_Order_By = {
   expires_at?: InputMaybe<Order_By>;
 };
 
+/** This will store information about flight booking */
+export type Booking_Flights = {
+  __typename?: 'booking_flights';
+  id: Scalars['uuid'];
+  meta?: Maybe<Scalars['jsonb']>;
+  provider: Scalars['String'];
+  providerOfferDetails: Scalars['jsonb'];
+  providerOfferId: Scalars['String'];
+  status: Scalars['String'];
+  userId: Scalars['uuid'];
+};
+
+
+/** This will store information about flight booking */
+export type Booking_FlightsMetaArgs = {
+  path?: InputMaybe<Scalars['String']>;
+};
+
+
+/** This will store information about flight booking */
+export type Booking_FlightsProviderOfferDetailsArgs = {
+  path?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregated selection of "booking.flights" */
+export type Booking_Flights_Aggregate = {
+  __typename?: 'booking_flights_aggregate';
+  aggregate?: Maybe<Booking_Flights_Aggregate_Fields>;
+  nodes: Array<Booking_Flights>;
+};
+
+/** aggregate fields of "booking.flights" */
+export type Booking_Flights_Aggregate_Fields = {
+  __typename?: 'booking_flights_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Booking_Flights_Max_Fields>;
+  min?: Maybe<Booking_Flights_Min_Fields>;
+};
+
+
+/** aggregate fields of "booking.flights" */
+export type Booking_Flights_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Booking_Flights_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Booking_Flights_Append_Input = {
+  meta?: InputMaybe<Scalars['jsonb']>;
+  providerOfferDetails?: InputMaybe<Scalars['jsonb']>;
+};
+
+/** Boolean expression to filter rows from the table "booking.flights". All fields are combined with a logical 'AND'. */
+export type Booking_Flights_Bool_Exp = {
+  _and?: InputMaybe<Array<Booking_Flights_Bool_Exp>>;
+  _not?: InputMaybe<Booking_Flights_Bool_Exp>;
+  _or?: InputMaybe<Array<Booking_Flights_Bool_Exp>>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  meta?: InputMaybe<Jsonb_Comparison_Exp>;
+  provider?: InputMaybe<String_Comparison_Exp>;
+  providerOfferDetails?: InputMaybe<Jsonb_Comparison_Exp>;
+  providerOfferId?: InputMaybe<String_Comparison_Exp>;
+  status?: InputMaybe<String_Comparison_Exp>;
+  userId?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "booking.flights" */
+export enum Booking_Flights_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  FlightsPkey = 'flights_pkey'
+}
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Booking_Flights_Delete_At_Path_Input = {
+  meta?: InputMaybe<Array<Scalars['String']>>;
+  providerOfferDetails?: InputMaybe<Array<Scalars['String']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Booking_Flights_Delete_Elem_Input = {
+  meta?: InputMaybe<Scalars['Int']>;
+  providerOfferDetails?: InputMaybe<Scalars['Int']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Booking_Flights_Delete_Key_Input = {
+  meta?: InputMaybe<Scalars['String']>;
+  providerOfferDetails?: InputMaybe<Scalars['String']>;
+};
+
+/** input type for inserting data into table "booking.flights" */
+export type Booking_Flights_Insert_Input = {
+  id?: InputMaybe<Scalars['uuid']>;
+  meta?: InputMaybe<Scalars['jsonb']>;
+  provider?: InputMaybe<Scalars['String']>;
+  providerOfferDetails?: InputMaybe<Scalars['jsonb']>;
+  providerOfferId?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Booking_Flights_Max_Fields = {
+  __typename?: 'booking_flights_max_fields';
+  id?: Maybe<Scalars['uuid']>;
+  provider?: Maybe<Scalars['String']>;
+  providerOfferId?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate min on columns */
+export type Booking_Flights_Min_Fields = {
+  __typename?: 'booking_flights_min_fields';
+  id?: Maybe<Scalars['uuid']>;
+  provider?: Maybe<Scalars['String']>;
+  providerOfferId?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** response of any mutation on the table "booking.flights" */
+export type Booking_Flights_Mutation_Response = {
+  __typename?: 'booking_flights_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Booking_Flights>;
+};
+
+/** on_conflict condition type for table "booking.flights" */
+export type Booking_Flights_On_Conflict = {
+  constraint: Booking_Flights_Constraint;
+  update_columns?: Array<Booking_Flights_Update_Column>;
+  where?: InputMaybe<Booking_Flights_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "booking.flights". */
+export type Booking_Flights_Order_By = {
+  id?: InputMaybe<Order_By>;
+  meta?: InputMaybe<Order_By>;
+  provider?: InputMaybe<Order_By>;
+  providerOfferDetails?: InputMaybe<Order_By>;
+  providerOfferId?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: booking.flights */
+export type Booking_Flights_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Booking_Flights_Prepend_Input = {
+  meta?: InputMaybe<Scalars['jsonb']>;
+  providerOfferDetails?: InputMaybe<Scalars['jsonb']>;
+};
+
+/** select columns of table "booking.flights" */
+export enum Booking_Flights_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Meta = 'meta',
+  /** column name */
+  Provider = 'provider',
+  /** column name */
+  ProviderOfferDetails = 'providerOfferDetails',
+  /** column name */
+  ProviderOfferId = 'providerOfferId',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  UserId = 'userId'
+}
+
+/** input type for updating data in table "booking.flights" */
+export type Booking_Flights_Set_Input = {
+  id?: InputMaybe<Scalars['uuid']>;
+  meta?: InputMaybe<Scalars['jsonb']>;
+  provider?: InputMaybe<Scalars['String']>;
+  providerOfferDetails?: InputMaybe<Scalars['jsonb']>;
+  providerOfferId?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** Streaming cursor of the table "booking_flights" */
+export type Booking_Flights_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Booking_Flights_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Booking_Flights_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['uuid']>;
+  meta?: InputMaybe<Scalars['jsonb']>;
+  provider?: InputMaybe<Scalars['String']>;
+  providerOfferDetails?: InputMaybe<Scalars['jsonb']>;
+  providerOfferId?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "booking.flights" */
+export enum Booking_Flights_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Meta = 'meta',
+  /** column name */
+  Provider = 'provider',
+  /** column name */
+  ProviderOfferDetails = 'providerOfferDetails',
+  /** column name */
+  ProviderOfferId = 'providerOfferId',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  UserId = 'userId'
+}
+
+export type Booking_Flights_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Booking_Flights_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Booking_Flights_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Booking_Flights_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Booking_Flights_Delete_Key_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Booking_Flights_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Booking_Flights_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Booking_Flights_Bool_Exp;
+};
+
 /** columns and relationships of "brand" */
 export type Brand = {
   __typename?: 'brand';
@@ -900,6 +1142,10 @@ export type Mutation_Root = {
   delete_accounts?: Maybe<Accounts_Mutation_Response>;
   /** delete single row from the table: "accounts" */
   delete_accounts_by_pk?: Maybe<Accounts>;
+  /** delete data from the table: "booking.flights" */
+  delete_booking_flights?: Maybe<Booking_Flights_Mutation_Response>;
+  /** delete single row from the table: "booking.flights" */
+  delete_booking_flights_by_pk?: Maybe<Booking_Flights>;
   /** delete data from the table: "brand" */
   delete_brand?: Maybe<Brand_Mutation_Response>;
   /** delete single row from the table: "brand" */
@@ -928,6 +1174,10 @@ export type Mutation_Root = {
   insert_accounts?: Maybe<Accounts_Mutation_Response>;
   /** insert a single row into the table: "accounts" */
   insert_accounts_one?: Maybe<Accounts>;
+  /** insert data into the table: "booking.flights" */
+  insert_booking_flights?: Maybe<Booking_Flights_Mutation_Response>;
+  /** insert a single row into the table: "booking.flights" */
+  insert_booking_flights_one?: Maybe<Booking_Flights>;
   /** insert data into the table: "brand" */
   insert_brand?: Maybe<Brand_Mutation_Response>;
   /** insert a single row into the table: "brand" */
@@ -958,6 +1208,12 @@ export type Mutation_Root = {
   update_accounts_by_pk?: Maybe<Accounts>;
   /** update multiples rows of table: "accounts" */
   update_accounts_many?: Maybe<Array<Maybe<Accounts_Mutation_Response>>>;
+  /** update data of the table: "booking.flights" */
+  update_booking_flights?: Maybe<Booking_Flights_Mutation_Response>;
+  /** update single row of the table: "booking.flights" */
+  update_booking_flights_by_pk?: Maybe<Booking_Flights>;
+  /** update multiples rows of table: "booking.flights" */
+  update_booking_flights_many?: Maybe<Array<Maybe<Booking_Flights_Mutation_Response>>>;
   /** update data of the table: "brand" */
   update_brand?: Maybe<Brand_Mutation_Response>;
   /** update single row of the table: "brand" */
@@ -1005,6 +1261,18 @@ export type Mutation_RootDelete_AccountsArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Accounts_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Booking_FlightsArgs = {
+  where: Booking_Flights_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Booking_Flights_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
@@ -1092,6 +1360,20 @@ export type Mutation_RootInsert_AccountsArgs = {
 export type Mutation_RootInsert_Accounts_OneArgs = {
   object: Accounts_Insert_Input;
   on_conflict?: InputMaybe<Accounts_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Booking_FlightsArgs = {
+  objects: Array<Booking_Flights_Insert_Input>;
+  on_conflict?: InputMaybe<Booking_Flights_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Booking_Flights_OneArgs = {
+  object: Booking_Flights_Insert_Input;
+  on_conflict?: InputMaybe<Booking_Flights_On_Conflict>;
 };
 
 
@@ -1198,6 +1480,36 @@ export type Mutation_RootUpdate_Accounts_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Accounts_ManyArgs = {
   updates: Array<Accounts_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Booking_FlightsArgs = {
+  _append?: InputMaybe<Booking_Flights_Append_Input>;
+  _delete_at_path?: InputMaybe<Booking_Flights_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Booking_Flights_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Booking_Flights_Delete_Key_Input>;
+  _prepend?: InputMaybe<Booking_Flights_Prepend_Input>;
+  _set?: InputMaybe<Booking_Flights_Set_Input>;
+  where: Booking_Flights_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Booking_Flights_By_PkArgs = {
+  _append?: InputMaybe<Booking_Flights_Append_Input>;
+  _delete_at_path?: InputMaybe<Booking_Flights_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Booking_Flights_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Booking_Flights_Delete_Key_Input>;
+  _prepend?: InputMaybe<Booking_Flights_Prepend_Input>;
+  _set?: InputMaybe<Booking_Flights_Set_Input>;
+  pk_columns: Booking_Flights_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Booking_Flights_ManyArgs = {
+  updates: Array<Booking_Flights_Updates>;
 };
 
 
@@ -1774,6 +2086,12 @@ export type Query_Root = {
   accounts_aggregate: Accounts_Aggregate;
   /** fetch data from the table: "accounts" using primary key columns */
   accounts_by_pk?: Maybe<Accounts>;
+  /** fetch data from the table: "booking.flights" */
+  booking_flights: Array<Booking_Flights>;
+  /** fetch aggregated fields from the table: "booking.flights" */
+  booking_flights_aggregate: Booking_Flights_Aggregate;
+  /** fetch data from the table: "booking.flights" using primary key columns */
+  booking_flights_by_pk?: Maybe<Booking_Flights>;
   /** fetch data from the table: "brand" */
   brand: Array<Brand>;
   /** fetch aggregated fields from the table: "brand" */
@@ -1832,6 +2150,29 @@ export type Query_RootAccounts_AggregateArgs = {
 
 
 export type Query_RootAccounts_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Query_RootBooking_FlightsArgs = {
+  distinct_on?: InputMaybe<Array<Booking_Flights_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Booking_Flights_Order_By>>;
+  where?: InputMaybe<Booking_Flights_Bool_Exp>;
+};
+
+
+export type Query_RootBooking_Flights_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Booking_Flights_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Booking_Flights_Order_By>>;
+  where?: InputMaybe<Booking_Flights_Bool_Exp>;
+};
+
+
+export type Query_RootBooking_Flights_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
@@ -2215,6 +2556,14 @@ export type Subscription_Root = {
   accounts_by_pk?: Maybe<Accounts>;
   /** fetch data from the table in a streaming manner: "accounts" */
   accounts_stream: Array<Accounts>;
+  /** fetch data from the table: "booking.flights" */
+  booking_flights: Array<Booking_Flights>;
+  /** fetch aggregated fields from the table: "booking.flights" */
+  booking_flights_aggregate: Booking_Flights_Aggregate;
+  /** fetch data from the table: "booking.flights" using primary key columns */
+  booking_flights_by_pk?: Maybe<Booking_Flights>;
+  /** fetch data from the table in a streaming manner: "booking.flights" */
+  booking_flights_stream: Array<Booking_Flights>;
   /** fetch data from the table: "brand" */
   brand: Array<Brand>;
   /** fetch aggregated fields from the table: "brand" */
@@ -2293,6 +2642,36 @@ export type Subscription_RootAccounts_StreamArgs = {
   batch_size: Scalars['Int'];
   cursor: Array<InputMaybe<Accounts_Stream_Cursor_Input>>;
   where?: InputMaybe<Accounts_Bool_Exp>;
+};
+
+
+export type Subscription_RootBooking_FlightsArgs = {
+  distinct_on?: InputMaybe<Array<Booking_Flights_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Booking_Flights_Order_By>>;
+  where?: InputMaybe<Booking_Flights_Bool_Exp>;
+};
+
+
+export type Subscription_RootBooking_Flights_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Booking_Flights_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Booking_Flights_Order_By>>;
+  where?: InputMaybe<Booking_Flights_Bool_Exp>;
+};
+
+
+export type Subscription_RootBooking_Flights_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootBooking_Flights_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Booking_Flights_Stream_Cursor_Input>>;
+  where?: InputMaybe<Booking_Flights_Bool_Exp>;
 };
 
 
@@ -2996,6 +3375,21 @@ export type UpdateUserMutationVariables = Exact<{
 
 export type UpdateUserMutation = { __typename?: 'mutation_root', update_users_by_pk?: { __typename?: 'users', updated_at?: any | null } | null };
 
+export type CreateFlightBookingMutationVariables = Exact<{
+  object?: InputMaybe<Booking_Flights_Insert_Input>;
+}>;
+
+
+export type CreateFlightBookingMutation = { __typename?: 'mutation_root', insert_booking_flights_one?: { __typename?: 'booking_flights', id: any, meta?: any | null, status: string } | null };
+
+export type UpdateFlightBookingMutationVariables = Exact<{
+  where?: InputMaybe<Booking_Flights_Bool_Exp>;
+  _set?: InputMaybe<Booking_Flights_Set_Input>;
+}>;
+
+
+export type UpdateFlightBookingMutation = { __typename?: 'mutation_root', update_booking_flights?: { __typename?: 'booking_flights_mutation_response', affected_rows: number, returning: Array<{ __typename?: 'booking_flights', id: any }> } | null };
+
 export type GetBrandQueryVariables = Exact<{
   title: Scalars['String'];
 }>;
@@ -3025,12 +3419,22 @@ export type GetOtpByUserIdQueryVariables = Exact<{
 
 export type GetOtpByUserIdQuery = { __typename?: 'query_root', otp: Array<{ __typename?: 'otp', id: number, token: string, created_at: any, updated_at: any, userId: any, isValid?: boolean | null }> };
 
+export type GetFlightBookingsQueryVariables = Exact<{
+  where?: InputMaybe<Booking_Flights_Bool_Exp>;
+}>;
+
+
+export type GetFlightBookingsQuery = { __typename?: 'query_root', booking_flights: Array<{ __typename?: 'booking_flights', id: any, provider: string, providerOfferId: string, providerOfferDetails: any, status: string, meta?: any | null, userId: any }> };
+
 
 export const InsertUsersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"InsertUsers"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"users_insert_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_users_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"emailVerified"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"created_at"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"password"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"phoneVerified"}},{"kind":"Field","name":{"kind":"Name","value":"updated_at"}}]}}]}}]} as unknown as DocumentNode<InsertUsersMutation, InsertUsersMutationVariables>;
 export const Insert_OtpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"INSERT_OTP"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"otp_insert_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_otp_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"created_at"}}]}}]}}]} as unknown as DocumentNode<Insert_OtpMutation, Insert_OtpMutationVariables>;
 export const DeleteOtpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteOTP"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"tokenType"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}},"defaultValue":{"kind":"StringValue","value":"OTP","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"delete_otp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"userId"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"tokenType"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"tokenType"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"affected_rows"}}]}}]}}]} as unknown as DocumentNode<DeleteOtpMutation, DeleteOtpMutationVariables>;
 export const UpdateUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"_set"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"users_set_input"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_users_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"Variable","name":{"kind":"Name","value":"_set"}}},{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updated_at"}}]}}]}}]} as unknown as DocumentNode<UpdateUserMutation, UpdateUserMutationVariables>;
+export const CreateFlightBookingDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateFlightBooking"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"booking_flights_insert_input"}},"defaultValue":{"kind":"ObjectValue","fields":[]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_booking_flights_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]}}]} as unknown as DocumentNode<CreateFlightBookingMutation, CreateFlightBookingMutationVariables>;
+export const UpdateFlightBookingDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateFlightBooking"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"booking_flights_bool_exp"}},"defaultValue":{"kind":"ObjectValue","fields":[]}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"_set"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"booking_flights_set_input"}},"defaultValue":{"kind":"ObjectValue","fields":[]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_booking_flights"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"Variable","name":{"kind":"Name","value":"_set"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"affected_rows"}},{"kind":"Field","name":{"kind":"Name","value":"returning"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<UpdateFlightBookingMutation, UpdateFlightBookingMutationVariables>;
 export const GetBrandDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetBrand"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brand"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"metaData"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"location"}}]}}]}}]} as unknown as DocumentNode<GetBrandQuery, GetBrandQueryVariables>;
 export const GetUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"users_bool_exp"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"password"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"emailVerified"}},{"kind":"Field","name":{"kind":"Name","value":"phoneVerified"}},{"kind":"Field","name":{"kind":"Name","value":"accounts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"provider"}}]}}]}}]}}]} as unknown as DocumentNode<GetUserQuery, GetUserQueryVariables>;
 export const SessionTokenByPkDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SessionTokenByPk"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"sessionToken"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sessions_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sessionToken"},"value":{"kind":"Variable","name":{"kind":"Name","value":"sessionToken"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sessionToken"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"expires"}}]}}]}}]} as unknown as DocumentNode<SessionTokenByPkQuery, SessionTokenByPkQueryVariables>;
 export const GetOtpByUserIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetOtpByUserId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"tokenType"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}},"defaultValue":{"kind":"StringValue","value":"OTP","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"otp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"userId"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"isValid"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"BooleanValue","value":true}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"tokenType"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"tokenType"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"order_by"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"created_at"},"value":{"kind":"EnumValue","value":"desc"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"token"}},{"kind":"Field","name":{"kind":"Name","value":"created_at"}},{"kind":"Field","name":{"kind":"Name","value":"updated_at"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"isValid"}}]}}]}}]} as unknown as DocumentNode<GetOtpByUserIdQuery, GetOtpByUserIdQueryVariables>;
+export const GetFlightBookingsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetFlightBookings"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"booking_flights_bool_exp"}},"defaultValue":{"kind":"ObjectValue","fields":[]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"booking_flights"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"provider"}},{"kind":"Field","name":{"kind":"Name","value":"providerOfferId"}},{"kind":"Field","name":{"kind":"Name","value":"providerOfferDetails"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}}]}}]} as unknown as DocumentNode<GetFlightBookingsQuery, GetFlightBookingsQueryVariables>;

@@ -42,4 +42,35 @@ const UPDATE_USER_BY_ID = gql`
   }
 `
 
-export { CREATE_USER, UPDATE_USER_BY_ID, CREATE_OTP, DELETE_OTP_BY_USER_ID }
+const CREATE_FLIGHT_BOOKING = gql`
+  mutation CreateFlightBooking($object: booking_flights_insert_input = {}) {
+    insert_booking_flights_one(object: $object) {
+      id
+      meta
+      status
+    }
+  }
+`
+
+const UPDATE_FLIGHT_BOOKING = gql`
+  mutation UpdateFlightBooking(
+    $where: booking_flights_bool_exp = {}
+    $_set: booking_flights_set_input = {}
+  ) {
+    update_booking_flights(where: $where, _set: $_set) {
+      affected_rows
+      returning {
+        id
+      }
+    }
+  }
+`
+
+export {
+  CREATE_USER,
+  UPDATE_USER_BY_ID,
+  CREATE_OTP,
+  DELETE_OTP_BY_USER_ID,
+  CREATE_FLIGHT_BOOKING,
+  UPDATE_FLIGHT_BOOKING
+}
