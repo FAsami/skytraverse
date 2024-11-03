@@ -31,8 +31,8 @@ const authConfig: NextAuthConfig = {
   debug: false,
   providers: [
     Google({
-      clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!
+      clientId: process.env.AUTH_GOOGLE_ID!,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET!
     }),
     Credentials({
       id: 'phone_password',

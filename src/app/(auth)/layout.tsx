@@ -1,10 +1,9 @@
-import React from 'react'
 import { apolloClient } from '../lib'
 import { GET_BRAND_INFO } from '../graphql/query'
 import { GetBrandQuery } from '@/types/gql/graphql'
 import Image from 'next/image'
-import { signIn } from 'next-auth/react'
 import { FcGoogle } from 'react-icons/fc'
+import { login } from './actions/login'
 
 const AuthLayout = async ({
   children
@@ -39,14 +38,9 @@ const AuthLayout = async ({
         <div className="w-full h-[1px] bg-neutral-200"></div>
       </div>
       <div className="flex items-center justify-center gap-4">
-        <form
-          action={async () => {
-            'use server'
-            await signIn('google', {
-              redirect: false
-            })
-          }}
-        >
+        <form action={login}>
+          <input type="hidden" name="provider" value="google" />
+          <input type="hidden" name="callbackUrl" value="/" />
           <button type="submit">
             <FcGoogle className="text-2xl" />
           </button>
