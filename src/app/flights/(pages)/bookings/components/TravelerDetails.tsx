@@ -9,6 +9,7 @@ import { TravelerDetailsForm, FormField } from './TravelerDetailsForm'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import dayjs, { Dayjs } from 'dayjs'
 
 const TravelerDetails = ({ offer }: { offer: Offer }) => {
   const router = useRouter()
@@ -66,7 +67,8 @@ const TravelerDetails = ({ offer }: { offer: Offer }) => {
         type: 'date',
         rules: [{ required: true, message: 'Please enter your date of birth' }],
         fullWidth: false,
-        order: 5
+        order: 5,
+        defaultValue: dayjs().subtract(20, 'year') as Dayjs
       },
       {
         name: 'passport_number',
@@ -102,7 +104,8 @@ const TravelerDetails = ({ offer }: { offer: Offer }) => {
           ? [{ required: true, message: 'Passport expiry date is required!' }]
           : [],
         fullWidth: false,
-        order: 8
+        order: 8,
+        defaultValue: dayjs().add(2, 'year') as Dayjs
       }
     ]
 

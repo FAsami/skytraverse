@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-import React, { ReactNode } from 'react'
+import React from 'react'
 import {
   Form,
   Input,
@@ -167,7 +168,9 @@ const TravelerDetailsForm: React.FC<{
                               <DatePicker
                                 style={{ width: '100%' }}
                                 placeholder={`Select ${field.label}`}
-                                defaultValue={dayjs() as Dayjs}
+                                defaultPickerValue={
+                                  dayjs().subtract(20, 'year') as Dayjs
+                                }
                               />
                             )
                           case 'radio':
@@ -220,7 +223,7 @@ const TravelerDetailsForm: React.FC<{
           )
       })}
 
-      <div className="w-full h-full shadow py-8 rounded flex-col bg-white flex items-center justify-center">
+      <div className="w-full px-3 h-full shadow py-8 rounded flex-col bg-white flex items-center justify-center">
         <Form.Item
           name="terms"
           valuePropName="checked"
