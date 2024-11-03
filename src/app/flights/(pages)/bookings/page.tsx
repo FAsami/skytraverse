@@ -19,7 +19,6 @@ const FlightBookingPage = async ({
     if (!offerId) {
       throw new Error('OfferId not found !')
     }
-    console.log('offerId', offerId)
 
     const res = await duffelClient.offers.get(offerId)
     const offer = res.data
