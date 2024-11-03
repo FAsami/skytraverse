@@ -116,12 +116,6 @@ const FlightSearch: React.FC = () => {
   ) => {
     const iataCode = place.iata_code
     if (place.iata_code && typeof iataCode === 'string') {
-      console.log(offerRequest, {
-        ...offerRequest,
-        slices: [
-          { ...offerRequest.slices[sliceIndex], [locationType]: iataCode }
-        ]
-      })
       if (type === 'one_way') {
         setOfferRequest((prev) => ({
           ...prev,

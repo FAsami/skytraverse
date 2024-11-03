@@ -33,7 +33,7 @@ const DetailsModal = ({ offer }: { offer: Offer }) => {
         Details
       </Button>
       <Modal
-        title="Policy Details"
+        title="Details"
         open={isVisible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -53,7 +53,7 @@ const DetailsModal = ({ offer }: { offer: Offer }) => {
           <div className="border-b w-full flex justify-between py-2 text-sm">
             <div className="text-sm text-neutral-800 flex items-center gap-1">
               {offer?.conditions?.change_before_departure?.allowed ? (
-                <BsFillCheckCircleFill className="text-green-700" />
+                <BsFillCheckCircleFill className="text-green-700 text-sm" />
               ) : (
                 <MdOutlineClose className="text-red-700" />
               )}
@@ -73,7 +73,7 @@ const DetailsModal = ({ offer }: { offer: Offer }) => {
           <div className="border-b w-full flex justify-between py-2 text-sm">
             <div className="text-sm text-neutral-800 flex items-center gap-1">
               {offer?.conditions?.refund_before_departure?.allowed ? (
-                <BsFillCheckCircleFill className="text-green-700 text-xl" />
+                <BsFillCheckCircleFill className="text-green-700" />
               ) : (
                 <MdOutlineClose className="text-red-700 text-xl" />
               )}

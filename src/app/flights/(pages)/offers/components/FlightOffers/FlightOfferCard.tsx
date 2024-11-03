@@ -16,7 +16,13 @@ import {
 } from 'react-icons/md'
 import { DetailsModal } from './DetailsModal'
 
-const FlightOfferCard = async ({ offer }: { offer: Offer }) => {
+const FlightOfferCard = ({
+  showBookingLink = false,
+  offer
+}: {
+  showBookingLink?: boolean
+  offer: Offer
+}) => {
   return (
     <div className="min-w-2xl w-full mx-auto rounded-md shadow p-2 md:p-4 transition-shadow bg-white">
       <div className="flex justify-between items-center mb-4">
@@ -114,17 +120,19 @@ const FlightOfferCard = async ({ offer }: { offer: Offer }) => {
       ))}
       <div className="flex justify-between gap-1 mt-2 md:mt-3">
         <DetailsModal offer={offer} />
-        <div>
-          <Link
-            href={`/flights/bookings?id=${encodeURIComponent(
-              await encodeId(offer.id)
-            )}`}
-          >
-            <Button icon={<MdOutlineFlightTakeoff />} type="primary">
-              Book
-            </Button>
-          </Link>
-        </div>
+        {showBookingLink && (
+          <div>
+            <Link
+              href={`/flights/bookings?id=${encodeURIComponent(
+                encodeId(offer.id)
+              )}`}
+            >
+              <Button icon={<MdOutlineFlightTakeoff />} type="primary">
+                Book
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   )

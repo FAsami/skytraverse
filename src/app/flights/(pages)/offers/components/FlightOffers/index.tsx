@@ -5,7 +5,7 @@ const FlightOffers = ({ offers }: { offers: Offer[] }) => {
   return (
     <div className="space-y-5">
       {offers.map((offer) => (
-        <FlightOfferCard key={offer.id} offer={offer} />
+        <FlightOfferCard showBookingLink={true} key={offer.id} offer={offer} />
       ))}
     </div>
   )
