@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { decodeId } from '@/app/utils/IdUtils'
 import { notFound } from 'next/navigation'
 import { getOfferList } from '../../actions/getOfferList'

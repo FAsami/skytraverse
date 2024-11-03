@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { ApiResponse } from '@/types/api'
 /**
  * This TypeScript function handles GET requests to fetch suggestions based on a query parameter using

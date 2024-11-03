@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { FlightSearch } from './flights/components/FlightSearch'
-import clsx from 'clsx'
 import { Destination } from './components/home/Destination'
 import { Testimonials } from './components/home/Testminial'
 import { Airlines } from './components/home/Airlines'

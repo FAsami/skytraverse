@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { duffelClient } from '@/app/lib/duffelClient'
 import { decodeId } from '@/app/utils/IdUtils'
 import { FlightOfferCard } from '../offers/components/FlightOffers/FlightOfferCard'
