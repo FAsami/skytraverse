@@ -13,6 +13,8 @@ import { theme } from '@/theme/antd'
 import { ReCaptchaProvider } from './providers/recaptcha'
 import { Header } from './components/Header/Header'
 import { Footer } from './components/Footer'
+import { SessionProvider } from 'next-auth/react'
+import { auth } from '@/auth'
 
 const RootLayout = async ({
   children
@@ -23,21 +25,23 @@ const RootLayout = async ({
     title: process.env.BRAND_TITLE
   })
   return (
-    <ConfigProvider theme={theme}>
-      <ReCaptchaProvider>
-        <html lang="en">
-          <body className={`${font} antialiased bg-blue-50 overflow-hidden`}>
-            <AntdRegistry>
-              <Header brand={brand?.[0]} />
-              <main className="h-[calc(100vh-var(--header-height))] overflow-y-auto space-y-4">
-                <div>{children}</div>
-                <Footer brand={brand?.[0]} />
-              </main>
-            </AntdRegistry>
-          </body>
-        </html>
-      </ReCaptchaProvider>
-    </ConfigProvider>
+    <SessionProvider session={await auth()}>
+      <ConfigProvider theme={theme}>
+        <ReCaptchaProvider>
+          <html lang="en">
+            <body className={`${font} antialiased bg-blue-50 overflow-hidden`}>
+              <AntdRegistry>
+                <Header brand={brand?.[0]} />
+                <main className="h-[calc(100vh-var(--header-height))] overflow-y-auto space-y-4">
+                  <div>{children}</div>
+                  <Footer brand={brand?.[0]} />
+                </main>
+              </AntdRegistry>
+            </body>
+          </html>
+        </ReCaptchaProvider>
+      </ConfigProvider>
+    </SessionProvider>
   )
 }
 
