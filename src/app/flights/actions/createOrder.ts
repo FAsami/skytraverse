@@ -17,13 +17,7 @@ const createOrder = async (
 ): Promise<ActionResponse | void> => {
   let orderId
   try {
-    // console.log(offer, passengers)
-    // return {
-    //   success: false,
-    //   message: 'SOMETHING WENT WRONG'
-    // }
     const session = await auth()
-    console.log('SESSIOn', session)
     if (!session?.user?.id) {
       return {
         success: false,
@@ -69,7 +63,7 @@ const createOrder = async (
     }
   }
   if (orderId) {
-    redirect(`/flight/checkout?id=${orderId}`)
+    redirect(`/flights/checkout?id=${orderId}`)
   }
 }
 

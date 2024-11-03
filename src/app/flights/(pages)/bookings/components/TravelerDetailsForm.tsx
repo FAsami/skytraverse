@@ -46,8 +46,10 @@ const TravelerDetailsForm: React.FC<{
     passenger: OfferPassenger | null
     data: FormField[]
   }[]
+  loading: boolean
+
   onFinish: (values: FormValues[]) => void
-}> = ({ fieldsData, onFinish }) => {
+}> = ({ fieldsData, onFinish, loading }) => {
   const [form] = Form.useForm()
 
   const handleFinish = (values: FormValues) => {
@@ -253,7 +255,7 @@ const TravelerDetailsForm: React.FC<{
             shape="round"
             htmlType="submit"
             icon={<FaBook />}
-            loading={false}
+            loading={loading}
           >
             Book flight
           </Button>

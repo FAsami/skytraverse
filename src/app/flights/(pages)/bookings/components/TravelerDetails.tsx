@@ -3,21 +3,17 @@ import { PassengerType, Offer, CreateOrderPassenger } from '@duffel/api/types'
 import { TravelerDetailsForm, FormField } from './TravelerDetailsForm'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import dayjs, { Dayjs } from 'dayjs'
-import { ActionResponse } from '@/types/actions'
-import { useState, useTransition } from 'react'
+import { useTransition } from 'react'
 import { useReCaptcha } from '@/app/hooks'
 import { createOrder } from '@/app/flights/actions/createOrder'
+import { Modal } from 'antd'
+import { BiSolidError } from 'react-icons/bi'
+import { IoIosClose } from 'react-icons/io'
+import Image from 'next/image'
 
 const TravelerDetails = ({ offer }: { offer: Offer }) => {
-  const initialState = {
-    error: null,
-    message: '',
-    success: false
-  }
-  const [result, setResult] = useState<ActionResponse>(initialState)
   const [isPending, startTransition] = useTransition()
   const { verifyReCaptcha } = useReCaptcha()
-  // const router = useRouter()
   const getFormData = (): FormField[] => {
     const passportRequired = offer.passenger_identity_documents_required
 
@@ -116,48 +112,66 @@ const TravelerDetails = ({ offer }: { offer: Offer }) => {
 
     return fields
   }
-  console.log(isPending)
-  console.log(result)
 
   const handleFinish = async (values: unknown) => {
     try {
       startTransition(async () => {
-        setResult(initialState)
         const isValid = await verifyReCaptcha('createOrder')
-        console.log(isValid)
-        console.log(offer, values as CreateOrderPassenger[])
+
         if (isValid) {
-          const offerParams = {
-            offer: offer as Offer,
-            values: values as CreateOrderPassenger[]
-          }
-          console.log(offerParams)
           const result = await createOrder(
             offer as Offer,
             values as CreateOrderPassenger[]
           )
-          if (result) {
-            setResult(result)
+          if (!result?.success) {
+            Modal.warn({
+              title: null,
+              icon: null,
+              centered: true,
+              content: (
+                <div className="flex flex-col items-center justify-center py-12">
+                  <div className="mb-4">
+                    <Image
+                      alt="Error"
+                      height={150}
+                      width={150}
+                      src="https://res.cloudinary.com/dffqrc36j/image/upload/v1730562569/server_error_w0x6oq.svg"
+                    />
+                  </div>
+                  <p className="text-xl text-red-600 font-semibold">
+                    Failed to book your flight
+                  </p>
+                  <p className="text-ms px-12 mt-2 text-neutral-500 text-center">
+                    {result?.message || 'Something went wrong!'}
+                  </p>
+                </div>
+              ),
+              closeIcon: <IoIosClose className="text-neutral-600 text-2xl" />,
+              footer: null,
+              closable: true,
+              onClose: Modal.destroyAll
+            })
           }
         } else {
-          setResult({
-            success: false,
-            message: 'Captcha failed ! Please try to refresh the page '
+          Modal.warn({
+            title: null,
+            icon: null,
+            content: (
+              <div className="flex flex-col items-center justify-center py-12">
+                <BiSolidError className="text-red-500 text-6xl mb-2" />
+                <p className="text-xl text-neutral-600 font-semibold">
+                  Something went wrong!
+                </p>
+                <p className="text-ms px-12 mt-2 text-neutral-500 text-center">
+                  Please try again
+                </p>
+              </div>
+            ),
+            footer: null,
+            closable: false
           })
         }
       })
-      // const createOfferParams = getCreateOfferParams(
-      //   offer,
-      //   values as CreateOrderPassenger[]
-      // )
-      // const params = {
-      //   offer,
-      //   params: createOfferParams
-      // }
-      // const res = await axios.post('/api/flight/order/create', params)
-      // if (res.status === 201) {
-      //   router.replace(`/flights/checkout/${res.data.data.bookingId}`)
-      // }
     } catch (error) {
       console.log(error)
     }
@@ -171,6 +185,7 @@ const TravelerDetails = ({ offer }: { offer: Offer }) => {
       </div>
       <div className="py-2">
         <TravelerDetailsForm
+          loading={isPending}
           onFinish={handleFinish}
           fieldsData={[
             ...offer.passengers
