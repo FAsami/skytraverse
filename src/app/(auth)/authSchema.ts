@@ -25,7 +25,10 @@ export const LoginSchema = z
           message: 'Invalid email'
         }
       ),
-    password: z.string().min(8, 'Password must be at least 8 characters long')
+    password: z
+      .string()
+      .min(8, 'Password must be at least 8 characters long')
+      .max(64, 'Password should not be exceed 64 characters')
   })
   .superRefine((data, ctx) => {
     if (!data.email && !data.phone) {
@@ -72,7 +75,10 @@ export const RegisterSchema = z
           message: 'Invalid email'
         }
       ),
-    password: z.string().min(8, 'Password must be at least 8 characters long')
+    password: z
+      .string()
+      .min(8, 'Password must be at least 8 characters long')
+      .max(64, 'Password should not exceed 64 characters')
   })
   .superRefine((data, ctx) => {
     if (!data.email && !data.phone) {
@@ -174,7 +180,10 @@ export const SendOTPSchema = z
 
 export const ResetPasswordSchema = z
   .object({
-    password: z.string().min(8, 'Password must be at least 8 characters long'),
+    password: z
+      .string()
+      .min(8, 'Password must be at least 8 characters long')
+      .max(64, 'Password should not exceed 64 characters'),
     confirmPassword: z.string(),
     token: z.string()
   })
