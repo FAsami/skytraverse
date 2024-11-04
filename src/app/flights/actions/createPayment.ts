@@ -89,8 +89,8 @@ const createPayment = async (id: string): Promise<ActionResponse | void> => {
                   }
                 ],
                 mode: 'payment',
-                success_url: `http://localhost:3000/flights/payment/success?id=${id}`,
-                cancel_url: `http://localhost:3000/flights/payment/cancel`
+                success_url: `${process.env.NEXT_PUBLIC_URL}/flights/payment/success?id=${id}`,
+                cancel_url: `${process.env.NEXT_PUBLIC_URL}/flights/payment/cancel`
               }
             )
             await createPaymentLog({
