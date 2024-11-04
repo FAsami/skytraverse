@@ -113,17 +113,22 @@ const TravelerDetails = ({ offer }: { offer: Offer }) => {
     return fields
   }
 
-  const handleFinish = async (values: unknown) => {
+  const handleFinish = async (values: {
+    passengers: CreateOrderPassenger[]
+    paymentMethodId: string
+  }) => {
     try {
       startTransition(async () => {
         const isValid = await verifyReCaptcha('createOrder')
-
+        console.log({ isValid })
         if (isValid) {
           const result = await createOrder(
             offer as Offer,
-            values as CreateOrderPassenger[]
+            values.passengers,
+            values.paymentMethodId
           )
-          if (!result?.success) {
+
+          if (result?.success === false) {
             Modal.warn({
               title: null,
               icon: null,
@@ -245,6 +250,26 @@ const TravelerDetails = ({ offer }: { offer: Offer }) => {
                   ],
                   fullWidth: false,
                   order: 2
+                }
+              ]
+            },
+            {
+              title: `2.${offer.passengers.length + 2} Payment method`,
+              passenger: null,
+              data: [
+                {
+                  name: 'paymentMethod',
+                  label: 'Pay via',
+                  type: 'paymentMethod',
+                  rules: [
+                    {
+                      required: true,
+                      message: 'Please select a payment method'
+                    }
+                  ],
+                  fullWidth: true,
+                  order: 1,
+                  defaultValue: ''
                 }
               ]
             }

@@ -1,0 +1,1 @@
+CREATE TABLE "payment"."transactionLogs" ("id" serial NOT NULL, "transactionId" integer NOT NULL, "status" text NOT NULL, "details" jsonb NOT NULL, "created_at" timestamptz NOT NULL DEFAULT now(), PRIMARY KEY ("id") );

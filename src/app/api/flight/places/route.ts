@@ -1,17 +1,5 @@
 export const dynamic = 'force-dynamic'
 import { ApiResponse } from '@/types/api'
-/**
- * This TypeScript function handles GET requests to fetch suggestions based on a query parameter using
- * the Duffel API and returns a JSON response with success status and data or error message.
- * @param {NextRequest} request - The `request` parameter in the `GET` function is of type
- * `NextRequest`, which represents the incoming HTTP request. It contains information about the request
- * such as the URL, headers, method, and query parameters. In this code snippet, the `request`
- * parameter is used to extract the query
- * @returns The code snippet provided is a Next.js API route handler function that handles GET
- * requests. It tries to fetch suggestions based on a query parameter "query" from the request URL
- * using the Duffel API client.
- */
-
 import { NextRequest, NextResponse } from 'next/server'
 import { duffelClient } from '@/app/lib/duffelClient'
 

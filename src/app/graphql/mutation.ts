@@ -66,11 +66,43 @@ const UPDATE_FLIGHT_BOOKING = gql`
   }
 `
 
+const CREATE_PAYMENT_TRANSACTION = gql`
+  mutation CreatePaymentTransaction(
+    $object: payment_transactions_insert_input!
+  ) {
+    insert_payment_transactions_one(object: $object) {
+      id
+    }
+  }
+`
+const UPDATE_PAYMENT_TRANSACTION = gql`
+  mutation UpdatePaymentTransactionById(
+    $_set: payment_transactions_set_input!
+    $id: Int!
+  ) {
+    update_payment_transactions_by_pk(_set: $_set, pk_columns: { id: $id }) {
+      id
+    }
+  }
+`
+const CREATE_PAYMENT_TRANSACTION_LOG = gql`
+  mutation CreatePaymentTransactionLog(
+    $object: payment_transactionLogs_insert_input!
+  ) {
+    insert_payment_transactionLogs_one(object: $object) {
+      id
+    }
+  }
+`
+
 export {
   CREATE_USER,
   UPDATE_USER_BY_ID,
   CREATE_OTP,
   DELETE_OTP_BY_USER_ID,
   CREATE_FLIGHT_BOOKING,
-  UPDATE_FLIGHT_BOOKING
+  UPDATE_FLIGHT_BOOKING,
+  CREATE_PAYMENT_TRANSACTION,
+  UPDATE_PAYMENT_TRANSACTION,
+  CREATE_PAYMENT_TRANSACTION_LOG
 }

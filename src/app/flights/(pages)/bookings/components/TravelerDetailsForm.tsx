@@ -13,19 +13,28 @@ import {
 } from 'antd'
 import dayjs, { Dayjs } from 'dayjs'
 import { FormItemProps, Rule } from 'antd/es/form'
-import { OfferPassenger } from '@duffel/api/types'
+import { CreateOrderPassenger, OfferPassenger } from '@duffel/api/types'
 import { forEach, get } from 'lodash'
 import { PhoneInput } from '@/app/(auth)/components/PhoneInput'
 import { CountrySelector } from '@/app/components/CountrySelect'
 import { FaBook } from 'react-icons/fa'
 import clsx from 'clsx'
+import { PaymentMethods } from './PaymentMethods'
 
 const { Option } = Select
 
 export type FormField = {
   name: string
   label: string
-  type: 'text' | 'number' | 'select' | 'date' | 'radio' | 'country' | 'phone'
+  type:
+    | 'text'
+    | 'number'
+    | 'select'
+    | 'date'
+    | 'radio'
+    | 'country'
+    | 'phone'
+    | 'paymentMethod'
   rules: Rule[]
   options?: {
     value: string
@@ -48,19 +57,26 @@ const TravelerDetailsForm: React.FC<{
   }[]
   loading: boolean
 
-  onFinish: (values: FormValues[]) => void
+  onFinish: (values: {
+    passengers: CreateOrderPassenger[]
+    paymentMethodId: string
+  }) => void
 }> = ({ fieldsData, onFinish, loading }) => {
   const [form] = Form.useForm()
 
   const handleFinish = (values: FormValues) => {
     const passengersIds: string[] = []
     const contact: any = {}
+    let paymentMethodId = ''
+
     forEach(values, (val, key) => {
       if (key.includes('passengerId_')) {
         passengersIds.push(val)
       } else if (key.includes('contact')) {
         const fieldName = key.split('_')[0]
         contact[`${fieldName}`] = val
+      } else if (key.includes('paymentMethod')) {
+        paymentMethodId = val
       }
     })
     const passengers = passengersIds.map((id) => {
@@ -91,7 +107,7 @@ const TravelerDetailsForm: React.FC<{
       }
     })
 
-    onFinish(passengers)
+    onFinish({ passengers, paymentMethodId })
   }
 
   return (
@@ -212,6 +228,25 @@ const TravelerDetailsForm: React.FC<{
                                   })
                                 }
                               />
+                            )
+                          case 'paymentMethod':
+                            return (
+                              <Form.Item
+                                name={`${field.name}_${suffix}`}
+                                noStyle
+                                getValueFromEvent={(value) => value}
+                              >
+                                <PaymentMethods
+                                  value={form.getFieldValue(
+                                    `${field.name}_${suffix}`
+                                  )}
+                                  onChange={(value) =>
+                                    form.setFieldsValue({
+                                      [`${field.name}_${suffix}`]: value
+                                    })
+                                  }
+                                />
+                              </Form.Item>
                             )
                           default:
                             return null

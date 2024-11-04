@@ -72,6 +72,22 @@ export const GET_FLIGHT_BOOKINGS = gql`
       status
       meta
       userId
+      paymentMethod {
+        id
+        logo
+        label
+      }
+    }
+  }
+`
+export const GET_AVAILABLE_PAYMENT_METHODS = gql`
+  query GetAvailablePaymentMethods {
+    payment_availablePaymentMethods(where: { isActive: { _eq: true } }) {
+      isActive
+      id
+      label
+      logo
+      title
     }
   }
 `

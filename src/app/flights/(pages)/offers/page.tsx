@@ -53,7 +53,9 @@ const FlightOffersPage = async ({
             {offerInfo && (
               <div className="flex  md:w-full justify-center flex-col gap-1">
                 <div className="flex items-center  gap-6">
-                  <FaArrowLeft className="text-blue-500 tex-xs cursor-pointer" />
+                  <Link href="/">
+                    <FaArrowLeft className="text-blue-500 tex-xs cursor-pointer" />
+                  </Link>
                   <div className="font-semibold">{offerReq.origin}</div>
                   <BsArrowRight />
                   <div className="font-semibold">{offerReq.destination}</div>

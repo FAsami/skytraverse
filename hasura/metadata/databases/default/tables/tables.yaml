@@ -1,4 +1,8 @@
 - "!include booking_flights.yaml"
+- "!include payment_availablePaymentMethods.yaml"
+- "!include payment_refunds.yaml"
+- "!include payment_transactionLogs.yaml"
+- "!include payment_transactions.yaml"
 - "!include public_accounts.yaml"
 - "!include public_brand.yaml"
 - "!include public_otp.yaml"

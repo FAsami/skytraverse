@@ -11,6 +11,7 @@ export default auth(async (req) => {
       return
     } else {
       let callbackUrl = req.nextUrl.pathname
+      console.log('===>', req.nextUrl)
       if (req.nextUrl.search) {
         callbackUrl += req.nextUrl.search
       }
