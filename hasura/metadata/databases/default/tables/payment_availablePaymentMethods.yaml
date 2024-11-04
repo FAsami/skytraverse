@@ -1,0 +1,3 @@
+table:
+  name: availablePaymentMethods
+  schema: payment

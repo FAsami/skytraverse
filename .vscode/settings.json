@@ -3,6 +3,7 @@
         "antd",
         "authjs",
         "cloudinary",
+        "clsx",
         "codegen",
         "flagcdn",
         "graphq",

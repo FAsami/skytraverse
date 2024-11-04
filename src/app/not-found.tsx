@@ -1,30 +1,31 @@
 import { Button } from 'antd'
+import Image from 'next/image'
 import Link from 'next/link'
 import { BiChevronRight } from 'react-icons/bi'
-import { MdOutlineSentimentDissatisfied } from 'react-icons/md'
+import { MdSentimentDissatisfied } from 'react-icons/md'
 
 const NotFoundPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center my-12 bg-white shadow-sm rounded-md mx-auto max-w-screen-sm p-6">
-      <h1 className="text-6xl font-bold text-gray-800 mb-4 flex items-center gap-3 py-8">
-        4
-        <span className="text-blue-400">
-          <MdOutlineSentimentDissatisfied />
-        </span>
-        4
-      </h1>
-      <h2 className="text-2xl text-gray-600 text-center mb-5">
-        Oops! <br /> Page not found.
-      </h2>
-      <p className="text-sm text-gray-500 mb-8 px-32 text-center">
-        The page you are looking for might have been removed, had its name
-        changed, or is temporarily unavailable.
-      </p>
-      <Link href="/">
-        <Button iconPosition="end" icon={<BiChevronRight />} type="primary">
-          Go Back Home
-        </Button>
-      </Link>
+    <div className="px-4">
+      <div className="flex flex-col items-center justify-center my-12 bg-white shadow-sm rounded-md mx-auto max-w-screen-sm  p-6">
+        <Image
+          alt="Not found"
+          height={300}
+          width={300}
+          src="https://res.cloudinary.com/dffqrc36j/image/upload/v1730562244/page_not_found.svg"
+        />
+        <div className="text-2xl text-neutral-600 font-semibold flex items-center gap-2 mt-6">
+          Sorry <MdSentimentDissatisfied className="text-amber-700" />
+        </div>
+        <p className="text-sm text-gray-500 mb-2 md:mb-8 px-3 md:px-32 text-center">
+          We could not found any resource for you.
+        </p>
+        <Link href="/">
+          <Button iconPosition="end" icon={<BiChevronRight />} type="primary">
+            Go Back Home
+          </Button>
+        </Link>
+      </div>
     </div>
   )
 }

@@ -34,3 +34,67 @@
     transform: rotate(360deg);
   }
 }
+
+/* Custom scrollbar for the airlines list */
+.scrollbar-light::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-light::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.scrollbar-light::-webkit-scrollbar-thumb {
+  background: #d1d1d1a3;
+  border-radius: 3px;
+}
+
+.scrollbar-light::-webkit-scrollbar-thumb:hover {
+  background: #b1b1b1;
+}
+:root {
+  --header-height: 88px;
+  --top-filter-height: 72px;
+}
+
+.ant-picker {
+  background-color: transparent !important;
+}
+@media (max-width: 768px) {
+  :root {
+    --top-filter-height: 108px;
+  }
+  .antd-cabin-select-override .ant-select-item {
+    min-height: auto !important;
+    padding: 8px !important;
+  }
+}
+.slick-dots {
+  bottom: -1.5rem !important;
+}
+.slick-dots li {
+  border-radius: 99999px !important;
+  height: 10px !important;
+  width: 10px !important;
+  background-color: #e5e5e5 !important;
+}
+.slick-dots button {
+  height: auto !important;
+}
+.slick-dots .slick-active {
+  background-color: #1770f2 !important;
+  height: 12px !important;
+  width: 12px !important;
+  transform: translateY(-1px);
+}
+
+.antd-modal-override {
+  overflow: hidden;
+  max-width: 600px !important;
+
+  .ant-modal-content {
+    border-radius: 12px !important;
+    min-height: 400px;
+  }
+}

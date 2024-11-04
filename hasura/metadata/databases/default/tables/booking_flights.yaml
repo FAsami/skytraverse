@@ -1,0 +1,22 @@
+table:
+  name: flights
+  schema: booking
+object_relationships:
+  - name: paymentMethod
+    using:
+      manual_configuration:
+        column_mapping:
+          paymentMethodId: id
+        insertion_order: null
+        remote_table:
+          name: availablePaymentMethods
+          schema: payment
+  - name: user
+    using:
+      manual_configuration:
+        column_mapping:
+          userId: id
+        insertion_order: null
+        remote_table:
+          name: users
+          schema: public

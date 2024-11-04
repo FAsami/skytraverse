@@ -1,0 +1,1 @@
+CREATE TABLE "payment"."availablePaymentMethods" ("id" serial NOT NULL, "label" text NOT NULL, "title" text NOT NULL, "logo" text NOT NULL, "isActive" boolean NOT NULL DEFAULT false, PRIMARY KEY ("id") );

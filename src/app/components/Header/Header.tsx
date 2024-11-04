@@ -12,7 +12,7 @@ const Header = async ({
 }) => {
   const session = await auth()
   return (
-    <header className="bg-white shadow-sm sticky top-0">
+    <header className="bg-white shadow-sm sticky top-0 h-[var(--header-height)]">
       <div className="max-w-screen-xl px-3 mx-auto py-3 flex items-center justify-between">
         <Link href="/" className="block h-16 w-16 cursor-pointer">
           <Image
@@ -23,13 +23,25 @@ const Header = async ({
             src={brand?.logo.default}
           />
         </Link>
-        <div className="flex gap-6 text-base items-center">
+        <div className="flex gap-2 md:gap-6 text-base items-center">
           <Link
             href="/support"
-            className="text-neutral-700 text-sm flex items-center"
+            className="text-neutral-700 text-sm flex items-center font-semibold"
           >
             <BiSupport /> &nbsp;
             <span>Support</span>
+          </Link>
+          <Link
+            href="/support"
+            className="text-neutral-700 text-sm flex items-center font-semibold"
+          >
+            <span>Contact</span>
+          </Link>
+          <Link
+            href="/support"
+            className="text-neutral-700 text-sm flex items-center font-semibold"
+          >
+            <span>FAQ</span>
           </Link>
           <AuthMenu session={session} />
         </div>
