@@ -26,7 +26,7 @@ export async function POST(req: Request) {
   let event: Stripe.Event
 
   try {
-    event = stripe.webhooks.constructEvent(
+    event = await stripe.webhooks.constructEventAsync(
       body,
       sig!,
       process.env.STRIPE_WEBHOOK_SECRET!
@@ -126,4 +126,9 @@ export async function POST(req: Request) {
   }
 
   return NextResponse.json({ received: true })
+}
+export const config = {
+  api: {
+    bodyParser: false
+  }
 }
