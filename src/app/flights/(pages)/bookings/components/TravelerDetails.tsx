@@ -120,7 +120,6 @@ const TravelerDetails = ({ offer }: { offer: Offer }) => {
     try {
       startTransition(async () => {
         const isValid = await verifyReCaptcha('createOrder')
-        console.log({ isValid })
         if (isValid) {
           const result = await createOrder(
             offer as Offer,
