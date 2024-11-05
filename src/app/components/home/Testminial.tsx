@@ -1,6 +1,6 @@
-import React from 'react'
 import clsx from 'clsx'
 import Image from 'next/image'
+import { BiSolidQuoteAltRight } from 'react-icons/bi'
 
 type Testimonial = {
   name: string
@@ -20,24 +20,22 @@ const testimonials: Testimonial[] = [
     name: 'Ava Roberts',
     status: 'Verified Traveler',
     heading:
-      'Booking my flight with Skytraver was seamless, and the options provided were excellent. I was thrilled with my journey!',
+      'Booking my flight with Skytraverse was seamless, and the options provided were excellent. I was thrilled with my journey!',
     description:
-      'As a frequent traveler, I’ve used many booking services, but Skytraver stood out. The user interface was easy to navigate, and I found the best prices quickly. My trip was smooth from start to finish.',
+      'As a frequent traveler, I’ve used many booking services, but Skytraverse stood out. The user interface was easy to navigate, and I found the best prices quickly. My trip was smooth from start to finish.',
     imgSrc: 'https://randomuser.me/api/portraits/women/11.jpg',
-    bgColor: 'bg-purple-600',
-    textColor: 'text-white',
-    imgBorderColor: 'border-white',
-    quoteIcon:
-      'https://raw.githubusercontent.com/khatri2002/testimonials-grid-section/e8e46d2c6e99c1e65142988a356eedd01037133d/images/bg-pattern-quotation.svg',
+    bgColor: 'bg-white',
+    textColor: 'text-gray-800',
+    imgBorderColor: 'border-gray-800',
     colSpan: 'md:col-span-2'
   },
   {
     name: 'Liam Johnson',
     status: 'Verified Traveler',
     heading:
-      'The booking experience with Skytraver was fantastic and incredibly user-friendly.',
+      'The booking experience with Skytraverse was fantastic and incredibly user-friendly.',
     description:
-      'I was initially a bit hesitant, but Skytraver exceeded my expectations. I secured an amazing deal for my flight and will definitely use it again.',
+      'I was initially a bit hesitant, but Skytraverse exceeded my expectations. I secured an amazing deal for my flight and will definitely use it again.',
     imgSrc: 'https://randomuser.me/api/portraits/men/12.jpg',
     bgColor: 'bg-amber-50',
     textColor: 'text-gray-700',
@@ -48,7 +46,7 @@ const testimonials: Testimonial[] = [
     status: 'Verified Traveler',
     heading: 'Absolutely amazing! Couldn’t ask for more.',
     description:
-      'This platform made my travel planning so easy! With Skytraver, I was able to find my ideal flights quickly and without any hassle.',
+      'This platform made my travel planning so easy! With Skytraverse, I was able to find my ideal flights quickly and without any hassle.',
     imgSrc: 'https://randomuser.me/api/portraits/women/13.jpg',
     bgColor: 'bg-white',
     textColor: 'text-gray-800',
@@ -58,12 +56,12 @@ const testimonials: Testimonial[] = [
     name: 'Mason Brown',
     status: 'Verified Traveler',
     heading:
-      'Exceptional customer support at Skytraver and great deals on flights.',
+      'Exceptional customer support at Skytraverse and great deals on flights.',
     description:
-      'Every question I had was answered promptly, and the booking process felt personal. Skytraver is my go-to for all my travel needs now!',
+      'Every question I had was answered promptly, and the booking process felt personal. Skytraverse is my go-to for all my travel needs now!',
     imgSrc: 'https://randomuser.me/api/portraits/men/14.jpg',
-    bgColor: 'bg-gray-900',
-    textColor: 'text-white',
+    bgColor: 'bg-amber-50',
+    textColor: 'text-gray-700',
     imgBorderColor: 'border-white',
     colSpan: 'md:col-span-2'
   },
@@ -72,33 +70,34 @@ const testimonials: Testimonial[] = [
     status: 'Verified Traveler',
     heading: 'A life-changing experience for every traveler!',
     description:
-      'I never thought booking flights could be so easy and stress-free. I’m thrilled with my travel arrangements through Skytraver.',
+      'I never thought booking flights could be so easy and stress-free. I’m thrilled with my travel arrangements through Skytraverse.',
     imgSrc: 'https://randomuser.me/api/portraits/women/15.jpg',
-    bgColor: 'bg-indigo-600',
-    textColor: 'text-white',
-    imgBorderColor: 'border-white'
+
+    bgColor: 'bg-white',
+    textColor: 'text-gray-800',
+    imgBorderColor: 'border-gray-800'
   },
   {
     name: 'Garcia',
     status: 'Verified Traveler',
     heading: 'A life-changing experience for every traveler!',
     description:
-      'I never thought booking flights could be so easy and stress-free. I’m thrilled with my travel arrangements through Skytraver.',
+      'I never thought booking flights could be so easy and stress-free. I’m thrilled with my travel arrangements through Skytraverse.',
     imgSrc: 'https://randomuser.me/api/portraits/women/90.jpg',
-    bgColor: 'bg-amber-400',
-    textColor: 'text-white',
+    bgColor: 'bg-amber-50',
+    textColor: 'text-gray-700',
     imgBorderColor: 'border-white'
   }
 ]
 
 const Testimonials = () => {
   return (
-    <div className="md:pt-16 pt-12 max-w-screen-xl mx-auto bg-neutral-50 rounded shafow-sm">
+    <div className="md:pt-16 pt-12 max-w-screen-xl mx-auto rounded shadow-sm">
       <h1 className="text-3xl w-full md:text-4xl text-center font-semibold">
         What our Travelers are saying
       </h1>{' '}
       <h2 className="text-sm mx-auto w-full max-w-screen-sm text-gray-400 text-center mt-4 font-medium">
-        At <span className="text-blue-400">Skytraver</span>, we focus on
+        At <span className="text-blue-400">Skytraverse</span>, we focus on
         personalized travel experiences, ensuring smooth planning and the best
         flight and accommodation options for your journey.
       </h2>
@@ -142,15 +141,8 @@ const Testimonials = () => {
               <div className="mt-2">
                 <p className="text-sm opacity-80">{testimonial.description}</p>
               </div>
-              {testimonial.quoteIcon && (
-                <Image
-                  src={testimonial.quoteIcon}
-                  alt="Quote icon"
-                  className="absolute w-16 h-16 top-0 right-4 opacity-20"
-                  height={64}
-                  width={64}
-                />
-              )}
+
+              <BiSolidQuoteAltRight className="absolute text-purple-200 h-16 w-16 top-0 right-4 opacity-20" />
             </div>
           ))}
         </div>
