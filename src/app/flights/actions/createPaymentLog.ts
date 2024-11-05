@@ -1,7 +1,6 @@
 'use server'
 
 import { gqlAdminClient } from '@/app/lib'
-import { auth } from '@/auth'
 import { ActionResponse } from '@/types/actions'
 import {
   CreatePaymentTransactionLogMutation,
@@ -13,17 +12,9 @@ const createPaymentLog = async (
   log: CreatePaymentTransactionLogMutationVariables['object']
 ): Promise<ActionResponse | void> => {
   try {
-    const session = await auth()
-    if (!session?.user?.id) {
-      return {
-        success: false,
-        message: 'Unauthorize access'
-      }
-    }
     const logs: CreatePaymentTransactionLogMutationVariables = {
       object: log
     }
-
     await gqlAdminClient.request<CreatePaymentTransactionLogMutation>(
       CREATE_PAYMENT_TRANSACTION_LOG,
       logs
@@ -33,6 +24,7 @@ const createPaymentLog = async (
       message: 'Log created'
     }
   } catch (error) {
+    console.log(error)
     return {
       error: error,
       success: false,

@@ -18,9 +18,8 @@ const updateTransactionStatus = async (
   status: string,
   details: Stripe.PaymentIntent
 ) => {
-  await createPaymentLog({ transactionId, status, details })
-
   try {
+    await createPaymentLog({ transactionId, status, details })
     // Update payment transaction
     const transactionParams: UpdatePaymentTransactionByIdMutationVariables = {
       id: transactionId,
