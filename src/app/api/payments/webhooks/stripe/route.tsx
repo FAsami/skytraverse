@@ -21,8 +21,7 @@ export const runtime = 'edge'
 
 export async function POST(req: Request) {
   const sig = req.headers.get('stripe-signature')
-  const buf = await req.arrayBuffer()
-  const body = Buffer.from(buf)
+  const body = await req.text()
   let event: Stripe.Event
 
   try {
@@ -126,4 +125,9 @@ export async function POST(req: Request) {
   }
 
   return NextResponse.json({ received: true })
+}
+export const config = {
+  api: {
+    bodyParser: false
+  }
 }
