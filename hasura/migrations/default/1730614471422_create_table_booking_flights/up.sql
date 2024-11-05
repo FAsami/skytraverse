@@ -1,2 +1,0 @@
-CREATE TABLE "booking"."flights" ("id" uuid NOT NULL DEFAULT gen_random_uuid(), "provider" text NOT NULL, "providerOfferId" text NOT NULL, "providerOfferDetails" jsonb NOT NULL, "status" text NOT NULL DEFAULT 'PENDING', "meta" jsonb, "userId" uuid NOT NULL, PRIMARY KEY ("id") );COMMENT ON TABLE "booking"."flights" IS E'This will store information about flight booking';
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
