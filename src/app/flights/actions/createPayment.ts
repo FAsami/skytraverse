@@ -19,6 +19,7 @@ import { createPaymentLog } from './createPaymentLog'
 
 const createPayment = async (id: string): Promise<ActionResponse | void> => {
   let redirectUrl
+
   try {
     const session = await auth()
     if (!session?.user?.id) {
@@ -30,7 +31,7 @@ const createPayment = async (id: string): Promise<ActionResponse | void> => {
     if (!id) {
       return {
         success: false,
-        message: 'Offer id not found'
+        message: 'Booking id not found'
       }
     }
     if (id) {
@@ -56,7 +57,9 @@ const createPayment = async (id: string): Promise<ActionResponse | void> => {
           const options: CreatePaymentTransactionMutationVariables = {
             object: {
               bookingId: id,
-              amount: Number(offer?.total_amount) * 100,
+              amount: parseFloat(
+                (Number(offer?.total_amount) * 100).toFixed(2)
+              ),
               status: 'PENDING'
             }
           }
@@ -71,7 +74,8 @@ const createPayment = async (id: string): Promise<ActionResponse | void> => {
                 payment_method_types: ['card'],
                 metadata: {
                   transactionId: data.insert_payment_transactions_one?.id,
-                  bookingId: id
+                  bookingId: id,
+                  brand: process.env.BRAND_TITLE!
                 },
                 line_items: [
                   {
@@ -83,7 +87,9 @@ const createPayment = async (id: string): Promise<ActionResponse | void> => {
                         ],
                         name: 'Flight Booking'
                       },
-                      unit_amount: Number(offer.total_amount) * 100
+                      unit_amount: parseFloat(
+                        (Number(offer?.total_amount) * 100).toFixed(2)
+                      )
                     },
                     quantity: 1
                   }
@@ -110,15 +116,13 @@ const createPayment = async (id: string): Promise<ActionResponse | void> => {
     console.log(error)
     if (error instanceof DuffelError) {
       return {
-        error: error,
         success: false,
         message: error.message
       }
     }
     return {
-      error: error,
       success: false,
-      message: 'Failed to create offer request'
+      message: 'Failed to create booking'
     }
   }
   if (redirectUrl) {
