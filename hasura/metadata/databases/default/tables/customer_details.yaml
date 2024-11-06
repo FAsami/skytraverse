@@ -1,0 +1,43 @@
+table:
+  name: details
+  schema: customer
+insert_permissions:
+  - role: consumer
+    permission:
+      check:
+        userId:
+          _eq: X-Hasura-User-Id
+      columns:
+        - dateOfBirth
+        - firstName
+        - identityDocuments
+        - lastName
+        - userId
+    comment: ""
+select_permissions:
+  - role: consumer
+    permission:
+      columns:
+        - dateOfBirth
+        - firstName
+        - id
+        - identityDocuments
+        - lastName
+        - userId
+      filter:
+        userId:
+          _eq: X-Hasura-User-Id
+    comment: ""
+update_permissions:
+  - role: consumer
+    permission:
+      columns:
+        - dateOfBirth
+        - firstName
+        - identityDocuments
+        - lastName
+      filter:
+        userId:
+          _eq: X-Hasura-User-Id
+      check: null
+    comment: ""

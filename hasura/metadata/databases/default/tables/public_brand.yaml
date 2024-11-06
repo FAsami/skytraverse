@@ -1,3 +1,18 @@
 table:
   name: brand
   schema: public
+select_permissions:
+  - role: consumer
+    permission:
+      columns:
+        - id
+        - logo
+        - metaData
+        - email
+        - location
+        - phone
+        - title
+        - created_at
+        - updated_at
+      filter: {}
+    comment: ""
