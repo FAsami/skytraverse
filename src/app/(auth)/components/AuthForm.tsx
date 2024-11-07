@@ -92,7 +92,7 @@ const AuthForm = <TSchema extends z.ZodType<unknown>>({
             schema={schema}
           />
         ))}
-        {identifier === 'login' && (
+        {(identifier === 'login' || identifier === 'changePassword') && (
           <Link
             className="text-xs text-blue-500 text-right flex justify-end pb-3"
             href="/forgot-password"
@@ -196,5 +196,6 @@ const buttonLabel: Record<AuthPageIdentifier, string> = {
   register: 'Sign Up',
   forgotPassword: 'Reset Password',
   setPassword: 'Set Password',
-  verify: 'Verify account'
+  verify: 'Verify account',
+  changePassword: 'Change password'
 }

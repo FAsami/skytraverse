@@ -17,6 +17,7 @@ export type AuthPageIdentifier =
   | 'forgotPassword'
   | 'setPassword'
   | 'verify'
+  | 'changePassword'
 
 export type AuthResponse = {
   success: boolean
