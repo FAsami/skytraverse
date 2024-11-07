@@ -22,12 +22,15 @@ const documents = {
     "\n  mutation CreatePaymentTransaction(\n    $object: payment_transactions_insert_input!\n  ) {\n    insert_payment_transactions_one(object: $object) {\n      id\n    }\n  }\n": types.CreatePaymentTransactionDocument,
     "\n  mutation UpdatePaymentTransactionById(\n    $_set: payment_transactions_set_input!\n    $id: Int!\n  ) {\n    update_payment_transactions_by_pk(_set: $_set, pk_columns: { id: $id }) {\n      id\n    }\n  }\n": types.UpdatePaymentTransactionByIdDocument,
     "\n  mutation CreatePaymentTransactionLog(\n    $object: payment_transactionLogs_insert_input!\n  ) {\n    insert_payment_transactionLogs_one(object: $object) {\n      id\n    }\n  }\n": types.CreatePaymentTransactionLogDocument,
+    "\n  mutation UpdateCustomerDetails(\n    $where: customer_details_bool_exp = {}\n    $_set: customer_details_set_input = {}\n  ) {\n    update_customer_details(where: $where, _set: $_set) {\n      affected_rows\n    }\n  }\n": types.UpdateCustomerDetailsDocument,
+    "\n  mutation CreateCustomerDetails($object: customer_details_insert_input!) {\n    insert_customer_details_one(object: $object) {\n      firstName\n      dateOfBirth\n      gender\n      lastName\n      userId\n    }\n  }\n": types.CreateCustomerDetailsDocument,
     "\n  query GetBrand($title: String!) {\n    brand(where: { title: { _eq: $title } }) {\n      id\n      title\n      logo\n      metaData\n      phone\n      email\n      location\n    }\n  }\n": types.GetBrandDocument,
     "\n  query GetUser($where: users_bool_exp!) {\n    users(where: $where, limit: 1) {\n      id\n      email\n      image\n      name\n      password\n      phone\n      emailVerified\n      phoneVerified\n      accounts {\n        provider\n      }\n    }\n  }\n": types.GetUserDocument,
     "\n  query SessionTokenByPk($sessionToken: String!) {\n    sessions_by_pk(sessionToken: $sessionToken) {\n      sessionToken\n      userId\n      expires\n    }\n  }\n": types.SessionTokenByPkDocument,
     "\n  query GetOtpByUserId($userId: uuid!, $tokenType: String = \"OTP\") {\n    otp(\n      where: {\n        userId: { _eq: $userId }\n        isValid: { _eq: true }\n        tokenType: { _eq: $tokenType }\n      }\n      order_by: { created_at: desc }\n    ) {\n      id\n      token\n      created_at\n      updated_at\n      userId\n      isValid\n    }\n  }\n": types.GetOtpByUserIdDocument,
     "\n  query GetFlightBookings($where: booking_flights_bool_exp = {}) {\n    booking_flights(where: $where) {\n      id\n      provider\n      providerOfferId\n      providerOfferDetails\n      status\n      meta\n      userId\n      paymentMethod {\n        id\n        logo\n        label\n      }\n    }\n  }\n": types.GetFlightBookingsDocument,
     "\n  query GetAvailablePaymentMethods {\n    payment_availablePaymentMethods(where: { isActive: { _eq: true } }) {\n      isActive\n      id\n      label\n      logo\n      title\n    }\n  }\n": types.GetAvailablePaymentMethodsDocument,
+    "\n  query GetCustomerDetails($userId: uuid!) {\n    customer_details(where: { userId: { _eq: $userId } }) {\n      dateOfBirth\n      id\n      identityDocuments\n      firstName\n      lastName\n    }\n  }\n": types.GetCustomerDetailsDocument,
 };
 
 /**
@@ -83,6 +86,14 @@ export function gql(source: "\n  mutation CreatePaymentTransactionLog(\n    $obj
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "\n  mutation UpdateCustomerDetails(\n    $where: customer_details_bool_exp = {}\n    $_set: customer_details_set_input = {}\n  ) {\n    update_customer_details(where: $where, _set: $_set) {\n      affected_rows\n    }\n  }\n"): (typeof documents)["\n  mutation UpdateCustomerDetails(\n    $where: customer_details_bool_exp = {}\n    $_set: customer_details_set_input = {}\n  ) {\n    update_customer_details(where: $where, _set: $_set) {\n      affected_rows\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation CreateCustomerDetails($object: customer_details_insert_input!) {\n    insert_customer_details_one(object: $object) {\n      firstName\n      dateOfBirth\n      gender\n      lastName\n      userId\n    }\n  }\n"): (typeof documents)["\n  mutation CreateCustomerDetails($object: customer_details_insert_input!) {\n    insert_customer_details_one(object: $object) {\n      firstName\n      dateOfBirth\n      gender\n      lastName\n      userId\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "\n  query GetBrand($title: String!) {\n    brand(where: { title: { _eq: $title } }) {\n      id\n      title\n      logo\n      metaData\n      phone\n      email\n      location\n    }\n  }\n"): (typeof documents)["\n  query GetBrand($title: String!) {\n    brand(where: { title: { _eq: $title } }) {\n      id\n      title\n      logo\n      metaData\n      phone\n      email\n      location\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -104,6 +115,10 @@ export function gql(source: "\n  query GetFlightBookings($where: booking_flights
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  query GetAvailablePaymentMethods {\n    payment_availablePaymentMethods(where: { isActive: { _eq: true } }) {\n      isActive\n      id\n      label\n      logo\n      title\n    }\n  }\n"): (typeof documents)["\n  query GetAvailablePaymentMethods {\n    payment_availablePaymentMethods(where: { isActive: { _eq: true } }) {\n      isActive\n      id\n      label\n      logo\n      title\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GetCustomerDetails($userId: uuid!) {\n    customer_details(where: { userId: { _eq: $userId } }) {\n      dateOfBirth\n      id\n      identityDocuments\n      firstName\n      lastName\n    }\n  }\n"): (typeof documents)["\n  query GetCustomerDetails($userId: uuid!) {\n    customer_details(where: { userId: { _eq: $userId } }) {\n      dateOfBirth\n      id\n      identityDocuments\n      firstName\n      lastName\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

@@ -12,6 +12,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  date: any;
   jsonb: any;
   timestamptz: any;
   uuid: any;
@@ -1194,6 +1195,358 @@ export enum Cursor_Ordering {
   Desc = 'DESC'
 }
 
+/** columns and relationships of "customer.details" */
+export type Customer_Details = {
+  __typename?: 'customer_details';
+  avatar?: Maybe<Scalars['String']>;
+  created_at: Scalars['timestamptz'];
+  dateOfBirth?: Maybe<Scalars['date']>;
+  firstName?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  identityDocuments?: Maybe<Scalars['jsonb']>;
+  lastName?: Maybe<Scalars['String']>;
+  updated_at: Scalars['timestamptz'];
+  userId: Scalars['uuid'];
+};
+
+
+/** columns and relationships of "customer.details" */
+export type Customer_DetailsIdentityDocumentsArgs = {
+  path?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregated selection of "customer.details" */
+export type Customer_Details_Aggregate = {
+  __typename?: 'customer_details_aggregate';
+  aggregate?: Maybe<Customer_Details_Aggregate_Fields>;
+  nodes: Array<Customer_Details>;
+};
+
+/** aggregate fields of "customer.details" */
+export type Customer_Details_Aggregate_Fields = {
+  __typename?: 'customer_details_aggregate_fields';
+  avg?: Maybe<Customer_Details_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Customer_Details_Max_Fields>;
+  min?: Maybe<Customer_Details_Min_Fields>;
+  stddev?: Maybe<Customer_Details_Stddev_Fields>;
+  stddev_pop?: Maybe<Customer_Details_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Customer_Details_Stddev_Samp_Fields>;
+  sum?: Maybe<Customer_Details_Sum_Fields>;
+  var_pop?: Maybe<Customer_Details_Var_Pop_Fields>;
+  var_samp?: Maybe<Customer_Details_Var_Samp_Fields>;
+  variance?: Maybe<Customer_Details_Variance_Fields>;
+};
+
+
+/** aggregate fields of "customer.details" */
+export type Customer_Details_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Customer_Details_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Customer_Details_Append_Input = {
+  identityDocuments?: InputMaybe<Scalars['jsonb']>;
+};
+
+/** aggregate avg on columns */
+export type Customer_Details_Avg_Fields = {
+  __typename?: 'customer_details_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "customer.details". All fields are combined with a logical 'AND'. */
+export type Customer_Details_Bool_Exp = {
+  _and?: InputMaybe<Array<Customer_Details_Bool_Exp>>;
+  _not?: InputMaybe<Customer_Details_Bool_Exp>;
+  _or?: InputMaybe<Array<Customer_Details_Bool_Exp>>;
+  avatar?: InputMaybe<String_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  dateOfBirth?: InputMaybe<Date_Comparison_Exp>;
+  firstName?: InputMaybe<String_Comparison_Exp>;
+  gender?: InputMaybe<String_Comparison_Exp>;
+  id?: InputMaybe<Int_Comparison_Exp>;
+  identityDocuments?: InputMaybe<Jsonb_Comparison_Exp>;
+  lastName?: InputMaybe<String_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  userId?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "customer.details" */
+export enum Customer_Details_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  DetailsPkey = 'details_pkey'
+}
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Customer_Details_Delete_At_Path_Input = {
+  identityDocuments?: InputMaybe<Array<Scalars['String']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Customer_Details_Delete_Elem_Input = {
+  identityDocuments?: InputMaybe<Scalars['Int']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Customer_Details_Delete_Key_Input = {
+  identityDocuments?: InputMaybe<Scalars['String']>;
+};
+
+/** input type for incrementing numeric columns in table "customer.details" */
+export type Customer_Details_Inc_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "customer.details" */
+export type Customer_Details_Insert_Input = {
+  avatar?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  dateOfBirth?: InputMaybe<Scalars['date']>;
+  firstName?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  identityDocuments?: InputMaybe<Scalars['jsonb']>;
+  lastName?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Customer_Details_Max_Fields = {
+  __typename?: 'customer_details_max_fields';
+  avatar?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  dateOfBirth?: Maybe<Scalars['date']>;
+  firstName?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  lastName?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate min on columns */
+export type Customer_Details_Min_Fields = {
+  __typename?: 'customer_details_min_fields';
+  avatar?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  dateOfBirth?: Maybe<Scalars['date']>;
+  firstName?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  lastName?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** response of any mutation on the table "customer.details" */
+export type Customer_Details_Mutation_Response = {
+  __typename?: 'customer_details_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Customer_Details>;
+};
+
+/** input type for inserting object relation for remote table "customer.details" */
+export type Customer_Details_Obj_Rel_Insert_Input = {
+  data: Customer_Details_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Customer_Details_On_Conflict>;
+};
+
+/** on_conflict condition type for table "customer.details" */
+export type Customer_Details_On_Conflict = {
+  constraint: Customer_Details_Constraint;
+  update_columns?: Array<Customer_Details_Update_Column>;
+  where?: InputMaybe<Customer_Details_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "customer.details". */
+export type Customer_Details_Order_By = {
+  avatar?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  dateOfBirth?: InputMaybe<Order_By>;
+  firstName?: InputMaybe<Order_By>;
+  gender?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  identityDocuments?: InputMaybe<Order_By>;
+  lastName?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+  userId?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: customer.details */
+export type Customer_Details_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Customer_Details_Prepend_Input = {
+  identityDocuments?: InputMaybe<Scalars['jsonb']>;
+};
+
+/** select columns of table "customer.details" */
+export enum Customer_Details_Select_Column {
+  /** column name */
+  Avatar = 'avatar',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DateOfBirth = 'dateOfBirth',
+  /** column name */
+  FirstName = 'firstName',
+  /** column name */
+  Gender = 'gender',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  IdentityDocuments = 'identityDocuments',
+  /** column name */
+  LastName = 'lastName',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  UserId = 'userId'
+}
+
+/** input type for updating data in table "customer.details" */
+export type Customer_Details_Set_Input = {
+  avatar?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  dateOfBirth?: InputMaybe<Scalars['date']>;
+  firstName?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  identityDocuments?: InputMaybe<Scalars['jsonb']>;
+  lastName?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate stddev on columns */
+export type Customer_Details_Stddev_Fields = {
+  __typename?: 'customer_details_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Customer_Details_Stddev_Pop_Fields = {
+  __typename?: 'customer_details_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Customer_Details_Stddev_Samp_Fields = {
+  __typename?: 'customer_details_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Streaming cursor of the table "customer_details" */
+export type Customer_Details_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Customer_Details_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Customer_Details_Stream_Cursor_Value_Input = {
+  avatar?: InputMaybe<Scalars['String']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  dateOfBirth?: InputMaybe<Scalars['date']>;
+  firstName?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  identityDocuments?: InputMaybe<Scalars['jsonb']>;
+  lastName?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  userId?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate sum on columns */
+export type Customer_Details_Sum_Fields = {
+  __typename?: 'customer_details_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "customer.details" */
+export enum Customer_Details_Update_Column {
+  /** column name */
+  Avatar = 'avatar',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DateOfBirth = 'dateOfBirth',
+  /** column name */
+  FirstName = 'firstName',
+  /** column name */
+  Gender = 'gender',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  IdentityDocuments = 'identityDocuments',
+  /** column name */
+  LastName = 'lastName',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  UserId = 'userId'
+}
+
+export type Customer_Details_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Customer_Details_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Customer_Details_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Customer_Details_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Customer_Details_Delete_Key_Input>;
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Customer_Details_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Customer_Details_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Customer_Details_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Customer_Details_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Customer_Details_Var_Pop_Fields = {
+  __typename?: 'customer_details_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Customer_Details_Var_Samp_Fields = {
+  __typename?: 'customer_details_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Customer_Details_Variance_Fields = {
+  __typename?: 'customer_details_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
+export type Date_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['date']>;
+  _gt?: InputMaybe<Scalars['date']>;
+  _gte?: InputMaybe<Scalars['date']>;
+  _in?: InputMaybe<Array<Scalars['date']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['date']>;
+  _lte?: InputMaybe<Scalars['date']>;
+  _neq?: InputMaybe<Scalars['date']>;
+  _nin?: InputMaybe<Array<Scalars['date']>>;
+};
+
 export type Jsonb_Cast_Exp = {
   String?: InputMaybe<String_Comparison_Exp>;
 };
@@ -1237,6 +1590,10 @@ export type Mutation_Root = {
   delete_brand?: Maybe<Brand_Mutation_Response>;
   /** delete single row from the table: "brand" */
   delete_brand_by_pk?: Maybe<Brand>;
+  /** delete data from the table: "customer.details" */
+  delete_customer_details?: Maybe<Customer_Details_Mutation_Response>;
+  /** delete single row from the table: "customer.details" */
+  delete_customer_details_by_pk?: Maybe<Customer_Details>;
   /** delete data from the table: "otp" */
   delete_otp?: Maybe<Otp_Mutation_Response>;
   /** delete single row from the table: "otp" */
@@ -1285,6 +1642,10 @@ export type Mutation_Root = {
   insert_brand?: Maybe<Brand_Mutation_Response>;
   /** insert a single row into the table: "brand" */
   insert_brand_one?: Maybe<Brand>;
+  /** insert data into the table: "customer.details" */
+  insert_customer_details?: Maybe<Customer_Details_Mutation_Response>;
+  /** insert a single row into the table: "customer.details" */
+  insert_customer_details_one?: Maybe<Customer_Details>;
   /** insert data into the table: "otp" */
   insert_otp?: Maybe<Otp_Mutation_Response>;
   /** insert a single row into the table: "otp" */
@@ -1339,6 +1700,12 @@ export type Mutation_Root = {
   update_brand_by_pk?: Maybe<Brand>;
   /** update multiples rows of table: "brand" */
   update_brand_many?: Maybe<Array<Maybe<Brand_Mutation_Response>>>;
+  /** update data of the table: "customer.details" */
+  update_customer_details?: Maybe<Customer_Details_Mutation_Response>;
+  /** update single row of the table: "customer.details" */
+  update_customer_details_by_pk?: Maybe<Customer_Details>;
+  /** update multiples rows of table: "customer.details" */
+  update_customer_details_many?: Maybe<Array<Maybe<Customer_Details_Mutation_Response>>>;
   /** update data of the table: "otp" */
   update_otp?: Maybe<Otp_Mutation_Response>;
   /** update single row of the table: "otp" */
@@ -1428,6 +1795,18 @@ export type Mutation_RootDelete_BrandArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Brand_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Customer_DetailsArgs = {
+  where: Customer_Details_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Customer_Details_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -1579,6 +1958,20 @@ export type Mutation_RootInsert_BrandArgs = {
 export type Mutation_RootInsert_Brand_OneArgs = {
   object: Brand_Insert_Input;
   on_conflict?: InputMaybe<Brand_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Customer_DetailsArgs = {
+  objects: Array<Customer_Details_Insert_Input>;
+  on_conflict?: InputMaybe<Customer_Details_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Customer_Details_OneArgs = {
+  object: Customer_Details_Insert_Input;
+  on_conflict?: InputMaybe<Customer_Details_On_Conflict>;
 };
 
 
@@ -1791,6 +2184,38 @@ export type Mutation_RootUpdate_Brand_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Brand_ManyArgs = {
   updates: Array<Brand_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Customer_DetailsArgs = {
+  _append?: InputMaybe<Customer_Details_Append_Input>;
+  _delete_at_path?: InputMaybe<Customer_Details_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Customer_Details_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Customer_Details_Delete_Key_Input>;
+  _inc?: InputMaybe<Customer_Details_Inc_Input>;
+  _prepend?: InputMaybe<Customer_Details_Prepend_Input>;
+  _set?: InputMaybe<Customer_Details_Set_Input>;
+  where: Customer_Details_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Customer_Details_By_PkArgs = {
+  _append?: InputMaybe<Customer_Details_Append_Input>;
+  _delete_at_path?: InputMaybe<Customer_Details_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Customer_Details_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Customer_Details_Delete_Key_Input>;
+  _inc?: InputMaybe<Customer_Details_Inc_Input>;
+  _prepend?: InputMaybe<Customer_Details_Prepend_Input>;
+  _set?: InputMaybe<Customer_Details_Set_Input>;
+  pk_columns: Customer_Details_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Customer_Details_ManyArgs = {
+  updates: Array<Customer_Details_Updates>;
 };
 
 
@@ -3150,6 +3575,8 @@ export type Payment_Transactions_Bool_Exp = {
 
 /** unique or primary key constraints on table "payment.transactions" */
 export enum Payment_Transactions_Constraint {
+  /** unique or primary key constraint on columns "bookingId" */
+  TransactionsBookingIdKey = 'transactions_bookingId_key',
   /** unique or primary key constraint on columns "id" */
   TransactionsPkey = 'transactions_pkey'
 }
@@ -3517,6 +3944,12 @@ export type Query_Root = {
   brand_aggregate: Brand_Aggregate;
   /** fetch data from the table: "brand" using primary key columns */
   brand_by_pk?: Maybe<Brand>;
+  /** fetch data from the table: "customer.details" */
+  customer_details: Array<Customer_Details>;
+  /** fetch aggregated fields from the table: "customer.details" */
+  customer_details_aggregate: Customer_Details_Aggregate;
+  /** fetch data from the table: "customer.details" using primary key columns */
+  customer_details_by_pk?: Maybe<Customer_Details>;
   /** fetch data from the table: "otp" */
   otp: Array<Otp>;
   /** fetch aggregated fields from the table: "otp" */
@@ -3639,6 +4072,29 @@ export type Query_RootBrand_AggregateArgs = {
 
 
 export type Query_RootBrand_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootCustomer_DetailsArgs = {
+  distinct_on?: InputMaybe<Array<Customer_Details_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Customer_Details_Order_By>>;
+  where?: InputMaybe<Customer_Details_Bool_Exp>;
+};
+
+
+export type Query_RootCustomer_Details_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Customer_Details_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Customer_Details_Order_By>>;
+  where?: InputMaybe<Customer_Details_Bool_Exp>;
+};
+
+
+export type Query_RootCustomer_Details_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -4107,6 +4563,14 @@ export type Subscription_Root = {
   brand_by_pk?: Maybe<Brand>;
   /** fetch data from the table in a streaming manner: "brand" */
   brand_stream: Array<Brand>;
+  /** fetch data from the table: "customer.details" */
+  customer_details: Array<Customer_Details>;
+  /** fetch aggregated fields from the table: "customer.details" */
+  customer_details_aggregate: Customer_Details_Aggregate;
+  /** fetch data from the table: "customer.details" using primary key columns */
+  customer_details_by_pk?: Maybe<Customer_Details>;
+  /** fetch data from the table in a streaming manner: "customer.details" */
+  customer_details_stream: Array<Customer_Details>;
   /** fetch data from the table: "otp" */
   otp: Array<Otp>;
   /** fetch aggregated fields from the table: "otp" */
@@ -4269,6 +4733,36 @@ export type Subscription_RootBrand_StreamArgs = {
   batch_size: Scalars['Int'];
   cursor: Array<InputMaybe<Brand_Stream_Cursor_Input>>;
   where?: InputMaybe<Brand_Bool_Exp>;
+};
+
+
+export type Subscription_RootCustomer_DetailsArgs = {
+  distinct_on?: InputMaybe<Array<Customer_Details_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Customer_Details_Order_By>>;
+  where?: InputMaybe<Customer_Details_Bool_Exp>;
+};
+
+
+export type Subscription_RootCustomer_Details_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Customer_Details_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Customer_Details_Order_By>>;
+  where?: InputMaybe<Customer_Details_Bool_Exp>;
+};
+
+
+export type Subscription_RootCustomer_Details_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootCustomer_Details_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Customer_Details_Stream_Cursor_Input>>;
+  where?: InputMaybe<Customer_Details_Bool_Exp>;
 };
 
 
@@ -4562,6 +5056,8 @@ export type Users = {
   /** An aggregate relationship */
   accounts_aggregate: Accounts_Aggregate;
   created_at?: Maybe<Scalars['timestamptz']>;
+  /** An object relationship */
+  default?: Maybe<Customer_Details>;
   email?: Maybe<Scalars['String']>;
   emailVerified?: Maybe<Scalars['timestamptz']>;
   id: Scalars['uuid'];
@@ -4647,6 +5143,7 @@ export type Users_Bool_Exp = {
   accounts?: InputMaybe<Accounts_Bool_Exp>;
   accounts_aggregate?: InputMaybe<Accounts_Aggregate_Bool_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  default?: InputMaybe<Customer_Details_Bool_Exp>;
   email?: InputMaybe<String_Comparison_Exp>;
   emailVerified?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
@@ -4672,6 +5169,7 @@ export enum Users_Constraint {
 export type Users_Insert_Input = {
   accounts?: InputMaybe<Accounts_Arr_Rel_Insert_Input>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
+  default?: InputMaybe<Customer_Details_Obj_Rel_Insert_Input>;
   email?: InputMaybe<Scalars['String']>;
   emailVerified?: InputMaybe<Scalars['timestamptz']>;
   id?: InputMaybe<Scalars['uuid']>;
@@ -4741,6 +5239,7 @@ export type Users_On_Conflict = {
 export type Users_Order_By = {
   accounts_aggregate?: InputMaybe<Accounts_Aggregate_Order_By>;
   created_at?: InputMaybe<Order_By>;
+  default?: InputMaybe<Customer_Details_Order_By>;
   email?: InputMaybe<Order_By>;
   emailVerified?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
@@ -5099,6 +5598,21 @@ export type CreatePaymentTransactionLogMutationVariables = Exact<{
 
 export type CreatePaymentTransactionLogMutation = { __typename?: 'mutation_root', insert_payment_transactionLogs_one?: { __typename?: 'payment_transactionLogs', id: number } | null };
 
+export type UpdateCustomerDetailsMutationVariables = Exact<{
+  where?: InputMaybe<Customer_Details_Bool_Exp>;
+  _set?: InputMaybe<Customer_Details_Set_Input>;
+}>;
+
+
+export type UpdateCustomerDetailsMutation = { __typename?: 'mutation_root', update_customer_details?: { __typename?: 'customer_details_mutation_response', affected_rows: number } | null };
+
+export type CreateCustomerDetailsMutationVariables = Exact<{
+  object: Customer_Details_Insert_Input;
+}>;
+
+
+export type CreateCustomerDetailsMutation = { __typename?: 'mutation_root', insert_customer_details_one?: { __typename?: 'customer_details', firstName?: string | null, dateOfBirth?: any | null, gender?: string | null, lastName?: string | null, userId: any } | null };
+
 export type GetBrandQueryVariables = Exact<{
   title: Scalars['String'];
 }>;
@@ -5140,6 +5654,13 @@ export type GetAvailablePaymentMethodsQueryVariables = Exact<{ [key: string]: ne
 
 export type GetAvailablePaymentMethodsQuery = { __typename?: 'query_root', payment_availablePaymentMethods: Array<{ __typename?: 'payment_availablePaymentMethods', isActive: boolean, id: number, label: string, logo: string, title: string }> };
 
+export type GetCustomerDetailsQueryVariables = Exact<{
+  userId: Scalars['uuid'];
+}>;
+
+
+export type GetCustomerDetailsQuery = { __typename?: 'query_root', customer_details: Array<{ __typename?: 'customer_details', dateOfBirth?: any | null, id: number, identityDocuments?: any | null, firstName?: string | null, lastName?: string | null }> };
+
 
 export const InsertUsersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"InsertUsers"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"users_insert_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_users_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"emailVerified"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"created_at"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"password"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"phoneVerified"}},{"kind":"Field","name":{"kind":"Name","value":"updated_at"}}]}}]}}]} as unknown as DocumentNode<InsertUsersMutation, InsertUsersMutationVariables>;
 export const Insert_OtpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"INSERT_OTP"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"otp_insert_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_otp_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"created_at"}}]}}]}}]} as unknown as DocumentNode<Insert_OtpMutation, Insert_OtpMutationVariables>;
@@ -5150,9 +5671,12 @@ export const UpdateFlightBookingDocument = {"kind":"Document","definitions":[{"k
 export const CreatePaymentTransactionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreatePaymentTransaction"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"payment_transactions_insert_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_payment_transactions_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreatePaymentTransactionMutation, CreatePaymentTransactionMutationVariables>;
 export const UpdatePaymentTransactionByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdatePaymentTransactionById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"_set"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"payment_transactions_set_input"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_payment_transactions_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"Variable","name":{"kind":"Name","value":"_set"}}},{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdatePaymentTransactionByIdMutation, UpdatePaymentTransactionByIdMutationVariables>;
 export const CreatePaymentTransactionLogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreatePaymentTransactionLog"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"payment_transactionLogs_insert_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_payment_transactionLogs_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreatePaymentTransactionLogMutation, CreatePaymentTransactionLogMutationVariables>;
+export const UpdateCustomerDetailsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateCustomerDetails"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"customer_details_bool_exp"}},"defaultValue":{"kind":"ObjectValue","fields":[]}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"_set"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"customer_details_set_input"}},"defaultValue":{"kind":"ObjectValue","fields":[]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_customer_details"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"Variable","name":{"kind":"Name","value":"_set"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"affected_rows"}}]}}]}}]} as unknown as DocumentNode<UpdateCustomerDetailsMutation, UpdateCustomerDetailsMutationVariables>;
+export const CreateCustomerDetailsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateCustomerDetails"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"customer_details_insert_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_customer_details_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"dateOfBirth"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}}]}}]} as unknown as DocumentNode<CreateCustomerDetailsMutation, CreateCustomerDetailsMutationVariables>;
 export const GetBrandDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetBrand"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brand"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"metaData"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"location"}}]}}]}}]} as unknown as DocumentNode<GetBrandQuery, GetBrandQueryVariables>;
 export const GetUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"users_bool_exp"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"password"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"emailVerified"}},{"kind":"Field","name":{"kind":"Name","value":"phoneVerified"}},{"kind":"Field","name":{"kind":"Name","value":"accounts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"provider"}}]}}]}}]}}]} as unknown as DocumentNode<GetUserQuery, GetUserQueryVariables>;
 export const SessionTokenByPkDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SessionTokenByPk"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"sessionToken"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sessions_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sessionToken"},"value":{"kind":"Variable","name":{"kind":"Name","value":"sessionToken"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sessionToken"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"expires"}}]}}]}}]} as unknown as DocumentNode<SessionTokenByPkQuery, SessionTokenByPkQueryVariables>;
 export const GetOtpByUserIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetOtpByUserId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"tokenType"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}},"defaultValue":{"kind":"StringValue","value":"OTP","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"otp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"userId"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"isValid"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"BooleanValue","value":true}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"tokenType"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"tokenType"}}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"order_by"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"created_at"},"value":{"kind":"EnumValue","value":"desc"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"token"}},{"kind":"Field","name":{"kind":"Name","value":"created_at"}},{"kind":"Field","name":{"kind":"Name","value":"updated_at"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"isValid"}}]}}]}}]} as unknown as DocumentNode<GetOtpByUserIdQuery, GetOtpByUserIdQueryVariables>;
 export const GetFlightBookingsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetFlightBookings"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"booking_flights_bool_exp"}},"defaultValue":{"kind":"ObjectValue","fields":[]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"booking_flights"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"provider"}},{"kind":"Field","name":{"kind":"Name","value":"providerOfferId"}},{"kind":"Field","name":{"kind":"Name","value":"providerOfferDetails"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"meta"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"paymentMethod"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"label"}}]}}]}}]}}]} as unknown as DocumentNode<GetFlightBookingsQuery, GetFlightBookingsQueryVariables>;
 export const GetAvailablePaymentMethodsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAvailablePaymentMethods"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"payment_availablePaymentMethods"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"isActive"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"BooleanValue","value":true}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<GetAvailablePaymentMethodsQuery, GetAvailablePaymentMethodsQueryVariables>;
+export const GetCustomerDetailsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCustomerDetails"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customer_details"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"userId"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dateOfBirth"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"identityDocuments"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}}]}}]} as unknown as DocumentNode<GetCustomerDetailsQuery, GetCustomerDetailsQueryVariables>;
