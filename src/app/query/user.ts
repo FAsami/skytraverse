@@ -1,5 +1,5 @@
 import { GET_USER } from './../graphql/query'
-import { apolloClient } from '../lib'
+import { gqlAdminClient } from '../lib'
 import { GetUserQuery } from '@/types/gql/graphql'
 
 type WhereFilter = {
@@ -32,7 +32,7 @@ const getUser = async ({
 
     const {
       users: [user]
-    } = await apolloClient.request<GetUserQuery>(GET_USER, { where })
+    } = await gqlAdminClient.request<GetUserQuery>(GET_USER, { where })
 
     return user ? user : null
   } catch (error) {

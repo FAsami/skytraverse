@@ -5,7 +5,7 @@ import { signIn } from '@/auth'
 import { RegisterSchema } from '../authSchema'
 import { AuthAction } from '@/types/authForm'
 import { getUser } from '@/app/query'
-import { apolloClient } from '@/app/lib'
+import { gqlAdminClient } from '@/app/lib'
 import { CREATE_USER } from '@/app/graphql/mutation'
 import {
   InsertUsersMutation,
@@ -46,7 +46,7 @@ const registerUser: AuthAction<typeof RegisterSchema> = async (
       }
     }
 
-    const data = await apolloClient.request<InsertUsersMutation>(
+    const data = await gqlAdminClient.request<InsertUsersMutation>(
       CREATE_USER,
       userDetails
     )

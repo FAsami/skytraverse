@@ -1,4 +1,4 @@
-import { apolloClient } from '../lib'
+import { gqlAdminClient } from '../lib'
 import { GET_BRAND_INFO } from '../graphql/query'
 import { GetBrandQuery } from '@/types/gql/graphql'
 import Image from 'next/image'
@@ -12,7 +12,7 @@ const AuthLayout = async ({
 }>) => {
   const {
     brand: [brand]
-  } = await apolloClient.request<GetBrandQuery>(GET_BRAND_INFO, {
+  } = await gqlAdminClient.request<GetBrandQuery>(GET_BRAND_INFO, {
     title: process.env.BRAND_TITLE
   })
 

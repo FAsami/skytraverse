@@ -2,7 +2,7 @@ import './globals.css'
 import 'animate.css'
 import { font } from './fonts'
 import type { Metadata } from 'next'
-import { apolloClient } from './lib'
+import { gqlAdminClient } from './lib'
 import { GetBrandQuery } from '@/types/gql/graphql'
 import { GET_BRAND_INFO } from './graphql/query'
 import { notFound } from 'next/navigation'
@@ -21,9 +21,11 @@ const RootLayout = async ({
 }: Readonly<{
   children: React.ReactNode
 }>) => {
-  const { brand } = await apolloClient.request<GetBrandQuery>(GET_BRAND_INFO, {
+  const data = await gqlAdminClient.request<GetBrandQuery>(GET_BRAND_INFO, {
     title: process.env.BRAND_TITLE
   })
+  console.log(data)
+  const brand = data.brand
   return (
     <SessionProvider session={await auth()}>
       <ConfigProvider theme={theme}>
@@ -59,9 +61,12 @@ const generateMetadata = async (): Promise<Metadata> => {
 export { generateMetadata }
 
 const getBrandMetaData = cache(async () => {
-  const { brand } = await apolloClient.request<GetBrandQuery>(GET_BRAND_INFO, {
-    title: process.env.BRAND_TITLE
-  })
+  const { brand } = await gqlAdminClient.request<GetBrandQuery>(
+    GET_BRAND_INFO,
+    {
+      title: process.env.BRAND_TITLE
+    }
+  )
   if (!brand?.[0]) {
     notFound()
   }
