@@ -94,7 +94,28 @@ const CREATE_PAYMENT_TRANSACTION_LOG = gql`
     }
   }
 `
+const UPDATE_CUSTOMER_DETAILS = gql`
+  mutation UpdateCustomerDetails(
+    $where: customer_details_bool_exp = {}
+    $_set: customer_details_set_input = {}
+  ) {
+    update_customer_details(where: $where, _set: $_set) {
+      affected_rows
+    }
+  }
+`
 
+const CREATE_CUSTOMER_DETAILS = gql`
+  mutation CreateCustomerDetails($object: customer_details_insert_input!) {
+    insert_customer_details_one(object: $object) {
+      firstName
+      dateOfBirth
+      gender
+      lastName
+      userId
+    }
+  }
+`
 export {
   CREATE_USER,
   UPDATE_USER_BY_ID,
@@ -104,5 +125,7 @@ export {
   UPDATE_FLIGHT_BOOKING,
   CREATE_PAYMENT_TRANSACTION,
   UPDATE_PAYMENT_TRANSACTION,
-  CREATE_PAYMENT_TRANSACTION_LOG
+  CREATE_PAYMENT_TRANSACTION_LOG,
+  UPDATE_CUSTOMER_DETAILS,
+  CREATE_CUSTOMER_DETAILS
 }

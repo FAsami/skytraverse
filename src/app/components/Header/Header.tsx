@@ -12,7 +12,7 @@ const Header = async ({
 }) => {
   const session = await auth()
   return (
-    <header className="bg-white shadow-sm sticky top-0 h-[var(--header-height)]">
+    <header className="bg-white shadow-sm border-b sticky top-0 h-[var(--header-height)]">
       <div className="max-w-screen-xl px-3 mx-auto py-3 flex items-center justify-between">
         <Link href="/" className="block h-16 w-16 cursor-pointer">
           <Image

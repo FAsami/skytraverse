@@ -91,3 +91,17 @@ export const GET_AVAILABLE_PAYMENT_METHODS = gql`
     }
   }
 `
+
+export const GET_CUSTOMER_DETAILS_BY_USER_ID = gql`
+  query GetCustomerDetails($userId: uuid!) {
+    customer_details(where: { userId: { _eq: $userId } }) {
+      id
+      dateOfBirth
+      identityDocuments
+      firstName
+      lastName
+      gender
+      avatar
+    }
+  }
+`
