@@ -56,5 +56,9 @@ const details: Record<AuthPageIdentifier, PageDetail> = {
   verify: {
     title: 'Verify Your account',
     subtitle: null
+  },
+  changePassword: {
+    title: 'Change your password',
+    subtitle: null
   }
 }

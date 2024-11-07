@@ -16,7 +16,6 @@ import clsx from 'clsx'
 import { PhoneInput } from '@/app/(auth)/components/PhoneInput'
 import { Store } from 'antd/es/form/interface'
 const { Option } = Select
-import dayjs from 'dayjs'
 
 export type FormField = {
   name: string
