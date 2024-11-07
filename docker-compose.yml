@@ -22,8 +22,6 @@ services:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/skytraverse
       HASURA_GRAPHQL_ENABLE_CONSOLE: false
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
-      HASURA_GRAPHQL_AUTH_HOOK: http://localhost:3000/api/auth/authorize-request
-      HASURA_GRAPHQL_AUTH_HOOK_MODE: POST
 
 volumes:
   postgres:
