@@ -1,1 +1,0 @@
-drop schema "customer" cascade;
