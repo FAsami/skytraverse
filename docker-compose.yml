@@ -20,7 +20,7 @@ services:
       - postgres
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/skytraversedb
-      HASURA_GRAPHQL_ENABLE_CONSOLE: true
+      HASURA_GRAPHQL_ENABLE_CONSOLE: false
       HASURA_GRAPHQL_ADMIN_SECRET: 1234
 
 volumes:
