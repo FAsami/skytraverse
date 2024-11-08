@@ -64,7 +64,7 @@ export const GET_OTP_BY_USER_ID = gql`
 
 export const GET_FLIGHT_BOOKINGS = gql`
   query GetFlightBookings($where: booking_flights_bool_exp = {}) {
-    booking_flights(where: $where) {
+    booking_flights(where: $where, order_by: { id: desc }) {
       id
       provider
       providerOfferId

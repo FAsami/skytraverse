@@ -1,6 +1,7 @@
 'use server'
 import { GET_FLIGHT_BOOKINGS } from '@/app/graphql/query'
 import { gqlAdminClient } from '@/app/lib'
+import { auth } from '@/auth'
 import { ActionResponse } from '@/types/actions'
 import {
   GetFlightBookingsQuery,
@@ -8,12 +9,21 @@ import {
 } from '@/types/gql/graphql'
 import { DuffelError } from '@duffel/api'
 
-const getBookedFlight = async (id: string): Promise<ActionResponse> => {
+const getUserFlightBookings = async (): Promise<ActionResponse> => {
   try {
+    const session = await auth()
+
+    if (!session?.user?.id) {
+      return {
+        success: false,
+        message: 'Unauthorize access'
+      }
+    }
+    console.log(session?.user?.id)
     const params: GetFlightBookingsQueryVariables = {
       where: {
-        id: {
-          _eq: Number(id)
+        userId: {
+          _eq: session?.user?.id
         }
       }
     }
@@ -21,17 +31,18 @@ const getBookedFlight = async (id: string): Promise<ActionResponse> => {
       GET_FLIGHT_BOOKINGS,
       params
     )
+    console.log(data)
 
     if (data.booking_flights.length > 0) {
       return {
         success: true,
-        message: 'Offer  found',
-        data: data.booking_flights[0]
+        message: 'Booked flights found',
+        data: data.booking_flights
       }
     } else {
       return {
         success: false,
-        message: 'Failed to get offer'
+        message: 'Failed to fetch booked flights'
       }
     }
   } catch (error) {
@@ -50,4 +61,4 @@ const getBookedFlight = async (id: string): Promise<ActionResponse> => {
   }
 }
 
-export { getBookedFlight }
+export { getUserFlightBookings }

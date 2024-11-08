@@ -32,7 +32,7 @@ const PaymentSuccessPage = async ({
           receive a message on your phone once it’s confirmed. It usually takes
           1-2 mins.
         </p>
-        <Link href={`/account/booking?id=${id}`}>
+        <Link href={`/account/bookings?id=${id}`}>
           <Button
             size="large"
             shape="round"

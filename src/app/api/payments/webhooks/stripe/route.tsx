@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { updateTransactionStatus } from './utils/updateTransactionStatus'
 import { getSessionMetadata } from './utils/getSessionMetadata'
+import { confirmBookedFlight } from '@/app/flights/actions/confirmBookedFlight'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-10-28.acacia'
@@ -42,12 +43,17 @@ export const POST = async (req: Request) => {
     const bookingId = metadata.bookingId
     const status = eventTypeMapping[event.type]
     if (status) {
-      await updateTransactionStatus(
+      const response = await updateTransactionStatus(
         transactionId,
-        bookingId,
         status,
         paymentIntent
       )
+      if (response?.status === 'SUCCEEDED') {
+        const result = await confirmBookedFlight(bookingId)
+        if (result.success) {
+          return NextResponse.json({ received: true })
+        }
+      }
     } else {
       console.log(`UNHANDLED_EVENT_TYPE ${event.type}`)
     }
@@ -58,8 +64,7 @@ export const POST = async (req: Request) => {
       { status: 500 }
     )
   }
-
-  return NextResponse.json({ received: true })
+  return NextResponse.json({ received: false, error: 'Something went wrong !' })
 }
 
 const eventTypeMapping: Record<string, string | undefined> = {

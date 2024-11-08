@@ -81,6 +81,7 @@ const UPDATE_PAYMENT_TRANSACTION = gql`
   ) {
     update_payment_transactions_by_pk(_set: $_set, pk_columns: { id: $id }) {
       id
+      status
     }
   }
 `

@@ -26,7 +26,7 @@ const ProceedToPayment = ({
         const isValid = await verifyReCaptcha('createPayment')
         if (isValid) {
           const result = await createPayment(id)
-
+          console.log(result)
           if (result?.success === false) {
             Modal.warn({
               title: null,
