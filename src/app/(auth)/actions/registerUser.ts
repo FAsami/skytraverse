@@ -14,6 +14,7 @@ import {
 import { isEmpty } from 'lodash'
 import { redirect } from 'next/navigation'
 import { encrypt } from '@/app/utils/cryptography'
+import { sendOTP } from './sendOTP'
 
 const registerUser: AuthAction<typeof RegisterSchema> = async (
   values,
@@ -71,6 +72,15 @@ const registerUser: AuthAction<typeof RegisterSchema> = async (
         name: data.insert_users_one?.name,
         scope: 'REGISTER'
       })
+
+      await sendOTP(
+        { email, phone },
+        {
+          callbackUrl,
+          token,
+          redirect: true
+        }
+      )
     }
   } catch (error) {
     console.error(error)

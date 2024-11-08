@@ -26,7 +26,6 @@ const sendOTP: AuthAction<typeof SendOTPSchema> = async (
 ) => {
   let hasOTPSent = false
   try {
-    console.log('values', values)
     const validatedFields = SendOTPSchema.safeParse(values)
     console.log(JSON.stringify(validatedFields.error, null, 2))
     if (!validatedFields.success) {
