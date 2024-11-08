@@ -1,0 +1,1 @@
+INSERT INTO "payment"."availablePaymentMethods"("label", "title", "logo", "isActive", "id", "updated_at", "created_at") VALUES (E'Stripe', E'STRIPE', E'https://res.cloudinary.com/dffqrc36j/image/upload/v1730730302/stripe_payment_icon_fr4jdl.png', true, 1, E'2024-11-08T12:44:31.514036+00:00', E'2024-11-08T12:44:31.514036+00:00');

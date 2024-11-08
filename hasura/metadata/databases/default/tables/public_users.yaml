@@ -1,16 +1,6 @@
 table:
   name: users
   schema: public
-object_relationships:
-  - name: default
-    using:
-      manual_configuration:
-        column_mapping:
-          id: userId
-        insertion_order: null
-        remote_table:
-          name: details
-          schema: customer
 array_relationships:
   - name: accounts
     using:
