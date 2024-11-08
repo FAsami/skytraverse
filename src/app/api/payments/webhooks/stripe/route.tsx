@@ -18,7 +18,7 @@ export const POST = async (req: Request) => {
     event = await stripe.webhooks.constructEventAsync(
       body,
       sig!,
-      'whsec_XQj3bu7P835NI9YGashxpS2mTeLhoXV8'
+      process.env.STRIPE_WEBHOOK_SECRET!
     )
   } catch (error) {
     console.error('WEBHOOK_VERIFICATION_FAILED', error)
