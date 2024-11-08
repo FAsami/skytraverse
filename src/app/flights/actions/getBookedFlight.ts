@@ -22,7 +22,7 @@ const getBookedFlight = async (id: string): Promise<ActionResponse> => {
     const params: GetFlightBookingsQueryVariables = {
       where: {
         id: {
-          _eq: id
+          _eq: Number(id)
         }
       }
     }

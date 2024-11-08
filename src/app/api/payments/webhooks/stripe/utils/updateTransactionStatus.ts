@@ -34,7 +34,7 @@ const updateTransactionStatus = async (
     // Update flight booking if transaction update succeeded
     if (transactionRes.update_payment_transactions_by_pk?.id) {
       const bookingParams: UpdateFlightBookingMutationVariables = {
-        where: { id: { _eq: bookingId } },
+        where: { id: { _eq: Number(bookingId) } },
         _set: { status }
       }
       await gqlAdminClient.request<UpdateFlightBookingMutation>(

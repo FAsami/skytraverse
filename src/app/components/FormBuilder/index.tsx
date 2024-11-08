@@ -62,7 +62,6 @@ const FormBuilder: React.FC<{
   onUpdate,
   designOptions = { saveButtonPosition: 'right' }
 }) => {
-  console.log(initialValue)
   const [form] = Form.useForm()
   const [assets, setAssets] = useState<AssetsState>({})
 

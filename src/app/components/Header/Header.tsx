@@ -8,7 +8,7 @@ import { AuthMenu } from './AuthMenu'
 const Header = async ({
   brand
 }: {
-  brand: GetBrandQuery['brand'][0] | null
+  brand: GetBrandQuery['brand_brands'][0] | null
 }) => {
   const session = await auth()
   return (

@@ -38,28 +38,27 @@ const createPayment = async (id: string): Promise<ActionResponse | void> => {
       const params: GetFlightBookingsQueryVariables = {
         where: {
           id: {
-            _eq: id
+            _eq: Number(id)
           }
         }
       }
 
-      const data = await gqlAdminClient.request<GetFlightBookingsQuery>(
+      const bookingData = await gqlAdminClient.request<GetFlightBookingsQuery>(
         GET_FLIGHT_BOOKINGS,
         params
       )
-      if (data.booking_flights?.[0]?.id) {
-        const res = await getOfferList(data.booking_flights[0]?.providerOfferId)
+      const providerBookingId = bookingData.booking_flights[0]?.providerOfferId
+      if (providerBookingId) {
+        const res = await getOfferList(providerBookingId)
         if (res?.success && res?.data?.data?.id) {
-          /**
-           * Create payment intent
-           */
+          /*** Create payment intent **/
           const offer = res?.data?.data
           const options: CreatePaymentTransactionMutationVariables = {
             object: {
-              bookingId: id,
-              amount: parseFloat(
+              bookingId: Number(id),
+              amount: `${parseFloat(
                 (Number(offer?.total_amount) * 100).toFixed(2)
-              ),
+              )}`,
               status: 'PENDING'
             }
           }

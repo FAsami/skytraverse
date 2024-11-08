@@ -58,6 +58,7 @@ const VerifyPage = async ({
       </div>
     )
   }
+  console.log('DECODED', decoded)
 
   return (
     <div className="p-6">

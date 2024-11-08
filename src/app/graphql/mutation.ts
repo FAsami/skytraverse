@@ -46,7 +46,6 @@ const CREATE_FLIGHT_BOOKING = gql`
   mutation CreateFlightBooking($object: booking_flights_insert_input = {}) {
     insert_booking_flights_one(object: $object) {
       id
-      meta
       status
     }
   }

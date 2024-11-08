@@ -24,14 +24,14 @@ const changePassword: AuthAction<typeof ChangePasswordSchema> = async (
     if (!session?.user?.id) {
       return { success: false, error: 'Unauthorize access!' }
     }
-    const { password } = validatedFields.data
+    const { oldPassword, password } = validatedFields.data
 
     const user = await getUser({ id: session?.user?.id })
     if (!user?.id || !user?.password) {
       return { success: false, error: 'Unauthorize access!' }
     }
 
-    const isMatched = await bcrypt.compare(password, user.password)
+    const isMatched = await bcrypt.compare(oldPassword, user.password)
     if (isMatched) {
       const data = await gqlAdminClient.request<UpdateUserMutation>(
         UPDATE_USER_BY_ID,

@@ -1,21 +1,14 @@
-import { gqlAdminClient } from '../lib'
-import { GET_BRAND_INFO } from '../graphql/query'
-import { GetBrandQuery } from '@/types/gql/graphql'
 import Image from 'next/image'
 import { FcGoogle } from 'react-icons/fc'
 import { login } from './actions/login'
+import { getBrandInfo } from '../query/brand'
 
 const AuthLayout = async ({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) => {
-  const {
-    brand: [brand]
-  } = await gqlAdminClient.request<GetBrandQuery>(GET_BRAND_INFO, {
-    title: process.env.BRAND_TITLE
-  })
-
+  const brand = await getBrandInfo()
   return (
     <div className="max-w-lg px-12 py-4 pb-8 rounded-md bg-white mx-auto mt-4">
       <div className="flex flex-col items-center justify-center">

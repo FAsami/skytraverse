@@ -2,8 +2,7 @@
 import { getUser } from '@/app/query'
 import crypto from 'crypto'
 import { SendOTPSchema } from '../authSchema'
-import { AuthAction } from '@/types/authForm'
-import { sendMessage } from '@/app/utils/setMessage'
+import { sendMessage } from '@/app/utils/sendMessage'
 import { phoneOTP } from '@/template/phoneOTP'
 import {
   GetOtpByUserIdQuery,
@@ -15,19 +14,19 @@ import { GET_OTP_BY_USER_ID } from '@/app/graphql/query'
 import { CREATE_OTP } from '@/app/graphql/mutation'
 import { emailOTP } from '@/template/emailOTP'
 import { sendEmail } from '@/app/utils/sendEmail'
-import { encrypt } from '@/app/utils/cryptography'
-import { redirect as redirectRouter } from 'next/navigation'
+import * as z from 'zod'
+
+type SendOTPAction = (values: z.infer<typeof SendOTPSchema>) => Promise<{
+  success: boolean
+  message?: string
+  error?: string
+}>
 
 const OTP_RESEND_INTERVAL = 2 * 60 * 1000
 
-const sendOTP: AuthAction<typeof SendOTPSchema> = async (
-  values,
-  { callbackUrl, redirect }
-) => {
-  let hasOTPSent = false
+const sendOTP: SendOTPAction = async (values) => {
   try {
     const validatedFields = SendOTPSchema.safeParse(values)
-    console.log(JSON.stringify(validatedFields.error, null, 2))
     if (!validatedFields.success) {
       return { success: false, error: 'Invalid fields!' }
     }
@@ -58,13 +57,21 @@ const sendOTP: AuthAction<typeof SendOTPSchema> = async (
           }
         }
       }
-
+      await gqlAdminClient.request<Insert_OtpMutation>(CREATE_OTP, {
+        object: {
+          userId: user?.id,
+          token
+        }
+      })
       if (user.phone) {
         await sendMessage({
           phone: user.phone,
           message: phoneOTP(token)
         })
-        hasOTPSent = true
+        return {
+          success: true,
+          message: 'OTP sent successfully'
+        }
       } else if (user.email) {
         await sendEmail({
           from: {
@@ -78,48 +85,23 @@ const sendOTP: AuthAction<typeof SendOTPSchema> = async (
           subject: 'Your OTP Code',
           htmlbody: emailOTP({ name: user.name, otp: token })
         })
-        hasOTPSent = true
-      }
-
-      await gqlAdminClient.request<Insert_OtpMutation>(CREATE_OTP, {
-        object: {
-          userId: user?.id,
-          token
+        return {
+          success: true,
+          message: 'OTP sent successfully'
         }
-      })
-    } else {
-      return {
-        success: false,
-        error: `No user is associated with ${
-          values.phone ? 'phone number' : 'email'
-        }`
       }
+    }
+    return {
+      success: false,
+      error: `No user is associated with ${
+        values.phone ? 'phone number' : 'email'
+      }`
     }
   } catch (error) {
     console.error(error)
     return {
       success: false,
       error: 'Something went wrong !'
-    }
-  }
-  if (hasOTPSent) {
-    const token = await encrypt({
-      email: values.email,
-      phone: values.phone,
-      scope: 'FORGOT_PASSWORD'
-    })
-
-    if (redirect === false) {
-      return {
-        success: true,
-        message: 'OTP sent successfully'
-      }
-    } else {
-      redirectRouter(
-        `/verify?token=${encodeURIComponent(
-          token
-        )}&callbackUrl=${encodeURIComponent(callbackUrl)}`
-      )
     }
   }
 }

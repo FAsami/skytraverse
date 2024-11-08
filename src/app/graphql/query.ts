@@ -2,7 +2,7 @@ import { gql } from 'graphql-request'
 
 export const GET_BRAND_INFO = gql`
   query GetBrand($title: String!) {
-    brand(where: { title: { _eq: $title } }) {
+    brand_brands(where: { title: { _eq: $title } }) {
       id
       title
       logo
@@ -70,7 +70,6 @@ export const GET_FLIGHT_BOOKINGS = gql`
       providerOfferId
       providerOfferDetails
       status
-      meta
       userId
       paymentMethod {
         id

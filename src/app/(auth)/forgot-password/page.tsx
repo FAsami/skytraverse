@@ -1,9 +1,9 @@
 'use client'
 import { MdMailOutline } from 'react-icons/md'
 import { SendOTPSchema } from '../authSchema'
-import { sendOTP } from '../actions/sendOTP'
 import { AuthForm } from '../components/AuthForm'
 import { AuthPageTitle } from '../components/AuthPageTitle'
+import { forgotPassword } from '../actions/forgotPassword'
 
 const ForgotPasswordPage = () => {
   return (
@@ -11,7 +11,7 @@ const ForgotPasswordPage = () => {
       <AuthPageTitle identifier="forgotPassword" />
       <AuthForm
         identifier="forgotPassword"
-        onFormSubmit={sendOTP}
+        onFormSubmit={forgotPassword}
         fields={[
           {
             type: 'phone',

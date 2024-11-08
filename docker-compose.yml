@@ -5,23 +5,23 @@ services:
     environment:
       POSTGRES_PASSWORD: postgrespassword
       POSTGRES_USER: postgres
-      POSTGRES_DB: skytraverse
+      POSTGRES_DB: skytraversedb
     ports:
-      - '5580:5432'
+      - '5590:5432'
     volumes:
       - ./postgres:/var/lib/postgresql/data
 
   hasura:
     image: hasura/graphql-engine:latest
     ports:
-      - '5581:8080'
+      - '5591:8080'
     restart: always
     depends_on:
       - postgres
     environment:
-      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/skytraverse
-      HASURA_GRAPHQL_ENABLE_CONSOLE: false
-      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/skytraversedb
+      HASURA_GRAPHQL_ENABLE_CONSOLE: true
+      HASURA_GRAPHQL_ADMIN_SECRET: 1234
 
 volumes:
   postgres:

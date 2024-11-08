@@ -3,19 +3,18 @@ import { LockOutlined, MailOutlined } from '@ant-design/icons'
 import { AuthForm } from './AuthForm'
 import { VerifyOTPSchema } from '../authSchema'
 import { verifyOTP } from '../actions/verifyOTP'
-import { useSearchParams } from 'next/navigation'
 import { useEffect, useState, useTransition } from 'react'
 import { AuthResponse } from '@/types/authForm'
 import { useReCaptcha } from '@/app/hooks'
 import { Spinner } from '@/app/components/Spinner'
 import { BiCheckCircle, BiErrorCircle } from 'react-icons/bi'
+import { CSSTransition } from 'react-transition-group'
+import { sendOTP } from '../actions/sendOTP'
 const initial = {
   message: '',
   error: '',
   success: false
 }
-import { CSSTransition } from 'react-transition-group'
-import { sendOTP } from '../actions/sendOTP'
 
 const VerifyOTPForm = ({
   phone,
@@ -26,10 +25,6 @@ const VerifyOTPForm = ({
   name: string
   scope: 'FORGOT_PASSWORD' | 'REGISTER'
 }) => {
-  const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') ?? '/'
-  const token = searchParams.get('token') ?? ''
-
   const [isPending, startTransition] = useTransition()
   const [result, setResult] = useState<AuthResponse>()
   const { verifyReCaptcha } = useReCaptcha()
@@ -41,14 +36,7 @@ const VerifyOTPForm = ({
         const isVerified = await verifyReCaptcha('resendOtp')
 
         if (isVerified) {
-          const resendResult = await sendOTP(
-            { email, phone },
-            {
-              callbackUrl,
-              token,
-              redirect: false
-            }
-          )
+          const resendResult = await sendOTP({ email, phone })
           if (resendResult) {
             setResult(resendResult)
           }

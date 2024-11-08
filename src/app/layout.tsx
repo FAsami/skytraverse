@@ -15,6 +15,7 @@ import { Header } from './components/Header/Header'
 import { Footer } from './components/Footer'
 import { SessionProvider } from 'next-auth/react'
 import { auth } from '@/auth'
+import { getBrandInfo } from './query/brand'
 
 const RootLayout = async ({
   children
@@ -24,8 +25,7 @@ const RootLayout = async ({
   const data = await gqlAdminClient.request<GetBrandQuery>(GET_BRAND_INFO, {
     title: process.env.BRAND_TITLE
   })
-  console.log(data)
-  const brand = data.brand
+  const brand = data.brand_brands[0]
   return (
     <SessionProvider session={await auth()}>
       <ConfigProvider theme={theme}>
@@ -33,10 +33,10 @@ const RootLayout = async ({
           <html lang="en">
             <body className={`${font} antialiased bg-blue-50 overflow-hidden`}>
               <AntdRegistry>
-                <Header brand={brand?.[0]} />
+                <Header brand={brand} />
                 <main className="h-[calc(100vh-var(--header-height))] overflow-y-auto space-y-4">
                   <div>{children}</div>
-                  <Footer brand={brand?.[0]} />
+                  <Footer brand={brand} />
                 </main>
               </AntdRegistry>
             </body>
@@ -61,15 +61,10 @@ const generateMetadata = async (): Promise<Metadata> => {
 export { generateMetadata }
 
 const getBrandMetaData = cache(async () => {
-  const { brand } = await gqlAdminClient.request<GetBrandQuery>(
-    GET_BRAND_INFO,
-    {
-      title: process.env.BRAND_TITLE
-    }
-  )
-  if (!brand?.[0]) {
+  const brand = await getBrandInfo()
+  if (!brand) {
     notFound()
   }
-  const metaData = brand[0]?.metaData as Metadata
+  const metaData = brand?.metaData as Metadata
   return metaData
 })

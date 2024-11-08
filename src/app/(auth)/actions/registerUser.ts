@@ -73,14 +73,7 @@ const registerUser: AuthAction<typeof RegisterSchema> = async (
         scope: 'REGISTER'
       })
 
-      await sendOTP(
-        { email, phone },
-        {
-          callbackUrl,
-          token,
-          redirect: true
-        }
-      )
+      await sendOTP({ email, phone })
     }
   } catch (error) {
     console.error(error)

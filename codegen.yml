@@ -1,5 +1,5 @@
 schema:
-  - 'http://localhost:5581/v1/graphql':
+  - 'http://localhost:5591/v1/graphql':
       headers:
         'x-hasura-admin-secret': '1234'
 documents:

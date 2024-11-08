@@ -19,7 +19,11 @@ import {
 import dayjs from 'dayjs'
 import { FaCheckCircle } from 'react-icons/fa'
 
-const CustomerDetailsForm = ({ initialValues }: { initialValues: Store }) => {
+const CustomerDetailsForm = ({
+  initialValues = {}
+}: {
+  initialValues: Store
+}) => {
   const [isPending, startTransition] = useTransition()
   const { verifyReCaptcha } = useReCaptcha()
 

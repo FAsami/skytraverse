@@ -69,7 +69,7 @@ const data: { [key: string]: FooterSection } = {
   }
 }
 
-const Footer = ({ brand }: { brand: GetBrandQuery['brand'][0] | null }) => {
+const Footer = ({ brand }: { brand: GetBrandQuery['brand_brands'][0] }) => {
   return (
     <footer className="pt-10 border-t">
       <div className="max-w-screen-xl mx-auto px-3 py-6">
