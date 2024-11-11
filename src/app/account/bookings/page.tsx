@@ -39,7 +39,7 @@ const BookingsPage = async ({}) => {
               src="https://res.cloudinary.com/dffqrc36j/image/upload/v1730562569/server_error_w0x6oq.svg"
             />
             <div className="text-2xl text-neutral-600 font-semibold flex items-center gap-2 mt-6">
-              You don't have any booking now{' '}
+              You don&apos;t have any booking now{' '}
             </div>
             <p className="text-sm text-gray-500 mb-2 md:mb-8 px-3 md:px-32 text-center">
               You can book your first flight.
@@ -60,6 +60,7 @@ const BookingsPage = async ({}) => {
       throw new Error('Failed to fetch booking ')
     }
   } catch (error) {
+    console.log(error)
     throw new Error('Failed to fetch booking ')
   }
 }

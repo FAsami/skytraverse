@@ -34,7 +34,10 @@ const BookedFlight = ({
         <div>
           {offer.slices.map((node) => {
             return (
-              <div className="flex items-center font-semibold text-base gap-2">
+              <div
+                key={node.id}
+                className="flex items-center font-semibold text-base gap-2"
+              >
                 {node.origin.iata_code}
                 <BsArrowRight />
                 {node.destination.iata_code}
