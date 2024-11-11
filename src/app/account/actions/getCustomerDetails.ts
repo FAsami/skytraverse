@@ -41,7 +41,7 @@ const getCustomerDetails = async (): Promise<ActionResponse> => {
     return {
       error: error,
       success: false,
-      message: 'Failed to get offer'
+      message: 'Failed fetch customer details'
     }
   }
 }

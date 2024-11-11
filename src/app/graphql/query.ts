@@ -69,6 +69,7 @@ export const GET_FLIGHT_BOOKINGS = gql`
       provider
       providerOfferId
       providerOfferDetails
+      providerOrderDetails
       status
       userId
       paymentMethod {

@@ -8,12 +8,29 @@ import { Timeline } from 'antd'
 import { BsArrowRight, BsDot, BsLuggage } from 'react-icons/bs'
 import { Details } from '@/app/flights/(pages)/checkout/components/Details'
 import { formatCurrency } from '@/app/utils/formatCurrency'
+import { GetFlightBookingsQuery } from '@/types/gql/graphql'
+import clsx from 'clsx'
 
-const BookingCard = ({ order }: { order: Order }) => {
+const BookingDetails = ({
+  booking
+}: {
+  booking: GetFlightBookingsQuery['booking_flights'][0]
+}) => {
+  const order = booking.providerOrderDetails
+    ? (booking.providerOrderDetails as Order)
+    : (booking.providerOfferDetails?.offer as Order)
+  const isConfirmed = booking.status === 'SUCCEEDED' ? true : false
   return (
     <div className="min-w-2xl relative  w-full mx-auto rounded-md border border-blue-50 p-2 md:p-4 transition-shadow bg-white">
-      <div className="text-lg font-bold absolute top-0 left-0 bg-amber-100 text-amber-600 px-4 py-1 rounded-br-md border-neutral-600">
-        Oder ID - {order.id}
+      <div
+        className={clsx(
+          'text-lg font-bold absolute top-0 left-0 bg-green-100 text-green-600 px-4 py-1 rounded-br-md border-neutral-600',
+          {
+            'text-amber-900 bg-amber-100': isConfirmed
+          }
+        )}
+      >
+        Oder ID - {booking.id}
         <div className="text-xs font-light text-neutral-500">
           Last updated on&nbsp;
           {dayjs(order.synced_at).format('DD MMM,YYYY HH:ss A')}
@@ -21,8 +38,13 @@ const BookingCard = ({ order }: { order: Order }) => {
       </div>
       <div className="flex justify-end items-center">
         <div className="flex items-end justify-center flex-col">
-          <button className="bg-amber-300 py-1.5 font-semibold text-amber-900 text-sm rounded-md px-3">
-            PENDING
+          <button
+            className={clsx(
+              'bg-green-100 py-1.5 font-semibold text-green-900 text-sm rounded-full px-3',
+              { 'text-amber-900 bg-amber-100': isConfirmed }
+            )}
+          >
+            {isConfirmed ? 'Confirmed' : 'Not confirmed'}
           </button>
         </div>
       </div>
@@ -246,12 +268,25 @@ const BookingCard = ({ order }: { order: Order }) => {
           <div>{formatCurrency(+order.total_amount, order.total_currency)}</div>
         </div>
         <div className="text-neutral-600 font-semibold py-1 mt-6 pb-4 bg-primary-50 flex items-center justify-between">
-          <div>Paid via</div>
-          <div>Stripe</div>
+          <div>Pay via</div>
+          <div className="flex items-center gap-2">
+            <div className="text-sm font-semibold">
+              {booking.paymentMethod?.label}
+            </div>
+            <div className="h-10 w-auto">
+              <Image
+                height={20}
+                width={60}
+                alt={booking.paymentMethod?.label || ''}
+                src={booking.paymentMethod?.logo || ''}
+                className="h-full w-auto"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
   )
 }
 
-export default BookingCard
+export { BookingDetails }
