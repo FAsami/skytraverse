@@ -20,8 +20,8 @@ const BookingsPage = async ({
       if (result.data && result?.data?.providerOrderDetails) {
         return (
           <div>
-            <div className="text-2xl px-4 font-semibold flex gap-2 items-center border-b pb-4">
-              Previous bookings <BsChevronRight className="text-sm" /> {id}
+            <div className="text-2xl px-4 font-semibold flex gap-2 items-center border-b py-8">
+              Your booking <BsChevronRight className="text-sm" /> {id}
             </div>
             <div className="bg-neutral-50 h-[calc(100vh-var(--header-height)-6rem)] overflow-y-auto p-2 rounded-md">
               <BookingDetails booking={result.data} />

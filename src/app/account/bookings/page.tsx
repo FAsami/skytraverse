@@ -16,10 +16,10 @@ const BookingsPage = async ({}) => {
       if (bookings.data?.length > 0) {
         return (
           <div>
-            <div className="text-2xl px-4 font-semibold flex gap-2 items-center border-b pb-4">
+            <div className="text-2xl px-4 font-semibold flex gap-2 items-center border-b pb-6">
               Your bookings
             </div>
-            <div className="h-[calc(100vh-var(--header-height)-6rem)] overflow-y-auto p-2 rounded-md py-5">
+            <div className="h-[calc(100vh-var(--header-height)-7rem)] overflow-y-auto p-2 rounded-md py-5">
               <div className="space-y-5">
                 {flights.map((node) => {
                   return <BookedFlight bookedFlight={node} key={node.id} />

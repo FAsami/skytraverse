@@ -57,7 +57,7 @@ const BookedFlight = ({
           </span>
         </div>
         <div>
-          <Link href={`/flights/bookings/${bookedFlight.id}`}>
+          <Link href={`/account/bookings/${bookedFlight.id}`}>
             <Button iconPosition="end" icon={<BiChevronRight />} type="link">
               View details
             </Button>
