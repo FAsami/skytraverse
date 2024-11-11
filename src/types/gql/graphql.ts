@@ -549,6 +549,7 @@ export type Booking_Flights = {
   providerId?: Maybe<Scalars['Int']>;
   providerOfferDetails?: Maybe<Scalars['jsonb']>;
   providerOfferId?: Maybe<Scalars['String']>;
+  providerOrderDetails?: Maybe<Scalars['jsonb']>;
   status?: Maybe<Scalars['String']>;
   updated_at: Scalars['timestamptz'];
   userId: Scalars['uuid'];
@@ -557,6 +558,12 @@ export type Booking_Flights = {
 
 /** columns and relationships of "booking.flights" */
 export type Booking_FlightsProviderOfferDetailsArgs = {
+  path?: InputMaybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "booking.flights" */
+export type Booking_FlightsProviderOrderDetailsArgs = {
   path?: InputMaybe<Scalars['String']>;
 };
 
@@ -593,6 +600,7 @@ export type Booking_Flights_Aggregate_FieldsCountArgs = {
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Booking_Flights_Append_Input = {
   providerOfferDetails?: InputMaybe<Scalars['jsonb']>;
+  providerOrderDetails?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** aggregate avg on columns */
@@ -616,6 +624,7 @@ export type Booking_Flights_Bool_Exp = {
   providerId?: InputMaybe<Int_Comparison_Exp>;
   providerOfferDetails?: InputMaybe<Jsonb_Comparison_Exp>;
   providerOfferId?: InputMaybe<String_Comparison_Exp>;
+  providerOrderDetails?: InputMaybe<Jsonb_Comparison_Exp>;
   status?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   userId?: InputMaybe<Uuid_Comparison_Exp>;
@@ -632,16 +641,19 @@ export enum Booking_Flights_Constraint {
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Booking_Flights_Delete_At_Path_Input = {
   providerOfferDetails?: InputMaybe<Array<Scalars['String']>>;
+  providerOrderDetails?: InputMaybe<Array<Scalars['String']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Booking_Flights_Delete_Elem_Input = {
   providerOfferDetails?: InputMaybe<Scalars['Int']>;
+  providerOrderDetails?: InputMaybe<Scalars['Int']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Booking_Flights_Delete_Key_Input = {
   providerOfferDetails?: InputMaybe<Scalars['String']>;
+  providerOrderDetails?: InputMaybe<Scalars['String']>;
 };
 
 /** input type for incrementing numeric columns in table "booking.flights" */
@@ -661,6 +673,7 @@ export type Booking_Flights_Insert_Input = {
   providerId?: InputMaybe<Scalars['Int']>;
   providerOfferDetails?: InputMaybe<Scalars['jsonb']>;
   providerOfferId?: InputMaybe<Scalars['String']>;
+  providerOrderDetails?: InputMaybe<Scalars['jsonb']>;
   status?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
   userId?: InputMaybe<Scalars['uuid']>;
@@ -720,6 +733,7 @@ export type Booking_Flights_Order_By = {
   providerId?: InputMaybe<Order_By>;
   providerOfferDetails?: InputMaybe<Order_By>;
   providerOfferId?: InputMaybe<Order_By>;
+  providerOrderDetails?: InputMaybe<Order_By>;
   status?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
   userId?: InputMaybe<Order_By>;
@@ -733,6 +747,7 @@ export type Booking_Flights_Pk_Columns_Input = {
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Booking_Flights_Prepend_Input = {
   providerOfferDetails?: InputMaybe<Scalars['jsonb']>;
+  providerOrderDetails?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** select columns of table "booking.flights" */
@@ -752,6 +767,8 @@ export enum Booking_Flights_Select_Column {
   /** column name */
   ProviderOfferId = 'providerOfferId',
   /** column name */
+  ProviderOrderDetails = 'providerOrderDetails',
+  /** column name */
   Status = 'status',
   /** column name */
   UpdatedAt = 'updated_at',
@@ -768,6 +785,7 @@ export type Booking_Flights_Set_Input = {
   providerId?: InputMaybe<Scalars['Int']>;
   providerOfferDetails?: InputMaybe<Scalars['jsonb']>;
   providerOfferId?: InputMaybe<Scalars['String']>;
+  providerOrderDetails?: InputMaybe<Scalars['jsonb']>;
   status?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
   userId?: InputMaybe<Scalars['uuid']>;
@@ -814,6 +832,7 @@ export type Booking_Flights_Stream_Cursor_Value_Input = {
   providerId?: InputMaybe<Scalars['Int']>;
   providerOfferDetails?: InputMaybe<Scalars['jsonb']>;
   providerOfferId?: InputMaybe<Scalars['String']>;
+  providerOrderDetails?: InputMaybe<Scalars['jsonb']>;
   status?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
   userId?: InputMaybe<Scalars['uuid']>;
@@ -843,6 +862,8 @@ export enum Booking_Flights_Update_Column {
   ProviderOfferDetails = 'providerOfferDetails',
   /** column name */
   ProviderOfferId = 'providerOfferId',
+  /** column name */
+  ProviderOrderDetails = 'providerOrderDetails',
   /** column name */
   Status = 'status',
   /** column name */
@@ -892,6 +913,299 @@ export type Booking_Flights_Variance_Fields = {
   id?: Maybe<Scalars['Float']>;
   paymentMethodId?: Maybe<Scalars['Float']>;
   providerId?: Maybe<Scalars['Float']>;
+};
+
+/** columns and relationships of "booking.providerBookingLogs" */
+export type Booking_ProviderBookingLogs = {
+  __typename?: 'booking_providerBookingLogs';
+  bookingId: Scalars['Int'];
+  created_at: Scalars['timestamptz'];
+  details: Scalars['jsonb'];
+  id: Scalars['Int'];
+  status: Scalars['String'];
+  updated_at: Scalars['timestamptz'];
+};
+
+
+/** columns and relationships of "booking.providerBookingLogs" */
+export type Booking_ProviderBookingLogsDetailsArgs = {
+  path?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregated selection of "booking.providerBookingLogs" */
+export type Booking_ProviderBookingLogs_Aggregate = {
+  __typename?: 'booking_providerBookingLogs_aggregate';
+  aggregate?: Maybe<Booking_ProviderBookingLogs_Aggregate_Fields>;
+  nodes: Array<Booking_ProviderBookingLogs>;
+};
+
+/** aggregate fields of "booking.providerBookingLogs" */
+export type Booking_ProviderBookingLogs_Aggregate_Fields = {
+  __typename?: 'booking_providerBookingLogs_aggregate_fields';
+  avg?: Maybe<Booking_ProviderBookingLogs_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Booking_ProviderBookingLogs_Max_Fields>;
+  min?: Maybe<Booking_ProviderBookingLogs_Min_Fields>;
+  stddev?: Maybe<Booking_ProviderBookingLogs_Stddev_Fields>;
+  stddev_pop?: Maybe<Booking_ProviderBookingLogs_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Booking_ProviderBookingLogs_Stddev_Samp_Fields>;
+  sum?: Maybe<Booking_ProviderBookingLogs_Sum_Fields>;
+  var_pop?: Maybe<Booking_ProviderBookingLogs_Var_Pop_Fields>;
+  var_samp?: Maybe<Booking_ProviderBookingLogs_Var_Samp_Fields>;
+  variance?: Maybe<Booking_ProviderBookingLogs_Variance_Fields>;
+};
+
+
+/** aggregate fields of "booking.providerBookingLogs" */
+export type Booking_ProviderBookingLogs_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Booking_ProviderBookingLogs_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Booking_ProviderBookingLogs_Append_Input = {
+  details?: InputMaybe<Scalars['jsonb']>;
+};
+
+/** aggregate avg on columns */
+export type Booking_ProviderBookingLogs_Avg_Fields = {
+  __typename?: 'booking_providerBookingLogs_avg_fields';
+  bookingId?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "booking.providerBookingLogs". All fields are combined with a logical 'AND'. */
+export type Booking_ProviderBookingLogs_Bool_Exp = {
+  _and?: InputMaybe<Array<Booking_ProviderBookingLogs_Bool_Exp>>;
+  _not?: InputMaybe<Booking_ProviderBookingLogs_Bool_Exp>;
+  _or?: InputMaybe<Array<Booking_ProviderBookingLogs_Bool_Exp>>;
+  bookingId?: InputMaybe<Int_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  details?: InputMaybe<Jsonb_Comparison_Exp>;
+  id?: InputMaybe<Int_Comparison_Exp>;
+  status?: InputMaybe<String_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "booking.providerBookingLogs" */
+export enum Booking_ProviderBookingLogs_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  ProviderBookingLogsPkey = 'providerBookingLogs_pkey'
+}
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Booking_ProviderBookingLogs_Delete_At_Path_Input = {
+  details?: InputMaybe<Array<Scalars['String']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Booking_ProviderBookingLogs_Delete_Elem_Input = {
+  details?: InputMaybe<Scalars['Int']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Booking_ProviderBookingLogs_Delete_Key_Input = {
+  details?: InputMaybe<Scalars['String']>;
+};
+
+/** input type for incrementing numeric columns in table "booking.providerBookingLogs" */
+export type Booking_ProviderBookingLogs_Inc_Input = {
+  bookingId?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "booking.providerBookingLogs" */
+export type Booking_ProviderBookingLogs_Insert_Input = {
+  bookingId?: InputMaybe<Scalars['Int']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  details?: InputMaybe<Scalars['jsonb']>;
+  id?: InputMaybe<Scalars['Int']>;
+  status?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Booking_ProviderBookingLogs_Max_Fields = {
+  __typename?: 'booking_providerBookingLogs_max_fields';
+  bookingId?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type Booking_ProviderBookingLogs_Min_Fields = {
+  __typename?: 'booking_providerBookingLogs_min_fields';
+  bookingId?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "booking.providerBookingLogs" */
+export type Booking_ProviderBookingLogs_Mutation_Response = {
+  __typename?: 'booking_providerBookingLogs_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Booking_ProviderBookingLogs>;
+};
+
+/** on_conflict condition type for table "booking.providerBookingLogs" */
+export type Booking_ProviderBookingLogs_On_Conflict = {
+  constraint: Booking_ProviderBookingLogs_Constraint;
+  update_columns?: Array<Booking_ProviderBookingLogs_Update_Column>;
+  where?: InputMaybe<Booking_ProviderBookingLogs_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "booking.providerBookingLogs". */
+export type Booking_ProviderBookingLogs_Order_By = {
+  bookingId?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  details?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: booking.providerBookingLogs */
+export type Booking_ProviderBookingLogs_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Booking_ProviderBookingLogs_Prepend_Input = {
+  details?: InputMaybe<Scalars['jsonb']>;
+};
+
+/** select columns of table "booking.providerBookingLogs" */
+export enum Booking_ProviderBookingLogs_Select_Column {
+  /** column name */
+  BookingId = 'bookingId',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Details = 'details',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "booking.providerBookingLogs" */
+export type Booking_ProviderBookingLogs_Set_Input = {
+  bookingId?: InputMaybe<Scalars['Int']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  details?: InputMaybe<Scalars['jsonb']>;
+  id?: InputMaybe<Scalars['Int']>;
+  status?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Booking_ProviderBookingLogs_Stddev_Fields = {
+  __typename?: 'booking_providerBookingLogs_stddev_fields';
+  bookingId?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Booking_ProviderBookingLogs_Stddev_Pop_Fields = {
+  __typename?: 'booking_providerBookingLogs_stddev_pop_fields';
+  bookingId?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Booking_ProviderBookingLogs_Stddev_Samp_Fields = {
+  __typename?: 'booking_providerBookingLogs_stddev_samp_fields';
+  bookingId?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Streaming cursor of the table "booking_providerBookingLogs" */
+export type Booking_ProviderBookingLogs_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Booking_ProviderBookingLogs_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Booking_ProviderBookingLogs_Stream_Cursor_Value_Input = {
+  bookingId?: InputMaybe<Scalars['Int']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  details?: InputMaybe<Scalars['jsonb']>;
+  id?: InputMaybe<Scalars['Int']>;
+  status?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** aggregate sum on columns */
+export type Booking_ProviderBookingLogs_Sum_Fields = {
+  __typename?: 'booking_providerBookingLogs_sum_fields';
+  bookingId?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "booking.providerBookingLogs" */
+export enum Booking_ProviderBookingLogs_Update_Column {
+  /** column name */
+  BookingId = 'bookingId',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Details = 'details',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Booking_ProviderBookingLogs_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Booking_ProviderBookingLogs_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Booking_ProviderBookingLogs_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Booking_ProviderBookingLogs_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Booking_ProviderBookingLogs_Delete_Key_Input>;
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Booking_ProviderBookingLogs_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Booking_ProviderBookingLogs_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Booking_ProviderBookingLogs_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Booking_ProviderBookingLogs_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Booking_ProviderBookingLogs_Var_Pop_Fields = {
+  __typename?: 'booking_providerBookingLogs_var_pop_fields';
+  bookingId?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Booking_ProviderBookingLogs_Var_Samp_Fields = {
+  __typename?: 'booking_providerBookingLogs_var_samp_fields';
+  bookingId?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Booking_ProviderBookingLogs_Variance_Fields = {
+  __typename?: 'booking_providerBookingLogs_variance_fields';
+  bookingId?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
 };
 
 /** columns and relationships of "brand.brands" */
@@ -1627,6 +1941,10 @@ export type Mutation_Root = {
   delete_booking_flights?: Maybe<Booking_Flights_Mutation_Response>;
   /** delete single row from the table: "booking.flights" */
   delete_booking_flights_by_pk?: Maybe<Booking_Flights>;
+  /** delete data from the table: "booking.providerBookingLogs" */
+  delete_booking_providerBookingLogs?: Maybe<Booking_ProviderBookingLogs_Mutation_Response>;
+  /** delete single row from the table: "booking.providerBookingLogs" */
+  delete_booking_providerBookingLogs_by_pk?: Maybe<Booking_ProviderBookingLogs>;
   /** delete data from the table: "brand.brands" */
   delete_brand_brands?: Maybe<Brand_Brands_Mutation_Response>;
   /** delete single row from the table: "brand.brands" */
@@ -1675,6 +1993,10 @@ export type Mutation_Root = {
   insert_booking_flights?: Maybe<Booking_Flights_Mutation_Response>;
   /** insert a single row into the table: "booking.flights" */
   insert_booking_flights_one?: Maybe<Booking_Flights>;
+  /** insert data into the table: "booking.providerBookingLogs" */
+  insert_booking_providerBookingLogs?: Maybe<Booking_ProviderBookingLogs_Mutation_Response>;
+  /** insert a single row into the table: "booking.providerBookingLogs" */
+  insert_booking_providerBookingLogs_one?: Maybe<Booking_ProviderBookingLogs>;
   /** insert data into the table: "brand.brands" */
   insert_brand_brands?: Maybe<Brand_Brands_Mutation_Response>;
   /** insert a single row into the table: "brand.brands" */
@@ -1727,6 +2049,12 @@ export type Mutation_Root = {
   update_booking_flights_by_pk?: Maybe<Booking_Flights>;
   /** update multiples rows of table: "booking.flights" */
   update_booking_flights_many?: Maybe<Array<Maybe<Booking_Flights_Mutation_Response>>>;
+  /** update data of the table: "booking.providerBookingLogs" */
+  update_booking_providerBookingLogs?: Maybe<Booking_ProviderBookingLogs_Mutation_Response>;
+  /** update single row of the table: "booking.providerBookingLogs" */
+  update_booking_providerBookingLogs_by_pk?: Maybe<Booking_ProviderBookingLogs>;
+  /** update multiples rows of table: "booking.providerBookingLogs" */
+  update_booking_providerBookingLogs_many?: Maybe<Array<Maybe<Booking_ProviderBookingLogs_Mutation_Response>>>;
   /** update data of the table: "brand.brands" */
   update_brand_brands?: Maybe<Brand_Brands_Mutation_Response>;
   /** update single row of the table: "brand.brands" */
@@ -1810,6 +2138,18 @@ export type Mutation_RootDelete_Booking_FlightsArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Booking_Flights_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Booking_ProviderBookingLogsArgs = {
+  where: Booking_ProviderBookingLogs_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Booking_ProviderBookingLogs_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -1959,6 +2299,20 @@ export type Mutation_RootInsert_Booking_FlightsArgs = {
 export type Mutation_RootInsert_Booking_Flights_OneArgs = {
   object: Booking_Flights_Insert_Input;
   on_conflict?: InputMaybe<Booking_Flights_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Booking_ProviderBookingLogsArgs = {
+  objects: Array<Booking_ProviderBookingLogs_Insert_Input>;
+  on_conflict?: InputMaybe<Booking_ProviderBookingLogs_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Booking_ProviderBookingLogs_OneArgs = {
+  object: Booking_ProviderBookingLogs_Insert_Input;
+  on_conflict?: InputMaybe<Booking_ProviderBookingLogs_On_Conflict>;
 };
 
 
@@ -2153,6 +2507,38 @@ export type Mutation_RootUpdate_Booking_Flights_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Booking_Flights_ManyArgs = {
   updates: Array<Booking_Flights_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Booking_ProviderBookingLogsArgs = {
+  _append?: InputMaybe<Booking_ProviderBookingLogs_Append_Input>;
+  _delete_at_path?: InputMaybe<Booking_ProviderBookingLogs_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Booking_ProviderBookingLogs_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Booking_ProviderBookingLogs_Delete_Key_Input>;
+  _inc?: InputMaybe<Booking_ProviderBookingLogs_Inc_Input>;
+  _prepend?: InputMaybe<Booking_ProviderBookingLogs_Prepend_Input>;
+  _set?: InputMaybe<Booking_ProviderBookingLogs_Set_Input>;
+  where: Booking_ProviderBookingLogs_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Booking_ProviderBookingLogs_By_PkArgs = {
+  _append?: InputMaybe<Booking_ProviderBookingLogs_Append_Input>;
+  _delete_at_path?: InputMaybe<Booking_ProviderBookingLogs_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Booking_ProviderBookingLogs_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Booking_ProviderBookingLogs_Delete_Key_Input>;
+  _inc?: InputMaybe<Booking_ProviderBookingLogs_Inc_Input>;
+  _prepend?: InputMaybe<Booking_ProviderBookingLogs_Prepend_Input>;
+  _set?: InputMaybe<Booking_ProviderBookingLogs_Set_Input>;
+  pk_columns: Booking_ProviderBookingLogs_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Booking_ProviderBookingLogs_ManyArgs = {
+  updates: Array<Booking_ProviderBookingLogs_Updates>;
 };
 
 
@@ -3687,6 +4073,12 @@ export type Query_Root = {
   booking_flights_aggregate: Booking_Flights_Aggregate;
   /** fetch data from the table: "booking.flights" using primary key columns */
   booking_flights_by_pk?: Maybe<Booking_Flights>;
+  /** fetch data from the table: "booking.providerBookingLogs" */
+  booking_providerBookingLogs: Array<Booking_ProviderBookingLogs>;
+  /** fetch aggregated fields from the table: "booking.providerBookingLogs" */
+  booking_providerBookingLogs_aggregate: Booking_ProviderBookingLogs_Aggregate;
+  /** fetch data from the table: "booking.providerBookingLogs" using primary key columns */
+  booking_providerBookingLogs_by_pk?: Maybe<Booking_ProviderBookingLogs>;
   /** fetch data from the table: "brand.brands" */
   brand_brands: Array<Brand_Brands>;
   /** fetch aggregated fields from the table: "brand.brands" */
@@ -3792,6 +4184,29 @@ export type Query_RootBooking_Flights_AggregateArgs = {
 
 
 export type Query_RootBooking_Flights_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Query_RootBooking_ProviderBookingLogsArgs = {
+  distinct_on?: InputMaybe<Array<Booking_ProviderBookingLogs_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Booking_ProviderBookingLogs_Order_By>>;
+  where?: InputMaybe<Booking_ProviderBookingLogs_Bool_Exp>;
+};
+
+
+export type Query_RootBooking_ProviderBookingLogs_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Booking_ProviderBookingLogs_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Booking_ProviderBookingLogs_Order_By>>;
+  where?: InputMaybe<Booking_ProviderBookingLogs_Bool_Exp>;
+};
+
+
+export type Query_RootBooking_ProviderBookingLogs_By_PkArgs = {
   id: Scalars['Int'];
 };
 
@@ -4275,6 +4690,14 @@ export type Subscription_Root = {
   booking_flights_by_pk?: Maybe<Booking_Flights>;
   /** fetch data from the table in a streaming manner: "booking.flights" */
   booking_flights_stream: Array<Booking_Flights>;
+  /** fetch data from the table: "booking.providerBookingLogs" */
+  booking_providerBookingLogs: Array<Booking_ProviderBookingLogs>;
+  /** fetch aggregated fields from the table: "booking.providerBookingLogs" */
+  booking_providerBookingLogs_aggregate: Booking_ProviderBookingLogs_Aggregate;
+  /** fetch data from the table: "booking.providerBookingLogs" using primary key columns */
+  booking_providerBookingLogs_by_pk?: Maybe<Booking_ProviderBookingLogs>;
+  /** fetch data from the table in a streaming manner: "booking.providerBookingLogs" */
+  booking_providerBookingLogs_stream: Array<Booking_ProviderBookingLogs>;
   /** fetch data from the table: "brand.brands" */
   brand_brands: Array<Brand_Brands>;
   /** fetch aggregated fields from the table: "brand.brands" */
@@ -4415,6 +4838,36 @@ export type Subscription_RootBooking_Flights_StreamArgs = {
   batch_size: Scalars['Int'];
   cursor: Array<InputMaybe<Booking_Flights_Stream_Cursor_Input>>;
   where?: InputMaybe<Booking_Flights_Bool_Exp>;
+};
+
+
+export type Subscription_RootBooking_ProviderBookingLogsArgs = {
+  distinct_on?: InputMaybe<Array<Booking_ProviderBookingLogs_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Booking_ProviderBookingLogs_Order_By>>;
+  where?: InputMaybe<Booking_ProviderBookingLogs_Bool_Exp>;
+};
+
+
+export type Subscription_RootBooking_ProviderBookingLogs_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Booking_ProviderBookingLogs_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Booking_ProviderBookingLogs_Order_By>>;
+  where?: InputMaybe<Booking_ProviderBookingLogs_Bool_Exp>;
+};
+
+
+export type Subscription_RootBooking_ProviderBookingLogs_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type Subscription_RootBooking_ProviderBookingLogs_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Booking_ProviderBookingLogs_Stream_Cursor_Input>>;
+  where?: InputMaybe<Booking_ProviderBookingLogs_Bool_Exp>;
 };
 
 
@@ -5275,6 +5728,13 @@ export type CreatePaymentTransactionLogMutationVariables = Exact<{
 
 export type CreatePaymentTransactionLogMutation = { __typename?: 'mutation_root', insert_payment_transactionLogs_one?: { __typename?: 'payment_transactionLogs', id: number } | null };
 
+export type CreateFlightBookingTransactionLogMutationVariables = Exact<{
+  object: Booking_ProviderBookingLogs_Insert_Input;
+}>;
+
+
+export type CreateFlightBookingTransactionLogMutation = { __typename?: 'mutation_root', insert_booking_providerBookingLogs_one?: { __typename?: 'booking_providerBookingLogs', id: number } | null };
+
 export type UpdateCustomerDetailsMutationVariables = Exact<{
   where?: InputMaybe<Customer_Details_Bool_Exp>;
   _set?: InputMaybe<Customer_Details_Set_Input>;
@@ -5348,6 +5808,7 @@ export const UpdateFlightBookingDocument = {"kind":"Document","definitions":[{"k
 export const CreatePaymentTransactionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreatePaymentTransaction"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"payment_transactions_insert_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_payment_transactions_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreatePaymentTransactionMutation, CreatePaymentTransactionMutationVariables>;
 export const UpdatePaymentTransactionByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdatePaymentTransactionById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"_set"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"payment_transactions_set_input"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_payment_transactions_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"Variable","name":{"kind":"Name","value":"_set"}}},{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]}}]} as unknown as DocumentNode<UpdatePaymentTransactionByIdMutation, UpdatePaymentTransactionByIdMutationVariables>;
 export const CreatePaymentTransactionLogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreatePaymentTransactionLog"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"payment_transactionLogs_insert_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_payment_transactionLogs_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreatePaymentTransactionLogMutation, CreatePaymentTransactionLogMutationVariables>;
+export const CreateFlightBookingTransactionLogDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateFlightBookingTransactionLog"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"booking_providerBookingLogs_insert_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_booking_providerBookingLogs_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<CreateFlightBookingTransactionLogMutation, CreateFlightBookingTransactionLogMutationVariables>;
 export const UpdateCustomerDetailsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateCustomerDetails"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"customer_details_bool_exp"}},"defaultValue":{"kind":"ObjectValue","fields":[]}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"_set"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"customer_details_set_input"}},"defaultValue":{"kind":"ObjectValue","fields":[]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_customer_details"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"Variable","name":{"kind":"Name","value":"_set"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"affected_rows"}}]}}]}}]} as unknown as DocumentNode<UpdateCustomerDetailsMutation, UpdateCustomerDetailsMutationVariables>;
 export const CreateCustomerDetailsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateCustomerDetails"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"object"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"customer_details_insert_input"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_customer_details_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"Variable","name":{"kind":"Name","value":"object"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"dateOfBirth"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}}]}}]} as unknown as DocumentNode<CreateCustomerDetailsMutation, CreateCustomerDetailsMutationVariables>;
 export const GetBrandDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetBrand"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"title"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brand_brands"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"title"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"metaData"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"location"}}]}}]}}]} as unknown as DocumentNode<GetBrandQuery, GetBrandQueryVariables>;

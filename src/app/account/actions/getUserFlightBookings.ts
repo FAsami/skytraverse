@@ -19,7 +19,6 @@ const getUserFlightBookings = async (): Promise<ActionResponse> => {
         message: 'Unauthorize access'
       }
     }
-    console.log(session?.user?.id)
     const params: GetFlightBookingsQueryVariables = {
       where: {
         userId: {
@@ -31,9 +30,8 @@ const getUserFlightBookings = async (): Promise<ActionResponse> => {
       GET_FLIGHT_BOOKINGS,
       params
     )
-    console.log(data)
 
-    if (data.booking_flights.length > 0) {
+    if (data.booking_flights) {
       return {
         success: true,
         message: 'Booked flights found',

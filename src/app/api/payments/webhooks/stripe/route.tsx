@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-10-28.acacia'
 })
 
-export const runtime = 'edge'
+// export const runtime = 'edge'
 
 export const POST = async (req: Request) => {
   const sig = req.headers.get('stripe-signature')
@@ -19,7 +19,7 @@ export const POST = async (req: Request) => {
     event = await stripe.webhooks.constructEventAsync(
       body,
       sig!,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      'whsec_PdFveTwzFfDmDQ1YodTBuRH8FhmBWLgA'
     )
   } catch (error) {
     console.error('WEBHOOK_VERIFICATION_FAILED', error)

@@ -38,7 +38,14 @@ const CheckoutPage = async ({
             </div>
             <FlightOfferCard offer={offer} />
           </div>
-          <Details passengers={result.data?.providerOfferDetails?.passengers} />
+          <div>
+            <div className="font-semibold text-neutral-700 text-lg pb-2 pt-4 mb-1 border-b-neutral-100 flex items-center">
+              <div>2.&nbsp;</div>Review travelers details
+            </div>
+            <Details
+              passengers={result.data?.providerOfferDetails?.passengers}
+            />
+          </div>
           <div>
             <div className="font-semibold text-neutral-700 text-lg border-b pb-2 pt-4 mb-1 border-b-neutral-100 flex items-center">
               <div>3.&nbsp;</div>Selected payment option

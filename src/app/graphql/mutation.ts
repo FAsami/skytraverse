@@ -94,6 +94,16 @@ const CREATE_PAYMENT_TRANSACTION_LOG = gql`
     }
   }
 `
+
+const CREATE_FLIGHT_BOOKING_TRANSACTION_LOG = gql`
+  mutation CreateFlightBookingTransactionLog(
+    $object: booking_providerBookingLogs_insert_input!
+  ) {
+    insert_booking_providerBookingLogs_one(object: $object) {
+      id
+    }
+  }
+`
 const UPDATE_CUSTOMER_DETAILS = gql`
   mutation UpdateCustomerDetails(
     $where: customer_details_bool_exp = {}
@@ -123,6 +133,7 @@ export {
   DELETE_OTP_BY_USER_ID,
   CREATE_FLIGHT_BOOKING,
   UPDATE_FLIGHT_BOOKING,
+  CREATE_FLIGHT_BOOKING_TRANSACTION_LOG,
   CREATE_PAYMENT_TRANSACTION,
   UPDATE_PAYMENT_TRANSACTION,
   CREATE_PAYMENT_TRANSACTION_LOG,

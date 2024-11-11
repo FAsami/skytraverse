@@ -98,3 +98,8 @@
     min-height: 400px;
   }
 }
+
+.antd-flight-timeline .ant-timeline-item-content {
+  margin-inline-start: 40px !important;
+  inset-block-start: -1.5rem !important;
+}

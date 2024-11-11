@@ -22,6 +22,7 @@ const documents = {
     "\n  mutation CreatePaymentTransaction(\n    $object: payment_transactions_insert_input!\n  ) {\n    insert_payment_transactions_one(object: $object) {\n      id\n    }\n  }\n": types.CreatePaymentTransactionDocument,
     "\n  mutation UpdatePaymentTransactionById(\n    $_set: payment_transactions_set_input!\n    $id: Int!\n  ) {\n    update_payment_transactions_by_pk(_set: $_set, pk_columns: { id: $id }) {\n      id\n      status\n    }\n  }\n": types.UpdatePaymentTransactionByIdDocument,
     "\n  mutation CreatePaymentTransactionLog(\n    $object: payment_transactionLogs_insert_input!\n  ) {\n    insert_payment_transactionLogs_one(object: $object) {\n      id\n    }\n  }\n": types.CreatePaymentTransactionLogDocument,
+    "\n  mutation CreateFlightBookingTransactionLog(\n    $object: booking_providerBookingLogs_insert_input!\n  ) {\n    insert_booking_providerBookingLogs_one(object: $object) {\n      id\n    }\n  }\n": types.CreateFlightBookingTransactionLogDocument,
     "\n  mutation UpdateCustomerDetails(\n    $where: customer_details_bool_exp = {}\n    $_set: customer_details_set_input = {}\n  ) {\n    update_customer_details(where: $where, _set: $_set) {\n      affected_rows\n    }\n  }\n": types.UpdateCustomerDetailsDocument,
     "\n  mutation CreateCustomerDetails($object: customer_details_insert_input!) {\n    insert_customer_details_one(object: $object) {\n      firstName\n      dateOfBirth\n      gender\n      lastName\n      userId\n    }\n  }\n": types.CreateCustomerDetailsDocument,
     "\n  query GetBrand($title: String!) {\n    brand_brands(where: { title: { _eq: $title } }) {\n      id\n      title\n      logo\n      metaData\n      phone\n      email\n      location\n    }\n  }\n": types.GetBrandDocument,
@@ -83,6 +84,10 @@ export function gql(source: "\n  mutation UpdatePaymentTransactionById(\n    $_s
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  mutation CreatePaymentTransactionLog(\n    $object: payment_transactionLogs_insert_input!\n  ) {\n    insert_payment_transactionLogs_one(object: $object) {\n      id\n    }\n  }\n"): (typeof documents)["\n  mutation CreatePaymentTransactionLog(\n    $object: payment_transactionLogs_insert_input!\n  ) {\n    insert_payment_transactionLogs_one(object: $object) {\n      id\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation CreateFlightBookingTransactionLog(\n    $object: booking_providerBookingLogs_insert_input!\n  ) {\n    insert_booking_providerBookingLogs_one(object: $object) {\n      id\n    }\n  }\n"): (typeof documents)["\n  mutation CreateFlightBookingTransactionLog(\n    $object: booking_providerBookingLogs_insert_input!\n  ) {\n    insert_booking_providerBookingLogs_one(object: $object) {\n      id\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

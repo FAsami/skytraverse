@@ -47,6 +47,12 @@ const createPayment = async (id: string): Promise<ActionResponse | void> => {
         GET_FLIGHT_BOOKINGS,
         params
       )
+      if (bookingData.booking_flights[0].status === 'SUCCEEDED') {
+        return {
+          success: false,
+          message: 'This flight has been booked already'
+        }
+      }
       const providerBookingId = bookingData.booking_flights[0]?.providerOfferId
       if (providerBookingId) {
         const res = await getOfferList(providerBookingId)
