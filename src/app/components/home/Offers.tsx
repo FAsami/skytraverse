@@ -9,8 +9,8 @@ const items = [
 const FlightOffers = () => {
   return (
     <div className="bg-white">
-      <section className="py-12 container mx-auto">
-        <h1 className="text-3xl w-full md:text-4xl font-semibold pb-5">
+      <section className="md:py-32 py-12 container mx-auto">
+        <h1 className="text-2xl w-full md:text-4xl font-semibold pb-5">
           Offers
         </h1>{' '}
         <div className="container mx-auto">

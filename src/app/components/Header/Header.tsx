@@ -2,7 +2,6 @@ import { auth } from '@/auth'
 import { GetBrandQuery } from '@/types/gql/graphql'
 import Image from 'next/image'
 import Link from 'next/link'
-import { BiSupport } from 'react-icons/bi'
 import { AuthMenu } from './AuthMenu'
 
 const Header = async ({
@@ -24,13 +23,6 @@ const Header = async ({
           />
         </Link>
         <div className="flex gap-2 md:gap-6 text-base items-center">
-          <Link
-            href="/support"
-            className="text-neutral-700 text-sm flex items-center font-semibold"
-          >
-            <BiSupport /> &nbsp;
-            <span>Support</span>
-          </Link>
           <Link
             href="/support"
             className="text-neutral-700 text-sm flex items-center font-semibold"
