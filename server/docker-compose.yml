@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16
+    container_name: skytraverse_postgres_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgrespassword
+      - POSTGRES_DB=skytraverse
+    ports:
+      - '6329:5432'
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d skytraverse']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - postgres_network
+    restart: always
+
+networks:
+  postgres_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local

@@ -1,22 +1,22 @@
 {
-    "cSpell.words": [
-        "antd",
-        "authjs",
-        "cloudinary",
-        "clsx",
-        "codegen",
-        "flagcdn",
-        "graphq",
-        "HASURA",
-        "htmlbody",
-        "nextjs",
-        "Sider",
-        "tailwindcss",
-        "turbopack"
-    ],
-    "files.associations": {
-        "*.css": "tailwindcss"
-    },
-    "window.zoomLevel": 1,
-    "docwriter.style": "Auto-detect"
+  "cSpell.words": [
+    "antd",
+    "authjs",
+    "cloudinary",
+    "clsx",
+    "codegen",
+    "flagcdn",
+    "graphq",
+    "HASURA",
+    "htmlbody",
+    "nextjs",
+    "Sider",
+    "tailwindcss",
+    "turbopack"
+  ],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "window.zoomLevel": 0.8,
+  "docwriter.style": "Auto-detect"
 }
